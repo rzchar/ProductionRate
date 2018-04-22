@@ -1,0 +1,2287 @@
+[
+    {
+        "sha": "d879c3faf2e601e24bda50e48222a019107a5333",
+        "commit": {
+            "author": {
+                "name": "Dmytro Nochevnov",
+                "email": "dnochevn@redhat.com",
+                "date": "2018-04-16T15:52:19Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-16T15:52:19Z"
+            },
+            "message": "Move test user creating from selenium tests launcher to framework (#9357)\n\n* Treat  user as a constant\r\n* Avoid error because of outdated auth token of test user\r\n* Create test user from selenium framework\r\n* Add test user providers\r\n* Remove test user injection from DashboardAccount page object\r\n* Fix check up on Che launch location on OpenShift\r\n* Fix injection of test user credentials\r\n* Fix check if Che is run locally\r\n* Remove TestUser on selenium tests PreDestroy phase\r\n\r\nSigned-off-by: Dmytro Nochevnov <dnochevnov@codenvy.com>",
+            "tree": {
+                "sha": "5b8208adef9e134e064a92131f46d356d151f69e",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/5b8208adef9e134e064a92131f46d356d151f69e"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/d879c3faf2e601e24bda50e48222a019107a5333",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa1MazCRBK7hj4Ov3rIwAAdHIIACvTj1HE4+9He1aaMx6PjHVF\n25lW5R0Qp8YyoQUHp/Lj47BBrmOZ8O0Q9IYI13B6g158z0IuAkhDq/cRl3ucXeCw\ns3m360xWZW81HjY+WULsfnaPf5baReRmmcOmkiaJ6Fy3JRj20LcAyJYJv+R6z4Kw\nFP3hkOChwAuCLRodixQCA6m1ALGLLwg3/RNfPDGbg9w0+eVihVbqAxah40tB4iEX\nkohRTZuEf8l1axYbN1WC+A9OwXJ8TgFYGSWFuIi4YGHw/0Y+D8MfZ2wwZqpYCyoF\n5/p25ICOwvoE0WpXEgUcg/TElrcjRGDIvwj8Ioh7vgHC/YaW4pCt/bhM4timRpI=\n=qE98\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 5b8208adef9e134e064a92131f46d356d151f69e\nparent 6c96974d4640a773d8f37d46b08e93ae5b0f7406\nauthor Dmytro Nochevnov <dnochevn@redhat.com> 1523893939 +0200\ncommitter GitHub <noreply@github.com> 1523893939 +0200\n\nMove test user creating from selenium tests launcher to framework (#9357)\n\n* Treat  user as a constant\r\n* Avoid error because of outdated auth token of test user\r\n* Create test user from selenium framework\r\n* Add test user providers\r\n* Remove test user injection from DashboardAccount page object\r\n* Fix check up on Che launch location on OpenShift\r\n* Fix injection of test user credentials\r\n* Fix check if Che is run locally\r\n* Remove TestUser on selenium tests PreDestroy phase\r\n\r\nSigned-off-by: Dmytro Nochevnov <dnochevnov@codenvy.com>\r\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333",
+        "html_url": "https://github.com/eclipse/che/commit/d879c3faf2e601e24bda50e48222a019107a5333",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333/comments",
+        "author": {
+            "login": "dmytro-ndp",
+            "id": 1197777,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/1197777?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/dmytro-ndp",
+            "html_url": "https://github.com/dmytro-ndp",
+            "followers_url": "https://api.github.com/users/dmytro-ndp/followers",
+            "following_url": "https://api.github.com/users/dmytro-ndp/following{/other_user}",
+            "gists_url": "https://api.github.com/users/dmytro-ndp/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/dmytro-ndp/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/dmytro-ndp/subscriptions",
+            "organizations_url": "https://api.github.com/users/dmytro-ndp/orgs",
+            "repos_url": "https://api.github.com/users/dmytro-ndp/repos",
+            "events_url": "https://api.github.com/users/dmytro-ndp/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/dmytro-ndp/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "6c96974d4640a773d8f37d46b08e93ae5b0f7406",
+                "url": "https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406",
+                "html_url": "https://github.com/eclipse/che/commit/6c96974d4640a773d8f37d46b08e93ae5b0f7406"
+            }
+        ]
+    },
+    {
+        "sha": "6c96974d4640a773d8f37d46b08e93ae5b0f7406",
+        "commit": {
+            "author": {
+                "name": "Sergey Skorik",
+                "email": "sskorik@codenvy.com",
+                "date": "2018-04-16T14:26:32Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-16T14:26:32Z"
+            },
+            "message": "Selenium: remove info about #9100 issue from ProjectExplorer page object (#9443)",
+            "tree": {
+                "sha": "4b7dcf6f165530c7366647a2d0a30aa44acb3639",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/4b7dcf6f165530c7366647a2d0a30aa44acb3639"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa1LKYCRBK7hj4Ov3rIwAAdHIIAD1MnAQ4WNb7SKEoo7XRwnwA\nSQRW2rBoos+112p6Bga2yZaV4z/0tJ0nRIIfubYPNGGIKQdU/5D05oU4NbFXWs1h\nFubE2eGhzgUwyfAyDZLW2kebazaYsa29jNSfLvNQ9OaS1lSqJFqiXuE9DIBru+Y/\ni4Q+FOA2gH7ET6RFy0LV5mU/bUZ1KJsOkXvAac3uOMSNgpvdSzRgth7YEInP74/O\n+ik/q6/bC92NB7IszO1/z51eHtFkOi2X117rek5RlBqgzyV4BP4G8IxnDUFJXjEI\ninACj/JS+/hhLkUzr/x4aIOb+8c2yPFoem4FUdedzwChsDNz4VwPd1xSMvcfIn0=\n=uyYr\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 4b7dcf6f165530c7366647a2d0a30aa44acb3639\nparent 3ed366b74f5a4149cc6e516fcad82910e402689c\nauthor Sergey Skorik <sskorik@codenvy.com> 1523888792 +0300\ncommitter GitHub <noreply@github.com> 1523888792 +0300\n\nSelenium: remove info about #9100 issue from ProjectExplorer page object (#9443)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406",
+        "html_url": "https://github.com/eclipse/che/commit/6c96974d4640a773d8f37d46b08e93ae5b0f7406",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406/comments",
+        "author": {
+            "login": "SkorikSergey",
+            "id": 7760565,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/7760565?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/SkorikSergey",
+            "html_url": "https://github.com/SkorikSergey",
+            "followers_url": "https://api.github.com/users/SkorikSergey/followers",
+            "following_url": "https://api.github.com/users/SkorikSergey/following{/other_user}",
+            "gists_url": "https://api.github.com/users/SkorikSergey/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/SkorikSergey/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/SkorikSergey/subscriptions",
+            "organizations_url": "https://api.github.com/users/SkorikSergey/orgs",
+            "repos_url": "https://api.github.com/users/SkorikSergey/repos",
+            "events_url": "https://api.github.com/users/SkorikSergey/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/SkorikSergey/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "3ed366b74f5a4149cc6e516fcad82910e402689c",
+                "url": "https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c",
+                "html_url": "https://github.com/eclipse/che/commit/3ed366b74f5a4149cc6e516fcad82910e402689c"
+            }
+        ]
+    },
+    {
+        "sha": "3ed366b74f5a4149cc6e516fcad82910e402689c",
+        "commit": {
+            "author": {
+                "name": "Gennady Azarenkov",
+                "email": "gazarenk@redhat.com",
+                "date": "2018-04-16T14:15:44Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-16T14:15:44Z"
+            },
+            "message": "Fix calculation Projects Root so it wont cause NPE if there are no 'project' volume defined  (#9440)\n\n* Adding pipeline\r\n\r\n* del jenkinsfile\r\n\r\n* Make exec agent not to use setsid for other than Linux envs\r\n\r\n* revert pom.xml\r\n\r\n* goformat\r\n\r\n* get projects folder from workkspace configuration\r\n\r\n* Merge remote-tracking branch 'upstream/master'\r\n\r\n* clean code\r\n\r\n* clean code\r\n\r\n* Fix calculation Projects Root so it wont cause NPE if there are no 'project' volume defined\r\n\r\n* Revert \"Fix calculation Projects Root so it wont cause NPE if there are no 'project' volume defined\"\r\n\r\nThis reverts commit 127a79e54c3e7f97a74f0103506025eb5e181777.\r\n\r\n* Fix calculation Projects Root so it wont cause NPE if there are no 'project' volume defined",
+            "tree": {
+                "sha": "d2ff6125f319c3871b7194b6e9ff360b38f61a37",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/d2ff6125f319c3871b7194b6e9ff360b38f61a37"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/3ed366b74f5a4149cc6e516fcad82910e402689c",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa1LAQCRBK7hj4Ov3rIwAAdHIIABXdzUONcq+Qe/Da7Mo8du9C\nWypbRctaSp6rd3cSv1rea+N1ZymuzLqMDLxcgFkaUx3N6LYY8O1Xu3Hbfe8B6CDG\n62Sg3KDGuDEt/hdfck2wwK4mukuoDRPO2F6XGERd48TjZ+BRR2Mp3cwlUqZX5qZb\nxXHM5v9WsvT9u7Im3g1r+sysBptNMqhiv0riMrm+4pOZhlLluR4YA3VfigGa3gR5\nZvMofxca37oW/6uImSTqod3kMer0yEg/8DIbicJLA8JRNNpfhlG23aftKspnpzdO\nvsxlA9Lo8gr4i9+mBQFI7N0EI4jp28X1Tbx042H+/3k2l6nj0ygcpl4uMFApfu8=\n=0sXt\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree d2ff6125f319c3871b7194b6e9ff360b38f61a37\nparent 689e123f28bdb3ebd2575b133ad4c40a18686ff8\nauthor Gennady Azarenkov <gazarenk@redhat.com> 1523888144 +0300\ncommitter GitHub <noreply@github.com> 1523888144 +0300\n\nFix calculation Projects Root so it wont cause NPE if there are no 'project' volume defined  (#9440)\n\n* Adding pipeline\r\n\r\n* del jenkinsfile\r\n\r\n* Make exec agent not to use setsid for other than Linux envs\r\n\r\n* revert pom.xml\r\n\r\n* goformat\r\n\r\n* get projects folder from workkspace configuration\r\n\r\n* Merge remote-tracking branch 'upstream/master'\r\n\r\n* clean code\r\n\r\n* clean code\r\n\r\n* Fix calculation Projects Root so it wont cause NPE if there are no 'project' volume defined\r\n\r\n* Revert \"Fix calculation Projects Root so it wont cause NPE if there are no 'project' volume defined\"\r\n\r\nThis reverts commit 127a79e54c3e7f97a74f0103506025eb5e181777.\r\n\r\n* Fix calculation Projects Root so it wont cause NPE if there are no 'project' volume defined\r\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c",
+        "html_url": "https://github.com/eclipse/che/commit/3ed366b74f5a4149cc6e516fcad82910e402689c",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c/comments",
+        "author": {
+            "login": "gazarenkov",
+            "id": 578124,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/578124?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/gazarenkov",
+            "html_url": "https://github.com/gazarenkov",
+            "followers_url": "https://api.github.com/users/gazarenkov/followers",
+            "following_url": "https://api.github.com/users/gazarenkov/following{/other_user}",
+            "gists_url": "https://api.github.com/users/gazarenkov/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/gazarenkov/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/gazarenkov/subscriptions",
+            "organizations_url": "https://api.github.com/users/gazarenkov/orgs",
+            "repos_url": "https://api.github.com/users/gazarenkov/repos",
+            "events_url": "https://api.github.com/users/gazarenkov/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/gazarenkov/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "689e123f28bdb3ebd2575b133ad4c40a18686ff8",
+                "url": "https://api.github.com/repos/eclipse/che/commits/689e123f28bdb3ebd2575b133ad4c40a18686ff8",
+                "html_url": "https://github.com/eclipse/che/commit/689e123f28bdb3ebd2575b133ad4c40a18686ff8"
+            }
+        ]
+    },
+    {
+        "sha": "689e123f28bdb3ebd2575b133ad4c40a18686ff8",
+        "commit": {
+            "author": {
+                "name": "Sergii Leshchenko",
+                "email": "sleshche@redhat.com",
+                "date": "2018-04-16T13:49:53Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-16T13:49:53Z"
+            },
+            "message": "CHE-9431 Fix removing of PVCs when OpenShift project name is predefined (#9437)",
+            "tree": {
+                "sha": "0f3b92748b5064d030871571417b4b96c92ac998",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/0f3b92748b5064d030871571417b4b96c92ac998"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/689e123f28bdb3ebd2575b133ad4c40a18686ff8",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa1KoBCRBK7hj4Ov3rIwAAdHIIAIYiHxIibmEk6cPTJ1+IByBK\nu14AFx3CvXi/s8fjq9cU1Y3cJ9oAdnNcGsN6TBwqpyjMrwhI+rgClwRsp5uBYX2D\nk9p7U/doM6Ch4xleQuCusEpRvQYyvIfuUYx3cZ/qbyiuSM++ujo5dYFRdrT3H/UD\nDgBTf6kSEvCt9Kb/pOGtxT8D1hUjbHSRKWNNEBRZ5sHEVwlz3WogpUPD5lSA5MFl\nbJU1djzOG8Wc826wJG5BbRgK82VNl1nx6K6NmJf1oCTgdWkbTXz8iqKsAMhzrNcO\n5r9f8alW/3U2FcYJzSZmTg2dnypkIT98tA75KTnk3EU7ZdkbPnVnR5KjdY7QDyQ=\n=4IwA\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 0f3b92748b5064d030871571417b4b96c92ac998\nparent 925ab38fadecfccedb758b0f01d274e1110dc17d\nauthor Sergii Leshchenko <sleshche@redhat.com> 1523886593 +0300\ncommitter GitHub <noreply@github.com> 1523886593 +0300\n\nCHE-9431 Fix removing of PVCs when OpenShift project name is predefined (#9437)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/689e123f28bdb3ebd2575b133ad4c40a18686ff8",
+        "html_url": "https://github.com/eclipse/che/commit/689e123f28bdb3ebd2575b133ad4c40a18686ff8",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/689e123f28bdb3ebd2575b133ad4c40a18686ff8/comments",
+        "author": {
+            "login": "sleshchenko",
+            "id": 5887312,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/5887312?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sleshchenko",
+            "html_url": "https://github.com/sleshchenko",
+            "followers_url": "https://api.github.com/users/sleshchenko/followers",
+            "following_url": "https://api.github.com/users/sleshchenko/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sleshchenko/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sleshchenko/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sleshchenko/subscriptions",
+            "organizations_url": "https://api.github.com/users/sleshchenko/orgs",
+            "repos_url": "https://api.github.com/users/sleshchenko/repos",
+            "events_url": "https://api.github.com/users/sleshchenko/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sleshchenko/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "925ab38fadecfccedb758b0f01d274e1110dc17d",
+                "url": "https://api.github.com/repos/eclipse/che/commits/925ab38fadecfccedb758b0f01d274e1110dc17d",
+                "html_url": "https://github.com/eclipse/che/commit/925ab38fadecfccedb758b0f01d274e1110dc17d"
+            }
+        ]
+    },
+    {
+        "sha": "925ab38fadecfccedb758b0f01d274e1110dc17d",
+        "commit": {
+            "author": {
+                "name": "Gennady Azarenkov",
+                "email": "gazarenk@redhat.com",
+                "date": "2018-04-16T06:44:12Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-16T06:44:12Z"
+            },
+            "message": "Make IDE use projects folder configured in a workspace instead of hardcoded /projects (#9422)\n\n* Adding pipeline\r\n\r\n* del jenkinsfile\r\n\r\n* Make exec agent not to use setsid for other than Linux envs\r\n\r\n* revert pom.xml\r\n\r\n* goformat\r\n\r\n* get projects folder from workkspace configuration\r\n\r\n* Merge remote-tracking branch 'upstream/master'\r\n\r\n* clean code\r\n\r\n* clean code",
+            "tree": {
+                "sha": "1ff5769be4505d239302ef6dbe1144e08179cacf",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/1ff5769be4505d239302ef6dbe1144e08179cacf"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/925ab38fadecfccedb758b0f01d274e1110dc17d",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa1EY8CRBK7hj4Ov3rIwAAdHIIACOexO3L0iwNUIQlgg1l5wa9\nXQ5k+QJjOXJPsnsChbeBZB/K85EnMenT3P9smssySe2H4Bo2419LLWlZZ19JSdrh\nQxMLapltO/YJxJC2vCcu4ehtVTJBOyqcEbJj+9tkwYj5Qj+2v9nPoHsiPBdQMLqd\n/aLbdDQTn/Tx3B9Z5wCbb7Df2H2VVswI/fnpzbGnLQ3PEZNQ/4GlXmk0gqzj3DeZ\nCxp84Ms3tXQiBOAqi0U3AOFaKrzbyveSHAwhmkF4sGY/3YuvoI9FLQohtcRGCfnF\ntxf1PQj5s3OhquW0dWDx+sTd3nPpGauYtLcZ4rJoD5sTa1ViRn3tVRWe6rgjx0g=\n=Z4SX\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 1ff5769be4505d239302ef6dbe1144e08179cacf\nparent 7d31a5aa24c4fc8fe86caf699ed95d57fc4f0ad6\nauthor Gennady Azarenkov <gazarenk@redhat.com> 1523861052 +0300\ncommitter GitHub <noreply@github.com> 1523861052 +0300\n\nMake IDE use projects folder configured in a workspace instead of hardcoded /projects (#9422)\n\n* Adding pipeline\r\n\r\n* del jenkinsfile\r\n\r\n* Make exec agent not to use setsid for other than Linux envs\r\n\r\n* revert pom.xml\r\n\r\n* goformat\r\n\r\n* get projects folder from workkspace configuration\r\n\r\n* Merge remote-tracking branch 'upstream/master'\r\n\r\n* clean code\r\n\r\n* clean code\r\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/925ab38fadecfccedb758b0f01d274e1110dc17d",
+        "html_url": "https://github.com/eclipse/che/commit/925ab38fadecfccedb758b0f01d274e1110dc17d",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/925ab38fadecfccedb758b0f01d274e1110dc17d/comments",
+        "author": {
+            "login": "gazarenkov",
+            "id": 578124,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/578124?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/gazarenkov",
+            "html_url": "https://github.com/gazarenkov",
+            "followers_url": "https://api.github.com/users/gazarenkov/followers",
+            "following_url": "https://api.github.com/users/gazarenkov/following{/other_user}",
+            "gists_url": "https://api.github.com/users/gazarenkov/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/gazarenkov/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/gazarenkov/subscriptions",
+            "organizations_url": "https://api.github.com/users/gazarenkov/orgs",
+            "repos_url": "https://api.github.com/users/gazarenkov/repos",
+            "events_url": "https://api.github.com/users/gazarenkov/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/gazarenkov/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "7d31a5aa24c4fc8fe86caf699ed95d57fc4f0ad6",
+                "url": "https://api.github.com/repos/eclipse/che/commits/7d31a5aa24c4fc8fe86caf699ed95d57fc4f0ad6",
+                "html_url": "https://github.com/eclipse/che/commit/7d31a5aa24c4fc8fe86caf699ed95d57fc4f0ad6"
+            }
+        ]
+    },
+    {
+        "sha": "7d31a5aa24c4fc8fe86caf699ed95d57fc4f0ad6",
+        "commit": {
+            "author": {
+                "name": "Igor Ohrimenko",
+                "email": "iokhrime@redhat.com",
+                "date": "2018-04-13T14:18:55Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-13T14:18:55Z"
+            },
+            "message": "Rework 'UpdateListOfLibraryTest' selenium test (#9420)",
+            "tree": {
+                "sha": "cb287ca2451441780029ec26875343893848847d",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/cb287ca2451441780029ec26875343893848847d"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/7d31a5aa24c4fc8fe86caf699ed95d57fc4f0ad6",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa0LxPCRBK7hj4Ov3rIwAAdHIIAKzgZ4frpWSkO61fzzZm3w8+\nkUNfVYP6lj1t+t+ceYomhoRNtJoiPGlvy6MUlhtpa3rNBm1MVX6Qux0WC2cJnCRX\nmR86BbbHXbuIlaScfAKUUJQd4yBNTj8MovsFWsAH/HMfyzuF/v6gvA2SzsrM5O0e\n6IX9RBiALIh4ZnMmXj1Nt02ZRX6SM8Ux+KMBw3Gkm9uNQfKHiQLK9bpOOzfwejSr\nh5s9brBIvHGJHHfLz/MpBH5t+YEVh2nBn2fZKfaVuifJKHR56MPFpSJjA/T4go38\nWG7tt+63zsKBcG8xgmAd24Ir2sNHG54OAgMI+7Dyh6mcgxyVd2k+T2wg6IzbGIU=\n=cNzv\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree cb287ca2451441780029ec26875343893848847d\nparent 013d4859142055b7f01f2aaf1231901e06c5e540\nauthor Igor Ohrimenko <iokhrime@redhat.com> 1523629135 +0300\ncommitter GitHub <noreply@github.com> 1523629135 +0300\n\nRework 'UpdateListOfLibraryTest' selenium test (#9420)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/7d31a5aa24c4fc8fe86caf699ed95d57fc4f0ad6",
+        "html_url": "https://github.com/eclipse/che/commit/7d31a5aa24c4fc8fe86caf699ed95d57fc4f0ad6",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/7d31a5aa24c4fc8fe86caf699ed95d57fc4f0ad6/comments",
+        "author": {
+            "login": "Ohrimenko1988",
+            "id": 22724619,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/22724619?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Ohrimenko1988",
+            "html_url": "https://github.com/Ohrimenko1988",
+            "followers_url": "https://api.github.com/users/Ohrimenko1988/followers",
+            "following_url": "https://api.github.com/users/Ohrimenko1988/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Ohrimenko1988/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Ohrimenko1988/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Ohrimenko1988/subscriptions",
+            "organizations_url": "https://api.github.com/users/Ohrimenko1988/orgs",
+            "repos_url": "https://api.github.com/users/Ohrimenko1988/repos",
+            "events_url": "https://api.github.com/users/Ohrimenko1988/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Ohrimenko1988/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "013d4859142055b7f01f2aaf1231901e06c5e540",
+                "url": "https://api.github.com/repos/eclipse/che/commits/013d4859142055b7f01f2aaf1231901e06c5e540",
+                "html_url": "https://github.com/eclipse/che/commit/013d4859142055b7f01f2aaf1231901e06c5e540"
+            }
+        ]
+    },
+    {
+        "sha": "013d4859142055b7f01f2aaf1231901e06c5e540",
+        "commit": {
+            "author": {
+                "name": "Mykhailo Kuznietsov",
+                "email": "mkuznets@redhat.com",
+                "date": "2018-04-13T14:11:42Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-13T14:11:42Z"
+            },
+            "message": "Use workspace limit idle timeout value in WorkspaceActivityManager (#9395)",
+            "tree": {
+                "sha": "87f920785f3d1cc6c578a55b22d2db219892b194",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/87f920785f3d1cc6c578a55b22d2db219892b194"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/013d4859142055b7f01f2aaf1231901e06c5e540",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa0LqeCRBK7hj4Ov3rIwAAdHIIAFROvrISWxWp/GJHINmfiu32\n4R9GJX6pOO0D+HThcO1SzNZZwb+DR/Bo3M0RUtKsBJ0JHyLMGrvYoPLsS10aokij\nYyJ7NoT2JpFwUnWBUiU9yZHqHHRZyyidU9yULlvZAN02Ase4hTWKKh559g6K/RRq\nx/d/5KuPS6GnoAA/rsr9CZj+8JMHNYa1d+eapU38l0fbZZxs8qXxcwb3M/kqgAwq\nPZN5dwgvkiAkfkwRg9IhQtFcQNhaoZKpxko0KyVqN3nrpRsaQFkVt4xQQ94uzAF/\nEi1D514oDtmG7JZM+Mf3pnu+OscEfNxeFIjb2FR5GEG1uBWRh8VrYrAep+xp27k=\n=9ul3\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 87f920785f3d1cc6c578a55b22d2db219892b194\nparent 04b83a31dc7e159e99973c1aadc22349b3e518a4\nauthor Mykhailo Kuznietsov <mkuznets@redhat.com> 1523628702 +0000\ncommitter GitHub <noreply@github.com> 1523628702 +0000\n\nUse workspace limit idle timeout value in WorkspaceActivityManager (#9395)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/013d4859142055b7f01f2aaf1231901e06c5e540",
+        "html_url": "https://github.com/eclipse/che/commit/013d4859142055b7f01f2aaf1231901e06c5e540",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/013d4859142055b7f01f2aaf1231901e06c5e540/comments",
+        "author": {
+            "login": "mkuznyetsov",
+            "id": 5712744,
+            "avatar_url": "https://avatars2.githubusercontent.com/u/5712744?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mkuznyetsov",
+            "html_url": "https://github.com/mkuznyetsov",
+            "followers_url": "https://api.github.com/users/mkuznyetsov/followers",
+            "following_url": "https://api.github.com/users/mkuznyetsov/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mkuznyetsov/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mkuznyetsov/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mkuznyetsov/subscriptions",
+            "organizations_url": "https://api.github.com/users/mkuznyetsov/orgs",
+            "repos_url": "https://api.github.com/users/mkuznyetsov/repos",
+            "events_url": "https://api.github.com/users/mkuznyetsov/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mkuznyetsov/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "04b83a31dc7e159e99973c1aadc22349b3e518a4",
+                "url": "https://api.github.com/repos/eclipse/che/commits/04b83a31dc7e159e99973c1aadc22349b3e518a4",
+                "html_url": "https://github.com/eclipse/che/commit/04b83a31dc7e159e99973c1aadc22349b3e518a4"
+            }
+        ]
+    },
+    {
+        "sha": "04b83a31dc7e159e99973c1aadc22349b3e518a4",
+        "commit": {
+            "author": {
+                "name": "Igor Ohrimenko",
+                "email": "iokhrime@redhat.com",
+                "date": "2018-04-13T13:25:19Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-13T13:25:19Z"
+            },
+            "message": "Remove catching issue #7551 (#9407)",
+            "tree": {
+                "sha": "a25a6096c0b0a63bca3eb86be19937cd8660d139",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/a25a6096c0b0a63bca3eb86be19937cd8660d139"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/04b83a31dc7e159e99973c1aadc22349b3e518a4",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa0K+/CRBK7hj4Ov3rIwAAdHIIAKv0vUxb/QbJ0qdS4VWEp0qj\nywymz4bTkFF8OuTidAWg2pzoIfRNkjc4oFqwEknHNgczwxYxYsacoQS7/5JJz7hB\nuefS+ZfO5nOpxfb3RltwRTV7RagGOZ3Q4ePtdSaXF7LaLva9Fr/KSi5bhWybvXdZ\nKw7W6fCK+5RCV0im1hhg3lLqBLBeuCdbVu3+NNXD8e7MRuGWORki0nMgR4EI3iRz\nHlAgCzZiE3zl4V88xoxxH1IGG1fUewcTDemM6Q6Ne9PThWkfPJZK7GFasE19XJKI\nx2lhA1Vex+wXS3PC7II4yEFKSyQvlAsuWOdNRo1t8IHzTnASyZGkmsW3Yt+Mp6Y=\n=KRw+\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree a25a6096c0b0a63bca3eb86be19937cd8660d139\nparent f8c212aa2e9d9263b8beab27f8f3a5a5b82b7d92\nauthor Igor Ohrimenko <iokhrime@redhat.com> 1523625919 +0300\ncommitter GitHub <noreply@github.com> 1523625919 +0300\n\nRemove catching issue #7551 (#9407)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/04b83a31dc7e159e99973c1aadc22349b3e518a4",
+        "html_url": "https://github.com/eclipse/che/commit/04b83a31dc7e159e99973c1aadc22349b3e518a4",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/04b83a31dc7e159e99973c1aadc22349b3e518a4/comments",
+        "author": {
+            "login": "Ohrimenko1988",
+            "id": 22724619,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/22724619?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Ohrimenko1988",
+            "html_url": "https://github.com/Ohrimenko1988",
+            "followers_url": "https://api.github.com/users/Ohrimenko1988/followers",
+            "following_url": "https://api.github.com/users/Ohrimenko1988/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Ohrimenko1988/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Ohrimenko1988/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Ohrimenko1988/subscriptions",
+            "organizations_url": "https://api.github.com/users/Ohrimenko1988/orgs",
+            "repos_url": "https://api.github.com/users/Ohrimenko1988/repos",
+            "events_url": "https://api.github.com/users/Ohrimenko1988/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Ohrimenko1988/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "f8c212aa2e9d9263b8beab27f8f3a5a5b82b7d92",
+                "url": "https://api.github.com/repos/eclipse/che/commits/f8c212aa2e9d9263b8beab27f8f3a5a5b82b7d92",
+                "html_url": "https://github.com/eclipse/che/commit/f8c212aa2e9d9263b8beab27f8f3a5a5b82b7d92"
+            }
+        ]
+    },
+    {
+        "sha": "f8c212aa2e9d9263b8beab27f8f3a5a5b82b7d92",
+        "commit": {
+            "author": {
+                "name": "Dmytro Kulieshov",
+                "email": "dkuliesh@redhat.com",
+                "date": "2018-04-13T12:35:54Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-13T12:35:54Z"
+            },
+            "message": "Added initialization for FileTreeWalker (#9392)",
+            "tree": {
+                "sha": "8eeef7a4e35a45f49a1236ee4d3ff13868d46782",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/8eeef7a4e35a45f49a1236ee4d3ff13868d46782"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/f8c212aa2e9d9263b8beab27f8f3a5a5b82b7d92",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa0KQqCRBK7hj4Ov3rIwAAdHIIACPmAFPS4+9yJKglOTP31cR1\n+KHf085AM8tRpAxeCkq3k3O8/JrczylworqtJdnJypTRfB7VokQITlAi/46oJSvx\ntSGi7nqRcLpyVk1WEo2G+Ml1LUZXA1hP9bg1ehR+zuS314P+cEB5lb55m+QNPAgW\nZkq/2aS+lhGgN5dflZFETG0f5iyPNTyG1xGQ+HP0y3eXJTcshkiYczJCA1NnE9m4\nSwuP7ef51E7UPq/g/cHr9tKiegHsC2cvQ3XVs30agafZWub/BB9KJ7vhtqxckDi8\nCtSfirBMVPyd3xa83+2xM/u06cZBGl+sXnbE7TkVEcw2kuksTGibh4/EyQfhGnw=\n=zByX\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 8eeef7a4e35a45f49a1236ee4d3ff13868d46782\nparent 53ef953e966e198c5b72f65db69e88b032323e4d\nauthor Dmytro Kulieshov <dkuliesh@redhat.com> 1523622954 +0300\ncommitter GitHub <noreply@github.com> 1523622954 +0300\n\nAdded initialization for FileTreeWalker (#9392)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/f8c212aa2e9d9263b8beab27f8f3a5a5b82b7d92",
+        "html_url": "https://github.com/eclipse/che/commit/f8c212aa2e9d9263b8beab27f8f3a5a5b82b7d92",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/f8c212aa2e9d9263b8beab27f8f3a5a5b82b7d92/comments",
+        "author": {
+            "login": "dkuleshov",
+            "id": 1632360,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/1632360?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/dkuleshov",
+            "html_url": "https://github.com/dkuleshov",
+            "followers_url": "https://api.github.com/users/dkuleshov/followers",
+            "following_url": "https://api.github.com/users/dkuleshov/following{/other_user}",
+            "gists_url": "https://api.github.com/users/dkuleshov/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/dkuleshov/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/dkuleshov/subscriptions",
+            "organizations_url": "https://api.github.com/users/dkuleshov/orgs",
+            "repos_url": "https://api.github.com/users/dkuleshov/repos",
+            "events_url": "https://api.github.com/users/dkuleshov/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/dkuleshov/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "53ef953e966e198c5b72f65db69e88b032323e4d",
+                "url": "https://api.github.com/repos/eclipse/che/commits/53ef953e966e198c5b72f65db69e88b032323e4d",
+                "html_url": "https://github.com/eclipse/che/commit/53ef953e966e198c5b72f65db69e88b032323e4d"
+            }
+        ]
+    },
+    {
+        "sha": "53ef953e966e198c5b72f65db69e88b032323e4d",
+        "commit": {
+            "author": {
+                "name": "Igor Ohrimenko",
+                "email": "iokhrime@redhat.com",
+                "date": "2018-04-13T09:44:11Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-13T09:44:11Z"
+            },
+            "message": "Selenium: Create one test from \"ImportRecursiveSubmoduleTest\", \"ImportProjectIntoSpecifiedBranchTest\", and \"KeepDirectoryGitImportTest\" selenium tests (#9372)",
+            "tree": {
+                "sha": "acda5c3071286efd3053a636d212bba0105feb38",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/acda5c3071286efd3053a636d212bba0105feb38"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/53ef953e966e198c5b72f65db69e88b032323e4d",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa0HvrCRBK7hj4Ov3rIwAAdHIIAJJwyLk+V+MDhkru1/F/lyAj\nYy0b6/CSvUz3zwNotq9EexE7J7QnJN8I3AjVFKXq+l4qRHdA8E6WShF4Gn/txZDn\n2s7R3JcZ6VYhASPvytevS7y0xYaUudPkY9mz9aHsDoBT8+BzskSwXAbH16ueFAkI\nz0IGypYCxnNiUvO6bWikBUJoTeE+7oMFhxQZiRe7WGtj+At86HZx6GgDy0Ovppgc\nGVa9QW1G1UDG/+aqseIFHCvoVc9skwHC9mKOfmkmvG9BaWSQL06RpzAULBjRJYvM\nVP0G+c6YiisU4haYv73rQR4nJPpF1+vn1Zs2X35ISbLf9uUGwpBpCMqVI1fDkWM=\n=eihW\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree acda5c3071286efd3053a636d212bba0105feb38\nparent 6a6b808c8135483c9ec14a3b2fed31b961f441c3\nauthor Igor Ohrimenko <iokhrime@redhat.com> 1523612651 +0300\ncommitter GitHub <noreply@github.com> 1523612651 +0300\n\nSelenium: Create one test from \"ImportRecursiveSubmoduleTest\", \"ImportProjectIntoSpecifiedBranchTest\", and \"KeepDirectoryGitImportTest\" selenium tests (#9372)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/53ef953e966e198c5b72f65db69e88b032323e4d",
+        "html_url": "https://github.com/eclipse/che/commit/53ef953e966e198c5b72f65db69e88b032323e4d",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/53ef953e966e198c5b72f65db69e88b032323e4d/comments",
+        "author": {
+            "login": "Ohrimenko1988",
+            "id": 22724619,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/22724619?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Ohrimenko1988",
+            "html_url": "https://github.com/Ohrimenko1988",
+            "followers_url": "https://api.github.com/users/Ohrimenko1988/followers",
+            "following_url": "https://api.github.com/users/Ohrimenko1988/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Ohrimenko1988/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Ohrimenko1988/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Ohrimenko1988/subscriptions",
+            "organizations_url": "https://api.github.com/users/Ohrimenko1988/orgs",
+            "repos_url": "https://api.github.com/users/Ohrimenko1988/repos",
+            "events_url": "https://api.github.com/users/Ohrimenko1988/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Ohrimenko1988/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "6a6b808c8135483c9ec14a3b2fed31b961f441c3",
+                "url": "https://api.github.com/repos/eclipse/che/commits/6a6b808c8135483c9ec14a3b2fed31b961f441c3",
+                "html_url": "https://github.com/eclipse/che/commit/6a6b808c8135483c9ec14a3b2fed31b961f441c3"
+            }
+        ]
+    },
+    {
+        "sha": "6a6b808c8135483c9ec14a3b2fed31b961f441c3",
+        "commit": {
+            "author": {
+                "name": "Sergey Skorik",
+                "email": "sskorik@codenvy.com",
+                "date": "2018-04-13T08:11:12Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-13T08:11:12Z"
+            },
+            "message": "Selenium: wait that Restart button in ToastLoader is clickable (#9389)",
+            "tree": {
+                "sha": "3711e717f971169b9716ee9668daa2544d539e6c",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/3711e717f971169b9716ee9668daa2544d539e6c"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/6a6b808c8135483c9ec14a3b2fed31b961f441c3",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJa0GYgCRBK7hj4Ov3rIwAAdHIIAH/+9BRmCj4SVyjHSr4ST5d4\nqz/K6tRXAHkeDC3PnnNGRKlVjiCH3zAfU+cFFSUb7BqMAyzArRdttTRNLGUeDdn2\nUg8LHqEVjnQYy/FZTfhgabwTEjUdjd3Kd9/3AARRVVBpnDEmJQm/G6ZYspF93jo3\nMNcr9FhKMuMCF3nbzoRphjkQlZRuqBrlUmpWp16AQ2IhXURyGNv7Zi+oGew+L1xn\nK5HeD1mYP6MTxncx9H7t0JfTRwu7NPNsZVRUXIp6wERqdyEWYN3O4iJgcLOiviJs\nYF1F/EvbU214+5IKWw8Unq566syoJrh+o7m+VDvVPS3zxI99vFTdZj5MKPmhI3A=\n=NRJK\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 3711e717f971169b9716ee9668daa2544d539e6c\nparent 7b4adc606e6a09721c45395405adc4689689e74c\nauthor Sergey Skorik <sskorik@codenvy.com> 1523607072 +0300\ncommitter GitHub <noreply@github.com> 1523607072 +0300\n\nSelenium: wait that Restart button in ToastLoader is clickable (#9389)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/6a6b808c8135483c9ec14a3b2fed31b961f441c3",
+        "html_url": "https://github.com/eclipse/che/commit/6a6b808c8135483c9ec14a3b2fed31b961f441c3",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/6a6b808c8135483c9ec14a3b2fed31b961f441c3/comments",
+        "author": {
+            "login": "SkorikSergey",
+            "id": 7760565,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/7760565?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/SkorikSergey",
+            "html_url": "https://github.com/SkorikSergey",
+            "followers_url": "https://api.github.com/users/SkorikSergey/followers",
+            "following_url": "https://api.github.com/users/SkorikSergey/following{/other_user}",
+            "gists_url": "https://api.github.com/users/SkorikSergey/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/SkorikSergey/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/SkorikSergey/subscriptions",
+            "organizations_url": "https://api.github.com/users/SkorikSergey/orgs",
+            "repos_url": "https://api.github.com/users/SkorikSergey/repos",
+            "events_url": "https://api.github.com/users/SkorikSergey/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/SkorikSergey/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "7b4adc606e6a09721c45395405adc4689689e74c",
+                "url": "https://api.github.com/repos/eclipse/che/commits/7b4adc606e6a09721c45395405adc4689689e74c",
+                "html_url": "https://github.com/eclipse/che/commit/7b4adc606e6a09721c45395405adc4689689e74c"
+            }
+        ]
+    },
+    {
+        "sha": "7b4adc606e6a09721c45395405adc4689689e74c",
+        "commit": {
+            "author": {
+                "name": "Sergii Leshchenko",
+                "email": "sleshche@redhat.com",
+                "date": "2018-04-12T15:35:37Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-12T15:35:37Z"
+            },
+            "message": "Merge pull request #9301 from sleshchenko/openshiftRuntimesCache\n\nImplemented recovery functionality for Kubernetes/OpenShift infrastructures",
+            "tree": {
+                "sha": "24cb099c22a312baface43f1d5b0e4f7482bfd11",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/24cb099c22a312baface43f1d5b0e4f7482bfd11"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/7b4adc606e6a09721c45395405adc4689689e74c",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJaz3zJCRBK7hj4Ov3rIwAAdHIIAGqMG7w+Re+98/k8DSE7fG3m\nplKFTDFrQsUogDFFoVe9Utf7dkT4eZF1d+S9DJSOwrrUTQd5VSLsMlqgjGZFnQPr\nG79t9J0jAm1KRayZ0BNRcYFb0xeCELdvvS1YYA9QZyvH++qori5HsE7EiA/N7K7F\ncyc/sZ3Tw8pcD04F/IBjn85aFZAmc019U0C3/BEfx+XBa2cgrOgArahTrT6wg7uT\nZloCe42y9iitQiRg6QVd5kWn4pvs7S6xyH2Tt57itFT449LaO3d5Hl2qCFzGYF6s\nN+z/kZRJY2VZpxPpEpxyFJnDwxK9X9YNiHsJ78yhm3ZyChxLc70dg8vcnDaW+c8=\n=lQb5\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 24cb099c22a312baface43f1d5b0e4f7482bfd11\nparent a6269e6f0867f29fe71209182f15566538a225e2\nparent 8bcef4ef383a32595a07ff11f211df94a8926ac6\nauthor Sergii Leshchenko <sleshche@redhat.com> 1523547337 +0300\ncommitter GitHub <noreply@github.com> 1523547337 +0300\n\nMerge pull request #9301 from sleshchenko/openshiftRuntimesCache\n\nImplemented recovery functionality for Kubernetes/OpenShift infrastructures"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/7b4adc606e6a09721c45395405adc4689689e74c",
+        "html_url": "https://github.com/eclipse/che/commit/7b4adc606e6a09721c45395405adc4689689e74c",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/7b4adc606e6a09721c45395405adc4689689e74c/comments",
+        "author": {
+            "login": "sleshchenko",
+            "id": 5887312,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/5887312?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sleshchenko",
+            "html_url": "https://github.com/sleshchenko",
+            "followers_url": "https://api.github.com/users/sleshchenko/followers",
+            "following_url": "https://api.github.com/users/sleshchenko/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sleshchenko/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sleshchenko/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sleshchenko/subscriptions",
+            "organizations_url": "https://api.github.com/users/sleshchenko/orgs",
+            "repos_url": "https://api.github.com/users/sleshchenko/repos",
+            "events_url": "https://api.github.com/users/sleshchenko/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sleshchenko/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "a6269e6f0867f29fe71209182f15566538a225e2",
+                "url": "https://api.github.com/repos/eclipse/che/commits/a6269e6f0867f29fe71209182f15566538a225e2",
+                "html_url": "https://github.com/eclipse/che/commit/a6269e6f0867f29fe71209182f15566538a225e2"
+            },
+            {
+                "sha": "8bcef4ef383a32595a07ff11f211df94a8926ac6",
+                "url": "https://api.github.com/repos/eclipse/che/commits/8bcef4ef383a32595a07ff11f211df94a8926ac6",
+                "html_url": "https://github.com/eclipse/che/commit/8bcef4ef383a32595a07ff11f211df94a8926ac6"
+            }
+        ]
+    },
+    {
+        "sha": "8bcef4ef383a32595a07ff11f211df94a8926ac6",
+        "commit": {
+            "author": {
+                "name": "Sergii Leshchenko",
+                "email": "sleshche@redhat.com",
+                "date": "2018-04-10T10:28:30Z"
+            },
+            "committer": {
+                "name": "Sergii Leshchenko",
+                "email": "sleshche@redhat.com",
+                "date": "2018-04-12T14:23:47Z"
+            },
+            "message": "CHE-5919 Fix existing and add new tests for changes related to K8s/OS caches",
+            "tree": {
+                "sha": "24cb099c22a312baface43f1d5b0e4f7482bfd11",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/24cb099c22a312baface43f1d5b0e4f7482bfd11"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/8bcef4ef383a32595a07ff11f211df94a8926ac6",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/8bcef4ef383a32595a07ff11f211df94a8926ac6",
+        "html_url": "https://github.com/eclipse/che/commit/8bcef4ef383a32595a07ff11f211df94a8926ac6",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/8bcef4ef383a32595a07ff11f211df94a8926ac6/comments",
+        "author": {
+            "login": "sleshchenko",
+            "id": 5887312,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/5887312?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sleshchenko",
+            "html_url": "https://github.com/sleshchenko",
+            "followers_url": "https://api.github.com/users/sleshchenko/followers",
+            "following_url": "https://api.github.com/users/sleshchenko/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sleshchenko/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sleshchenko/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sleshchenko/subscriptions",
+            "organizations_url": "https://api.github.com/users/sleshchenko/orgs",
+            "repos_url": "https://api.github.com/users/sleshchenko/repos",
+            "events_url": "https://api.github.com/users/sleshchenko/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sleshchenko/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "sleshchenko",
+            "id": 5887312,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/5887312?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sleshchenko",
+            "html_url": "https://github.com/sleshchenko",
+            "followers_url": "https://api.github.com/users/sleshchenko/followers",
+            "following_url": "https://api.github.com/users/sleshchenko/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sleshchenko/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sleshchenko/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sleshchenko/subscriptions",
+            "organizations_url": "https://api.github.com/users/sleshchenko/orgs",
+            "repos_url": "https://api.github.com/users/sleshchenko/repos",
+            "events_url": "https://api.github.com/users/sleshchenko/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sleshchenko/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "5f3c13574e20da5f129a607ee34e30e5617713b3",
+                "url": "https://api.github.com/repos/eclipse/che/commits/5f3c13574e20da5f129a607ee34e30e5617713b3",
+                "html_url": "https://github.com/eclipse/che/commit/5f3c13574e20da5f129a607ee34e30e5617713b3"
+            }
+        ]
+    },
+    {
+        "sha": "5f3c13574e20da5f129a607ee34e30e5617713b3",
+        "commit": {
+            "author": {
+                "name": "Sergii Leshchenko",
+                "email": "sleshche@redhat.com",
+                "date": "2018-04-10T10:29:47Z"
+            },
+            "committer": {
+                "name": "Sergii Leshchenko",
+                "email": "sleshche@redhat.com",
+                "date": "2018-04-12T14:23:47Z"
+            },
+            "message": "CHE-5919 Add JPA Implementations for K8s/OpenShift Runtimes/Machines caches",
+            "tree": {
+                "sha": "11ae53333fdd19f26528a77dd05707b3e77b53f8",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/11ae53333fdd19f26528a77dd05707b3e77b53f8"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/5f3c13574e20da5f129a607ee34e30e5617713b3",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/5f3c13574e20da5f129a607ee34e30e5617713b3",
+        "html_url": "https://github.com/eclipse/che/commit/5f3c13574e20da5f129a607ee34e30e5617713b3",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/5f3c13574e20da5f129a607ee34e30e5617713b3/comments",
+        "author": {
+            "login": "sleshchenko",
+            "id": 5887312,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/5887312?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sleshchenko",
+            "html_url": "https://github.com/sleshchenko",
+            "followers_url": "https://api.github.com/users/sleshchenko/followers",
+            "following_url": "https://api.github.com/users/sleshchenko/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sleshchenko/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sleshchenko/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sleshchenko/subscriptions",
+            "organizations_url": "https://api.github.com/users/sleshchenko/orgs",
+            "repos_url": "https://api.github.com/users/sleshchenko/repos",
+            "events_url": "https://api.github.com/users/sleshchenko/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sleshchenko/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "sleshchenko",
+            "id": 5887312,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/5887312?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sleshchenko",
+            "html_url": "https://github.com/sleshchenko",
+            "followers_url": "https://api.github.com/users/sleshchenko/followers",
+            "following_url": "https://api.github.com/users/sleshchenko/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sleshchenko/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sleshchenko/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sleshchenko/subscriptions",
+            "organizations_url": "https://api.github.com/users/sleshchenko/orgs",
+            "repos_url": "https://api.github.com/users/sleshchenko/repos",
+            "events_url": "https://api.github.com/users/sleshchenko/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sleshchenko/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "7627ea4dde4120a1b3b7b1dc2bfa6321052320b9",
+                "url": "https://api.github.com/repos/eclipse/che/commits/7627ea4dde4120a1b3b7b1dc2bfa6321052320b9",
+                "html_url": "https://github.com/eclipse/che/commit/7627ea4dde4120a1b3b7b1dc2bfa6321052320b9"
+            }
+        ]
+    },
+    {
+        "sha": "7627ea4dde4120a1b3b7b1dc2bfa6321052320b9",
+        "commit": {
+            "author": {
+                "name": "Sergii Leshchenko",
+                "email": "sleshche@redhat.com",
+                "date": "2018-04-10T10:26:44Z"
+            },
+            "committer": {
+                "name": "Sergii Leshchenko",
+                "email": "sleshche@redhat.com",
+                "date": "2018-04-12T14:23:47Z"
+            },
+            "message": "CHE-5919 Add Kubernetes/OpenShift runtime state cache",
+            "tree": {
+                "sha": "e787496d51ebfdbc4cab061d59419a84a30f3ecc",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/e787496d51ebfdbc4cab061d59419a84a30f3ecc"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/7627ea4dde4120a1b3b7b1dc2bfa6321052320b9",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/7627ea4dde4120a1b3b7b1dc2bfa6321052320b9",
+        "html_url": "https://github.com/eclipse/che/commit/7627ea4dde4120a1b3b7b1dc2bfa6321052320b9",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/7627ea4dde4120a1b3b7b1dc2bfa6321052320b9/comments",
+        "author": {
+            "login": "sleshchenko",
+            "id": 5887312,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/5887312?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sleshchenko",
+            "html_url": "https://github.com/sleshchenko",
+            "followers_url": "https://api.github.com/users/sleshchenko/followers",
+            "following_url": "https://api.github.com/users/sleshchenko/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sleshchenko/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sleshchenko/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sleshchenko/subscriptions",
+            "organizations_url": "https://api.github.com/users/sleshchenko/orgs",
+            "repos_url": "https://api.github.com/users/sleshchenko/repos",
+            "events_url": "https://api.github.com/users/sleshchenko/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sleshchenko/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "sleshchenko",
+            "id": 5887312,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/5887312?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sleshchenko",
+            "html_url": "https://github.com/sleshchenko",
+            "followers_url": "https://api.github.com/users/sleshchenko/followers",
+            "following_url": "https://api.github.com/users/sleshchenko/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sleshchenko/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sleshchenko/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sleshchenko/subscriptions",
+            "organizations_url": "https://api.github.com/users/sleshchenko/orgs",
+            "repos_url": "https://api.github.com/users/sleshchenko/repos",
+            "events_url": "https://api.github.com/users/sleshchenko/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sleshchenko/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "a6269e6f0867f29fe71209182f15566538a225e2",
+                "url": "https://api.github.com/repos/eclipse/che/commits/a6269e6f0867f29fe71209182f15566538a225e2",
+                "html_url": "https://github.com/eclipse/che/commit/a6269e6f0867f29fe71209182f15566538a225e2"
+            }
+        ]
+    },
+    {
+        "sha": "a6269e6f0867f29fe71209182f15566538a225e2",
+        "commit": {
+            "author": {
+                "name": "Igor Ohrimenko",
+                "email": "iokhrime@redhat.com",
+                "date": "2018-04-12T13:48:31Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-12T13:48:31Z"
+            },
+            "message": "Add catching of known bug #9393 (#9396)",
+            "tree": {
+                "sha": "63ff8b4129aafea799747398e8ad489c21cbbd56",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/63ff8b4129aafea799747398e8ad489c21cbbd56"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/a6269e6f0867f29fe71209182f15566538a225e2",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJaz2OvCRBK7hj4Ov3rIwAAdHIIAKrh7kb88j/F21HewYn2VqVE\nHZVSyXf3o/6Kc3h31606kol5C5g9bMTuqrHtcun5xloBilewqwZTWLwX+nTJQPdW\nyahkWnQca5aIyL/haLY0nN4AsAiqkFS3vuU97Q4shsqOTyIB4ihUOBBMVdG/nes6\nEJOz24ZUTrkLC00b6qpKii042H4AIXN3FaTiZermLFrQNAVcaKp5Uzxa3vNoktlM\nTxQCnYRqVksYrqXlE4/mxHfuJoWvfo3DrQ3oQZ1ktobEPhM299ebmBBeYrm7+HmJ\nbKnB5CwA+smdyg50fG6T0jdmJaiPsSocWFwWky+rQKk2BIiFrVgw7iU244g+bbU=\n=Isbk\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 63ff8b4129aafea799747398e8ad489c21cbbd56\nparent fe6bc263f6cf5378d61906bd35831755a7084fb3\nauthor Igor Ohrimenko <iokhrime@redhat.com> 1523540911 +0300\ncommitter GitHub <noreply@github.com> 1523540911 +0300\n\nAdd catching of known bug #9393 (#9396)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/a6269e6f0867f29fe71209182f15566538a225e2",
+        "html_url": "https://github.com/eclipse/che/commit/a6269e6f0867f29fe71209182f15566538a225e2",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/a6269e6f0867f29fe71209182f15566538a225e2/comments",
+        "author": {
+            "login": "Ohrimenko1988",
+            "id": 22724619,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/22724619?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Ohrimenko1988",
+            "html_url": "https://github.com/Ohrimenko1988",
+            "followers_url": "https://api.github.com/users/Ohrimenko1988/followers",
+            "following_url": "https://api.github.com/users/Ohrimenko1988/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Ohrimenko1988/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Ohrimenko1988/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Ohrimenko1988/subscriptions",
+            "organizations_url": "https://api.github.com/users/Ohrimenko1988/orgs",
+            "repos_url": "https://api.github.com/users/Ohrimenko1988/repos",
+            "events_url": "https://api.github.com/users/Ohrimenko1988/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Ohrimenko1988/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "fe6bc263f6cf5378d61906bd35831755a7084fb3",
+                "url": "https://api.github.com/repos/eclipse/che/commits/fe6bc263f6cf5378d61906bd35831755a7084fb3",
+                "html_url": "https://github.com/eclipse/che/commit/fe6bc263f6cf5378d61906bd35831755a7084fb3"
+            }
+        ]
+    },
+    {
+        "sha": "fe6bc263f6cf5378d61906bd35831755a7084fb3",
+        "commit": {
+            "author": {
+                "name": "Sun Tan",
+                "email": "sutan@redhat.com",
+                "date": "2018-04-10T08:21:15Z"
+            },
+            "committer": {
+                "name": "Sun Seng David TAN",
+                "email": "sutan@redhat.com",
+                "date": "2018-04-12T09:40:24Z"
+            },
+            "message": "Fix workspace loader which should pass its query strings to the underlying alternate IDE\n\nSigned-off-by: Sun Tan <sutan@redhat.com>",
+            "tree": {
+                "sha": "19ed16868808899e823f79a58bb4695c45e6047d",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/19ed16868808899e823f79a58bb4695c45e6047d"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/fe6bc263f6cf5378d61906bd35831755a7084fb3",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/fe6bc263f6cf5378d61906bd35831755a7084fb3",
+        "html_url": "https://github.com/eclipse/che/commit/fe6bc263f6cf5378d61906bd35831755a7084fb3",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/fe6bc263f6cf5378d61906bd35831755a7084fb3/comments",
+        "author": {
+            "login": "sunix",
+            "id": 650571,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/650571?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sunix",
+            "html_url": "https://github.com/sunix",
+            "followers_url": "https://api.github.com/users/sunix/followers",
+            "following_url": "https://api.github.com/users/sunix/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sunix/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sunix/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sunix/subscriptions",
+            "organizations_url": "https://api.github.com/users/sunix/orgs",
+            "repos_url": "https://api.github.com/users/sunix/repos",
+            "events_url": "https://api.github.com/users/sunix/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sunix/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "sunix",
+            "id": 650571,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/650571?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sunix",
+            "html_url": "https://github.com/sunix",
+            "followers_url": "https://api.github.com/users/sunix/followers",
+            "following_url": "https://api.github.com/users/sunix/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sunix/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sunix/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sunix/subscriptions",
+            "organizations_url": "https://api.github.com/users/sunix/orgs",
+            "repos_url": "https://api.github.com/users/sunix/repos",
+            "events_url": "https://api.github.com/users/sunix/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sunix/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "6f3842bfeb7622ad860b3254d32159d4e4d36942",
+                "url": "https://api.github.com/repos/eclipse/che/commits/6f3842bfeb7622ad860b3254d32159d4e4d36942",
+                "html_url": "https://github.com/eclipse/che/commit/6f3842bfeb7622ad860b3254d32159d4e4d36942"
+            }
+        ]
+    },
+    {
+        "sha": "6f3842bfeb7622ad860b3254d32159d4e4d36942",
+        "commit": {
+            "author": {
+                "name": "Ilya Buziuk",
+                "email": "ibuziuk@redhat.com",
+                "date": "2018-04-11T17:06:08Z"
+            },
+            "committer": {
+                "name": "Ilya Buziuk",
+                "email": "ilyabuziuk@gmail.com",
+                "date": "2018-04-12T09:04:01Z"
+            },
+            "message": "che #9376 Setting default postgres image for 'deploy_postgres_only.sh' instead of failing if 'IMAGE_POSTGRES' env var is not set\n\nSigned-off-by: Ilya Buziuk <ibuziuk@redhat.com>",
+            "tree": {
+                "sha": "573dcd75882549390d69b0d2a89dc88c8bb9e1c0",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/573dcd75882549390d69b0d2a89dc88c8bb9e1c0"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/6f3842bfeb7622ad860b3254d32159d4e4d36942",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/6f3842bfeb7622ad860b3254d32159d4e4d36942",
+        "html_url": "https://github.com/eclipse/che/commit/6f3842bfeb7622ad860b3254d32159d4e4d36942",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/6f3842bfeb7622ad860b3254d32159d4e4d36942/comments",
+        "author": {
+            "login": "ibuziuk",
+            "id": 1461122,
+            "avatar_url": "https://avatars2.githubusercontent.com/u/1461122?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ibuziuk",
+            "html_url": "https://github.com/ibuziuk",
+            "followers_url": "https://api.github.com/users/ibuziuk/followers",
+            "following_url": "https://api.github.com/users/ibuziuk/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ibuziuk/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ibuziuk/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ibuziuk/subscriptions",
+            "organizations_url": "https://api.github.com/users/ibuziuk/orgs",
+            "repos_url": "https://api.github.com/users/ibuziuk/repos",
+            "events_url": "https://api.github.com/users/ibuziuk/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ibuziuk/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ibuziuk",
+            "id": 1461122,
+            "avatar_url": "https://avatars2.githubusercontent.com/u/1461122?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ibuziuk",
+            "html_url": "https://github.com/ibuziuk",
+            "followers_url": "https://api.github.com/users/ibuziuk/followers",
+            "following_url": "https://api.github.com/users/ibuziuk/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ibuziuk/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ibuziuk/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ibuziuk/subscriptions",
+            "organizations_url": "https://api.github.com/users/ibuziuk/orgs",
+            "repos_url": "https://api.github.com/users/ibuziuk/repos",
+            "events_url": "https://api.github.com/users/ibuziuk/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ibuziuk/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "fa74608821e00b923c05d332f71c08a6b5c09b60",
+                "url": "https://api.github.com/repos/eclipse/che/commits/fa74608821e00b923c05d332f71c08a6b5c09b60",
+                "html_url": "https://github.com/eclipse/che/commit/fa74608821e00b923c05d332f71c08a6b5c09b60"
+            }
+        ]
+    },
+    {
+        "sha": "fa74608821e00b923c05d332f71c08a6b5c09b60",
+        "commit": {
+            "author": {
+                "name": "Anton Korneta",
+                "email": "akorneta@redhat.com",
+                "date": "2018-04-11T15:26:52Z"
+            },
+            "committer": {
+                "name": "Anton Korneta",
+                "email": "akorneta@redhat.com",
+                "date": "2018-04-11T15:45:39Z"
+            },
+            "message": "Fix move sign key binding to auth module",
+            "tree": {
+                "sha": "25cd28f85c27169718673b5914d904f4b5bc5390",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/25cd28f85c27169718673b5914d904f4b5bc5390"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/fa74608821e00b923c05d332f71c08a6b5c09b60",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/fa74608821e00b923c05d332f71c08a6b5c09b60",
+        "html_url": "https://github.com/eclipse/che/commit/fa74608821e00b923c05d332f71c08a6b5c09b60",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/fa74608821e00b923c05d332f71c08a6b5c09b60/comments",
+        "author": {
+            "login": "akorneta",
+            "id": 12269156,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/12269156?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/akorneta",
+            "html_url": "https://github.com/akorneta",
+            "followers_url": "https://api.github.com/users/akorneta/followers",
+            "following_url": "https://api.github.com/users/akorneta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/akorneta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/akorneta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/akorneta/subscriptions",
+            "organizations_url": "https://api.github.com/users/akorneta/orgs",
+            "repos_url": "https://api.github.com/users/akorneta/repos",
+            "events_url": "https://api.github.com/users/akorneta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/akorneta/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "akorneta",
+            "id": 12269156,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/12269156?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/akorneta",
+            "html_url": "https://github.com/akorneta",
+            "followers_url": "https://api.github.com/users/akorneta/followers",
+            "following_url": "https://api.github.com/users/akorneta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/akorneta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/akorneta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/akorneta/subscriptions",
+            "organizations_url": "https://api.github.com/users/akorneta/orgs",
+            "repos_url": "https://api.github.com/users/akorneta/repos",
+            "events_url": "https://api.github.com/users/akorneta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/akorneta/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "9469163a32a31a01a23b00ab86d6cb29fc92a5b8",
+                "url": "https://api.github.com/repos/eclipse/che/commits/9469163a32a31a01a23b00ab86d6cb29fc92a5b8",
+                "html_url": "https://github.com/eclipse/che/commit/9469163a32a31a01a23b00ab86d6cb29fc92a5b8"
+            }
+        ]
+    },
+    {
+        "sha": "9469163a32a31a01a23b00ab86d6cb29fc92a5b8",
+        "commit": {
+            "author": {
+                "name": "Sergey Skorik",
+                "email": "sskorik@codenvy.com",
+                "date": "2018-04-11T13:53:36Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-11T13:53:36Z"
+            },
+            "message": "Selenium: fix selenium tests that create workspaces from Dashboard (#9375)\n\n* SeleniumWebDriverHelper and WebDriverWaitFactory moved to org.eclipse.che.selenium.core",
+            "tree": {
+                "sha": "edb01ab5fa1b7d97955dc3d060af7e188396efc9",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/edb01ab5fa1b7d97955dc3d060af7e188396efc9"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/9469163a32a31a01a23b00ab86d6cb29fc92a5b8",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJazhNgCRBK7hj4Ov3rIwAAdHIIAAKgO4eFZS+4wWhkBbFyluwC\naeX25SjfCoeHIZK03lYNqpkz/IqPjQpgY0z15PNmat9FferjsZdD9YPjBzG/QK3d\ng//H0ikP4s4Ulae50DzBMkzZpjyNtXv7kasUBVDlkaXIspDW1X9EiHayQ9dGPFuR\nBGgiUccwjuPxOgGGdDWtyeaiKtuNhe0uFOZIhqSTGJbMcDuqugpE3738wsvYFhLm\n+W29AJsEouMTBBAYmvJhvdr1ADc6Q0mqjBfHAGKUYWtTJ1GKAV/HNAJHFhHEIK1X\nmmkJw+98AZWoFzhsFPc11i1lMJA7pA1pA3YfKTYKDGlweIn+AJ3K16gc41xgiOU=\n=tzb1\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree edb01ab5fa1b7d97955dc3d060af7e188396efc9\nparent f6a3e106256a43e168d47480a196cdb1211a9caf\nauthor Sergey Skorik <sskorik@codenvy.com> 1523454816 +0300\ncommitter GitHub <noreply@github.com> 1523454816 +0300\n\nSelenium: fix selenium tests that create workspaces from Dashboard (#9375)\n\n* SeleniumWebDriverHelper and WebDriverWaitFactory moved to org.eclipse.che.selenium.core\r\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/9469163a32a31a01a23b00ab86d6cb29fc92a5b8",
+        "html_url": "https://github.com/eclipse/che/commit/9469163a32a31a01a23b00ab86d6cb29fc92a5b8",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/9469163a32a31a01a23b00ab86d6cb29fc92a5b8/comments",
+        "author": {
+            "login": "SkorikSergey",
+            "id": 7760565,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/7760565?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/SkorikSergey",
+            "html_url": "https://github.com/SkorikSergey",
+            "followers_url": "https://api.github.com/users/SkorikSergey/followers",
+            "following_url": "https://api.github.com/users/SkorikSergey/following{/other_user}",
+            "gists_url": "https://api.github.com/users/SkorikSergey/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/SkorikSergey/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/SkorikSergey/subscriptions",
+            "organizations_url": "https://api.github.com/users/SkorikSergey/orgs",
+            "repos_url": "https://api.github.com/users/SkorikSergey/repos",
+            "events_url": "https://api.github.com/users/SkorikSergey/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/SkorikSergey/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "f6a3e106256a43e168d47480a196cdb1211a9caf",
+                "url": "https://api.github.com/repos/eclipse/che/commits/f6a3e106256a43e168d47480a196cdb1211a9caf",
+                "html_url": "https://github.com/eclipse/che/commit/f6a3e106256a43e168d47480a196cdb1211a9caf"
+            }
+        ]
+    },
+    {
+        "sha": "f6a3e106256a43e168d47480a196cdb1211a9caf",
+        "commit": {
+            "author": {
+                "name": "Mykhailo Kuznietsov",
+                "email": "mkuznets@redhat.com",
+                "date": "2018-04-11T13:22:24Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-11T13:22:24Z"
+            },
+            "message": "Revert \"Use workspace limit idle timeout value in WorkspaceActivityManager (#9342)\" (#9377)\n\nThis reverts commit f85c0a299b71c5109aefe79d6cb4c560edc5c3e9.",
+            "tree": {
+                "sha": "b257ba725b528df4819ecb92f43cacf6b48cea48",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/b257ba725b528df4819ecb92f43cacf6b48cea48"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/f6a3e106256a43e168d47480a196cdb1211a9caf",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJazgwQCRBK7hj4Ov3rIwAAdHIIAATAk8FrWFIh5MAg3AOEF5fp\nThWp3Ya2zin2xVwW8iAdoK6VjsywwsesvQtwf/bvHk/yGlu0BQxgpR9a2r8LBsl4\nkp9PUo0DUJ2P5xT87UyBqXMN7sy9zfZA+GbXXRQNPVc9Bf5exdQ9IckrD7NyoC6h\n15lFX9qqgJzdIsmgwkqU/S1ooouc9zX4RQ7p8u8VBethwAnwcb4AusX7FRyb4e/+\n3VX4NpVQjO+uZnC33QRvUCuAx7WZfyiCJsnTLxex5sRgjVhSfHVXEsUOBQcMbMCi\npd1na0882Uk9Y10cyDDh7xQ7xUJXpHG2eN3h8KDeOSU0JHdfbIj0mtjrimXw8uE=\n=69p+\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree b257ba725b528df4819ecb92f43cacf6b48cea48\nparent bff79253b43051d42685a0f809b3c45678a898fe\nauthor Mykhailo Kuznietsov <mkuznets@redhat.com> 1523452944 +0000\ncommitter GitHub <noreply@github.com> 1523452944 +0000\n\nRevert \"Use workspace limit idle timeout value in WorkspaceActivityManager (#9342)\" (#9377)\n\nThis reverts commit f85c0a299b71c5109aefe79d6cb4c560edc5c3e9."
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/f6a3e106256a43e168d47480a196cdb1211a9caf",
+        "html_url": "https://github.com/eclipse/che/commit/f6a3e106256a43e168d47480a196cdb1211a9caf",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/f6a3e106256a43e168d47480a196cdb1211a9caf/comments",
+        "author": {
+            "login": "mkuznyetsov",
+            "id": 5712744,
+            "avatar_url": "https://avatars2.githubusercontent.com/u/5712744?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mkuznyetsov",
+            "html_url": "https://github.com/mkuznyetsov",
+            "followers_url": "https://api.github.com/users/mkuznyetsov/followers",
+            "following_url": "https://api.github.com/users/mkuznyetsov/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mkuznyetsov/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mkuznyetsov/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mkuznyetsov/subscriptions",
+            "organizations_url": "https://api.github.com/users/mkuznyetsov/orgs",
+            "repos_url": "https://api.github.com/users/mkuznyetsov/repos",
+            "events_url": "https://api.github.com/users/mkuznyetsov/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mkuznyetsov/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "bff79253b43051d42685a0f809b3c45678a898fe",
+                "url": "https://api.github.com/repos/eclipse/che/commits/bff79253b43051d42685a0f809b3c45678a898fe",
+                "html_url": "https://github.com/eclipse/che/commit/bff79253b43051d42685a0f809b3c45678a898fe"
+            }
+        ]
+    },
+    {
+        "sha": "bff79253b43051d42685a0f809b3c45678a898fe",
+        "commit": {
+            "author": {
+                "name": "Vladyslav Zhukovskyi",
+                "email": "vzhukovs@redhat.com",
+                "date": "2018-04-11T11:54:30Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-11T11:54:30Z"
+            },
+            "message": "Correct handle of input events in navigate to file dialogue (#9369)\n\nSigned-off-by: Vladyslav Zhukovskyi <vzhukovs@redhat.com>",
+            "tree": {
+                "sha": "35f38ba378ee111d373da5eeeb0817edb80305e9",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/35f38ba378ee111d373da5eeeb0817edb80305e9"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/bff79253b43051d42685a0f809b3c45678a898fe",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJazfd2CRBK7hj4Ov3rIwAAdHIIAEX38W56/ECXpI7T/nH/v5Ju\nJcO+QsfJgUfAi9wVVWjsqj6FxjGNMlHG4wDP3WN+UdSToIWggjEXnZ4XEtQQ4C8V\nH9HLK8SfejT3rXmX6BIL+5v4gzCQ4xJ7X2lGEfBDCbSsOVSPepDWHfkmDIiPN4Y3\nKIyVfheeMBNtF6Oo5BbcNLZuTplt6HW/SsES0U1gb8NviDqZpKMdbKCIiMzSwvtQ\nwE3v1g/Z513fw00eeOoiuvC6uTQMowMqK8Xm4S+HZN3Wd0OVHCCZA7uL7IMAa6eF\nekdi/nIqEDvXy3BeAXkgmwFo8ajmu/AY3azKjmGBQUHs4k+9hzu4hKf2heer2E0=\n=778T\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 35f38ba378ee111d373da5eeeb0817edb80305e9\nparent 66f9d0bed97d4caaf096a4862bcebb2b9478bdca\nauthor Vladyslav Zhukovskyi <vzhukovs@redhat.com> 1523447670 +0300\ncommitter GitHub <noreply@github.com> 1523447670 +0300\n\nCorrect handle of input events in navigate to file dialogue (#9369)\n\nSigned-off-by: Vladyslav Zhukovskyi <vzhukovs@redhat.com>"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/bff79253b43051d42685a0f809b3c45678a898fe",
+        "html_url": "https://github.com/eclipse/che/commit/bff79253b43051d42685a0f809b3c45678a898fe",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/bff79253b43051d42685a0f809b3c45678a898fe/comments",
+        "author": {
+            "login": "vzhukovskii",
+            "id": 1968177,
+            "avatar_url": "https://avatars2.githubusercontent.com/u/1968177?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/vzhukovskii",
+            "html_url": "https://github.com/vzhukovskii",
+            "followers_url": "https://api.github.com/users/vzhukovskii/followers",
+            "following_url": "https://api.github.com/users/vzhukovskii/following{/other_user}",
+            "gists_url": "https://api.github.com/users/vzhukovskii/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/vzhukovskii/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/vzhukovskii/subscriptions",
+            "organizations_url": "https://api.github.com/users/vzhukovskii/orgs",
+            "repos_url": "https://api.github.com/users/vzhukovskii/repos",
+            "events_url": "https://api.github.com/users/vzhukovskii/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/vzhukovskii/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "66f9d0bed97d4caaf096a4862bcebb2b9478bdca",
+                "url": "https://api.github.com/repos/eclipse/che/commits/66f9d0bed97d4caaf096a4862bcebb2b9478bdca",
+                "html_url": "https://github.com/eclipse/che/commit/66f9d0bed97d4caaf096a4862bcebb2b9478bdca"
+            }
+        ]
+    },
+    {
+        "sha": "66f9d0bed97d4caaf096a4862bcebb2b9478bdca",
+        "commit": {
+            "author": {
+                "name": "Max Shaposhnik",
+                "email": "mshaposh@redhat.com",
+                "date": "2018-04-11T11:33:52Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-11T11:33:52Z"
+            },
+            "message": "Add replicated storage for remote websocket subscriptions (#9311)",
+            "tree": {
+                "sha": "71f9dcb0d5a9f12399d3d38655224e36ebd37e97",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/71f9dcb0d5a9f12399d3d38655224e36ebd37e97"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/66f9d0bed97d4caaf096a4862bcebb2b9478bdca",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJazfKgCRBK7hj4Ov3rIwAAdHIIAI6KgIpEPCqK2a7atn+QMFel\nPrFOQWhmRKcVT1G6xviqhwwQ0xmocg9LbhKt6fzgtLK9lM0HHCxWfsb1MhXsuTNv\nPdPmGlyiGsH6NVsG/enyjBBoSkPc1hNEmqB94l0MG2Km7n31/0bB8UTW60MvoN+g\noC2D2ROliMd9cMUoF7aGZ9cYKQ741l4GyUPRcbnIljD+JyZ6Ph2WKWvrwox/qZ5m\nLZ1tiAnIvOSzLf9iBHa388+1L/Ph8+9yreT3wtFhNoTQVQCDJp22ZGRuUCTf2qXZ\npczRnkj37lZ+0ejO4BK3EVfjOC8VOQeKCpybduw5f1EGMnTNfrTB7E1lHAxuSqc=\n=OisX\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 71f9dcb0d5a9f12399d3d38655224e36ebd37e97\nparent 9f24db82253f6134cf6f7594ad64e0a45254b06f\nauthor Max Shaposhnik <mshaposh@redhat.com> 1523446432 +0300\ncommitter GitHub <noreply@github.com> 1523446432 +0300\n\nAdd replicated storage for remote websocket subscriptions (#9311)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/66f9d0bed97d4caaf096a4862bcebb2b9478bdca",
+        "html_url": "https://github.com/eclipse/che/commit/66f9d0bed97d4caaf096a4862bcebb2b9478bdca",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/66f9d0bed97d4caaf096a4862bcebb2b9478bdca/comments",
+        "author": {
+            "login": "mshaposhnik",
+            "id": 1651062,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/1651062?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mshaposhnik",
+            "html_url": "https://github.com/mshaposhnik",
+            "followers_url": "https://api.github.com/users/mshaposhnik/followers",
+            "following_url": "https://api.github.com/users/mshaposhnik/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mshaposhnik/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mshaposhnik/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mshaposhnik/subscriptions",
+            "organizations_url": "https://api.github.com/users/mshaposhnik/orgs",
+            "repos_url": "https://api.github.com/users/mshaposhnik/repos",
+            "events_url": "https://api.github.com/users/mshaposhnik/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mshaposhnik/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "9f24db82253f6134cf6f7594ad64e0a45254b06f",
+                "url": "https://api.github.com/repos/eclipse/che/commits/9f24db82253f6134cf6f7594ad64e0a45254b06f",
+                "html_url": "https://github.com/eclipse/che/commit/9f24db82253f6134cf6f7594ad64e0a45254b06f"
+            }
+        ]
+    },
+    {
+        "sha": "9f24db82253f6134cf6f7594ad64e0a45254b06f",
+        "commit": {
+            "author": {
+                "name": "RomanNikitenko",
+                "email": "rnikiten@redhat.com",
+                "date": "2018-04-11T10:53:01Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-11T10:53:01Z"
+            },
+            "message": "Change way of storing IDE state data (#9196)\n\n* CHE-7551. Change way of storing IDE state data\r\nSigned-off-by: Roman Nikitenko <rnikiten@redhat.com>",
+            "tree": {
+                "sha": "94b6b090df668c2b13573a22a370cb9c490d6d40",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/94b6b090df668c2b13573a22a370cb9c490d6d40"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/9f24db82253f6134cf6f7594ad64e0a45254b06f",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJazekNCRBK7hj4Ov3rIwAAdHIIAFjY+OXSvRNnteaRJYz0lJkn\nN5yaagzqLZu+9yW+Btnc4GpDTCLT7QSpl2Wa8uo1q8EZp/4NC7d5HyHTvkbxMLQc\nSzyrEYAiFlCzQPIyvufc5M+s0XpQVXM1As3GWhYAwibb/XpuOCHHDrJqfd6S/cMF\nTmbYY9U5LL2pEljwnVINzeIPHneQZJsIcRkkVHlO7YkLsgW17ozwrvIesbYHB7Od\noXcnQeC4WWhzkH+KOA8RcJanH0BsAGwimeulEyPN+vlXggG017uRPPbcPvRxQOC9\nogPVNKpA/zxyod5KCT+Mz+j05o+38Uj5T3JPjtqXvx/hwCPE8zJ2HRaazjwM7w4=\n=iX+8\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 94b6b090df668c2b13573a22a370cb9c490d6d40\nparent 161ff9416c0a74b3962d4d10b7f11bb49ee513e1\nauthor RomanNikitenko <rnikiten@redhat.com> 1523443981 +0300\ncommitter GitHub <noreply@github.com> 1523443981 +0300\n\nChange way of storing IDE state data (#9196)\n\n* CHE-7551. Change way of storing IDE state data\r\nSigned-off-by: Roman Nikitenko <rnikiten@redhat.com>\r\n\r\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/9f24db82253f6134cf6f7594ad64e0a45254b06f",
+        "html_url": "https://github.com/eclipse/che/commit/9f24db82253f6134cf6f7594ad64e0a45254b06f",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/9f24db82253f6134cf6f7594ad64e0a45254b06f/comments",
+        "author": {
+            "login": "RomanNikitenko",
+            "id": 5676062,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/5676062?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RomanNikitenko",
+            "html_url": "https://github.com/RomanNikitenko",
+            "followers_url": "https://api.github.com/users/RomanNikitenko/followers",
+            "following_url": "https://api.github.com/users/RomanNikitenko/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RomanNikitenko/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RomanNikitenko/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RomanNikitenko/subscriptions",
+            "organizations_url": "https://api.github.com/users/RomanNikitenko/orgs",
+            "repos_url": "https://api.github.com/users/RomanNikitenko/repos",
+            "events_url": "https://api.github.com/users/RomanNikitenko/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RomanNikitenko/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "161ff9416c0a74b3962d4d10b7f11bb49ee513e1",
+                "url": "https://api.github.com/repos/eclipse/che/commits/161ff9416c0a74b3962d4d10b7f11bb49ee513e1",
+                "html_url": "https://github.com/eclipse/che/commit/161ff9416c0a74b3962d4d10b7f11bb49ee513e1"
+            }
+        ]
+    },
+    {
+        "sha": "161ff9416c0a74b3962d4d10b7f11bb49ee513e1",
+        "commit": {
+            "author": {
+                "name": "Max Shaposhnik",
+                "email": "mshaposh@redhat.com",
+                "date": "2018-04-11T10:44:15Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-11T10:44:15Z"
+            },
+            "message": "Configure JPA L2 cache coordination between instances on Openshift®  / Kubernetes (#8982)",
+            "tree": {
+                "sha": "2319b24dc584a39d9b1045bd16f36134fa4cae76",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/2319b24dc584a39d9b1045bd16f36134fa4cae76"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/161ff9416c0a74b3962d4d10b7f11bb49ee513e1",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJazeb/CRBK7hj4Ov3rIwAAdHIIABwCVioFGIwbvY7Spin9buLj\nRZJUxv7EeKx9gSW3n18Mn5zqqCunOnLyMeoIAhY/5xcUc3PZqCBP8cQsEeC4j9ai\nTfh6gaAZz+CiYxM/LyjEZoDpG1Q0MAgcpZc4UoCRxH4qhIBQldpyldS0Rss2jSiQ\neiPqsms8ibuzEBjaSzzz5RPlB4vxuLpgXop/q+6tIuaBanAfMO14ybI+pzCjSSbo\nXhsbc6KpsTxhgYzU7+3Dii/K9A+EH4ln+bqruDD3e8da/ph9WOup2nuxTCjlDE+0\nx6YTdulfqZO+4TG3Oc2tv4eLCihRH7DHvP1d498hl69g6HveV92fl2jH7MUfMLo=\n=CtVl\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree 2319b24dc584a39d9b1045bd16f36134fa4cae76\nparent 67403c05c108de0e48032105d1b2cb49e6bca1fd\nauthor Max Shaposhnik <mshaposh@redhat.com> 1523443455 +0300\ncommitter GitHub <noreply@github.com> 1523443455 +0300\n\nConfigure JPA L2 cache coordination between instances on Openshift®  / Kubernetes (#8982)\n\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/161ff9416c0a74b3962d4d10b7f11bb49ee513e1",
+        "html_url": "https://github.com/eclipse/che/commit/161ff9416c0a74b3962d4d10b7f11bb49ee513e1",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/161ff9416c0a74b3962d4d10b7f11bb49ee513e1/comments",
+        "author": {
+            "login": "mshaposhnik",
+            "id": 1651062,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/1651062?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mshaposhnik",
+            "html_url": "https://github.com/mshaposhnik",
+            "followers_url": "https://api.github.com/users/mshaposhnik/followers",
+            "following_url": "https://api.github.com/users/mshaposhnik/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mshaposhnik/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mshaposhnik/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mshaposhnik/subscriptions",
+            "organizations_url": "https://api.github.com/users/mshaposhnik/orgs",
+            "repos_url": "https://api.github.com/users/mshaposhnik/repos",
+            "events_url": "https://api.github.com/users/mshaposhnik/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mshaposhnik/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "67403c05c108de0e48032105d1b2cb49e6bca1fd",
+                "url": "https://api.github.com/repos/eclipse/che/commits/67403c05c108de0e48032105d1b2cb49e6bca1fd",
+                "html_url": "https://github.com/eclipse/che/commit/67403c05c108de0e48032105d1b2cb49e6bca1fd"
+            }
+        ]
+    },
+    {
+        "sha": "67403c05c108de0e48032105d1b2cb49e6bca1fd",
+        "commit": {
+            "author": {
+                "name": "Aleksandr Shmaraiev",
+                "email": "oshmarai@redhat.com",
+                "date": "2018-04-11T10:17:34Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-11T10:17:34Z"
+            },
+            "message": "Selenium: Rework the 'CheckoutReferenceTest' to run in the multi-thread mode\n\n* Rework the 'CheckoutReferenceTest' to run in the multi-threaded mode\r\n* Rework methods in the 'TestGitHubRepository'\r\n* Rework methods in the 'GitHistory' using the 'SeleniumWebDriverHelper'\r\n* Move the 'CheckoutReferenceTest' to the 'CheSuite.xml'\r\n* Use the 'kohsuke Github' library",
+            "tree": {
+                "sha": "e3ce2cfecab8c3be45c8741dee174b59eb2e4de9",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/e3ce2cfecab8c3be45c8741dee174b59eb2e4de9"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/67403c05c108de0e48032105d1b2cb49e6bca1fd",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJazeC+CRBK7hj4Ov3rIwAAdHIIALKxGDWwniVDzueL5VN73NMY\niyehXeEAv0jAidz4GmnFQNSsSDy2/wKDg0dW0NRrFQ2w1cU4VnBMzvVQr1BMTRvI\nhK4Uh7z7Q72J1xQWjTacDcqa6rRDfku/0pHrNcCbTj46Kh1ctCXHjyjnRhKQDt1B\nF2MoHi0ObSs4QmyI4zgUMDlKfkPFUf7UJfnykuSsVvdgGx5xGdTQdnZtcO6PIPTr\nWkkOWgyw1Bm+MuBGfta6Y8wgsts6awIzbH4WxrtTUioYAOdQWCy2ObfmLvvOWp1a\nO/CBswYBFUhUeHp4E9Zj0Fv1xF2apOTIxV1QroVytHNDM+RE8MzTkqnE7d7/EcY=\n=Y5iW\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree e3ce2cfecab8c3be45c8741dee174b59eb2e4de9\nparent 33e7d7e1e85c7c95cf2053a70561ce565993ff2b\nauthor Aleksandr Shmaraiev <oshmarai@redhat.com> 1523441854 +0300\ncommitter GitHub <noreply@github.com> 1523441854 +0300\n\nSelenium: Rework the 'CheckoutReferenceTest' to run in the multi-thread mode\n\n* Rework the 'CheckoutReferenceTest' to run in the multi-threaded mode\r\n* Rework methods in the 'TestGitHubRepository'\r\n* Rework methods in the 'GitHistory' using the 'SeleniumWebDriverHelper'\r\n* Move the 'CheckoutReferenceTest' to the 'CheSuite.xml'\r\n* Use the 'kohsuke Github' library \r\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/67403c05c108de0e48032105d1b2cb49e6bca1fd",
+        "html_url": "https://github.com/eclipse/che/commit/67403c05c108de0e48032105d1b2cb49e6bca1fd",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/67403c05c108de0e48032105d1b2cb49e6bca1fd/comments",
+        "author": {
+            "login": "artaleks9",
+            "id": 5408906,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/5408906?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/artaleks9",
+            "html_url": "https://github.com/artaleks9",
+            "followers_url": "https://api.github.com/users/artaleks9/followers",
+            "following_url": "https://api.github.com/users/artaleks9/following{/other_user}",
+            "gists_url": "https://api.github.com/users/artaleks9/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/artaleks9/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/artaleks9/subscriptions",
+            "organizations_url": "https://api.github.com/users/artaleks9/orgs",
+            "repos_url": "https://api.github.com/users/artaleks9/repos",
+            "events_url": "https://api.github.com/users/artaleks9/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/artaleks9/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "33e7d7e1e85c7c95cf2053a70561ce565993ff2b",
+                "url": "https://api.github.com/repos/eclipse/che/commits/33e7d7e1e85c7c95cf2053a70561ce565993ff2b",
+                "html_url": "https://github.com/eclipse/che/commit/33e7d7e1e85c7c95cf2053a70561ce565993ff2b"
+            }
+        ]
+    },
+    {
+        "sha": "33e7d7e1e85c7c95cf2053a70561ce565993ff2b",
+        "commit": {
+            "author": {
+                "name": "Gennady Azarenkov",
+                "email": "gazarenk@redhat.com",
+                "date": "2018-04-11T07:50:39Z"
+            },
+            "committer": {
+                "name": "GitHub",
+                "email": "noreply@github.com",
+                "date": "2018-04-11T07:50:39Z"
+            },
+            "message": "Make exec agent not to use setsid for other than Linux OSes (#9371)\n\n* Adding pipeline\r\n\r\n* del jenkinsfile\r\n\r\n* Make exec agent not to use setsid for other than Linux envs\r\n\r\n* revert pom.xml\r\n\r\n* goformat",
+            "tree": {
+                "sha": "a72be77f46f35bf188aea67488d64b9381a53dc4",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/a72be77f46f35bf188aea67488d64b9381a53dc4"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/33e7d7e1e85c7c95cf2053a70561ce565993ff2b",
+            "comment_count": 0,
+            "verification": {
+                "verified": true,
+                "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJazb5PCRBK7hj4Ov3rIwAAdHIIAAS8ANIs95oJjRuUfQOl0nVy\nJDFhBXkoBnjJPWw9PK/1VHyxkc/vDyoZdE6nSwshW3KZtTCEtxHnoVTIs+XxhYOA\nHC5t/QRBMEJ5bZFDtlYPikUt8lKQdHeC9UR4vrNv9AX9l4dKx6FM2glO3+zhKua5\nOjvhlAJXr5WmOdWDqWE6imOzUjr4tIotroStRSvc+moGeUGHfcTjeXCMawl2LowR\nJbDluyI1Ur0fIKp5l31PBiKwbbeckIZTX7CVZVrzRBNuMlkoKfqap2q5FY+WitwW\nD0r0Bhq95tt0NWvkhcZbV5wSNhpyIV20xJBw9wfmmLaBFqrlQqnW0nOcXlExptg=\n=7Xse\n-----END PGP SIGNATURE-----\n",
+                "payload": "tree a72be77f46f35bf188aea67488d64b9381a53dc4\nparent c0572ea5d6e4232399a2703c2c9ac1a370b76c6d\nauthor Gennady Azarenkov <gazarenk@redhat.com> 1523433039 +0300\ncommitter GitHub <noreply@github.com> 1523433039 +0300\n\nMake exec agent not to use setsid for other than Linux OSes (#9371)\n\n* Adding pipeline\r\n\r\n* del jenkinsfile\r\n\r\n* Make exec agent not to use setsid for other than Linux envs\r\n\r\n* revert pom.xml\r\n\r\n* goformat\r\n"
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/33e7d7e1e85c7c95cf2053a70561ce565993ff2b",
+        "html_url": "https://github.com/eclipse/che/commit/33e7d7e1e85c7c95cf2053a70561ce565993ff2b",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/33e7d7e1e85c7c95cf2053a70561ce565993ff2b/comments",
+        "author": {
+            "login": "gazarenkov",
+            "id": 578124,
+            "avatar_url": "https://avatars0.githubusercontent.com/u/578124?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/gazarenkov",
+            "html_url": "https://github.com/gazarenkov",
+            "followers_url": "https://api.github.com/users/gazarenkov/followers",
+            "following_url": "https://api.github.com/users/gazarenkov/following{/other_user}",
+            "gists_url": "https://api.github.com/users/gazarenkov/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/gazarenkov/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/gazarenkov/subscriptions",
+            "organizations_url": "https://api.github.com/users/gazarenkov/orgs",
+            "repos_url": "https://api.github.com/users/gazarenkov/repos",
+            "events_url": "https://api.github.com/users/gazarenkov/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/gazarenkov/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "web-flow",
+            "id": 19864447,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/web-flow",
+            "html_url": "https://github.com/web-flow",
+            "followers_url": "https://api.github.com/users/web-flow/followers",
+            "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+            "organizations_url": "https://api.github.com/users/web-flow/orgs",
+            "repos_url": "https://api.github.com/users/web-flow/repos",
+            "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/web-flow/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "c0572ea5d6e4232399a2703c2c9ac1a370b76c6d",
+                "url": "https://api.github.com/repos/eclipse/che/commits/c0572ea5d6e4232399a2703c2c9ac1a370b76c6d",
+                "html_url": "https://github.com/eclipse/che/commit/c0572ea5d6e4232399a2703c2c9ac1a370b76c6d"
+            }
+        ]
+    },
+    {
+        "sha": "c0572ea5d6e4232399a2703c2c9ac1a370b76c6d",
+        "commit": {
+            "author": {
+                "name": "Anton Korneta",
+                "email": "akorneta@redhat.com",
+                "date": "2018-03-22T14:54:38Z"
+            },
+            "committer": {
+                "name": "Anton Korneta",
+                "email": "akorneta@redhat.com",
+                "date": "2018-04-11T07:30:32Z"
+            },
+            "message": "Add dgrijalva go lib for parsing jwt tokens",
+            "tree": {
+                "sha": "ce32844ca68542ae86f26667b13e9c94dc718675",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/ce32844ca68542ae86f26667b13e9c94dc718675"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/c0572ea5d6e4232399a2703c2c9ac1a370b76c6d",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/c0572ea5d6e4232399a2703c2c9ac1a370b76c6d",
+        "html_url": "https://github.com/eclipse/che/commit/c0572ea5d6e4232399a2703c2c9ac1a370b76c6d",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/c0572ea5d6e4232399a2703c2c9ac1a370b76c6d/comments",
+        "author": {
+            "login": "akorneta",
+            "id": 12269156,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/12269156?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/akorneta",
+            "html_url": "https://github.com/akorneta",
+            "followers_url": "https://api.github.com/users/akorneta/followers",
+            "following_url": "https://api.github.com/users/akorneta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/akorneta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/akorneta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/akorneta/subscriptions",
+            "organizations_url": "https://api.github.com/users/akorneta/orgs",
+            "repos_url": "https://api.github.com/users/akorneta/repos",
+            "events_url": "https://api.github.com/users/akorneta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/akorneta/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "akorneta",
+            "id": 12269156,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/12269156?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/akorneta",
+            "html_url": "https://github.com/akorneta",
+            "followers_url": "https://api.github.com/users/akorneta/followers",
+            "following_url": "https://api.github.com/users/akorneta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/akorneta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/akorneta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/akorneta/subscriptions",
+            "organizations_url": "https://api.github.com/users/akorneta/orgs",
+            "repos_url": "https://api.github.com/users/akorneta/repos",
+            "events_url": "https://api.github.com/users/akorneta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/akorneta/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "95f88afd85d9d852fa7f1cc5e0743490727822fc",
+                "url": "https://api.github.com/repos/eclipse/che/commits/95f88afd85d9d852fa7f1cc5e0743490727822fc",
+                "html_url": "https://github.com/eclipse/che/commit/95f88afd85d9d852fa7f1cc5e0743490727822fc"
+            }
+        ]
+    },
+    {
+        "sha": "95f88afd85d9d852fa7f1cc5e0743490727822fc",
+        "commit": {
+            "author": {
+                "name": "Anton Korneta",
+                "email": "akorneta@redhat.com",
+                "date": "2018-03-12T09:37:30Z"
+            },
+            "committer": {
+                "name": "Anton Korneta",
+                "email": "akorneta@redhat.com",
+                "date": "2018-04-11T07:30:32Z"
+            },
+            "message": "Rewrite auth mechanism for go agents",
+            "tree": {
+                "sha": "77c90c2c05109297a683834b20e3a74c72f943f4",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/77c90c2c05109297a683834b20e3a74c72f943f4"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/95f88afd85d9d852fa7f1cc5e0743490727822fc",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/95f88afd85d9d852fa7f1cc5e0743490727822fc",
+        "html_url": "https://github.com/eclipse/che/commit/95f88afd85d9d852fa7f1cc5e0743490727822fc",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/95f88afd85d9d852fa7f1cc5e0743490727822fc/comments",
+        "author": {
+            "login": "akorneta",
+            "id": 12269156,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/12269156?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/akorneta",
+            "html_url": "https://github.com/akorneta",
+            "followers_url": "https://api.github.com/users/akorneta/followers",
+            "following_url": "https://api.github.com/users/akorneta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/akorneta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/akorneta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/akorneta/subscriptions",
+            "organizations_url": "https://api.github.com/users/akorneta/orgs",
+            "repos_url": "https://api.github.com/users/akorneta/repos",
+            "events_url": "https://api.github.com/users/akorneta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/akorneta/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "akorneta",
+            "id": 12269156,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/12269156?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/akorneta",
+            "html_url": "https://github.com/akorneta",
+            "followers_url": "https://api.github.com/users/akorneta/followers",
+            "following_url": "https://api.github.com/users/akorneta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/akorneta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/akorneta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/akorneta/subscriptions",
+            "organizations_url": "https://api.github.com/users/akorneta/orgs",
+            "repos_url": "https://api.github.com/users/akorneta/repos",
+            "events_url": "https://api.github.com/users/akorneta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/akorneta/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "38ff5c084b5901960cc8825894e0677dd2ba93a7",
+                "url": "https://api.github.com/repos/eclipse/che/commits/38ff5c084b5901960cc8825894e0677dd2ba93a7",
+                "html_url": "https://github.com/eclipse/che/commit/38ff5c084b5901960cc8825894e0677dd2ba93a7"
+            }
+        ]
+    },
+    {
+        "sha": "38ff5c084b5901960cc8825894e0677dd2ba93a7",
+        "commit": {
+            "author": {
+                "name": "Anton Korneta",
+                "email": "akorneta@redhat.com",
+                "date": "2018-03-01T16:02:18Z"
+            },
+            "committer": {
+                "name": "Anton Korneta",
+                "email": "akorneta@redhat.com",
+                "date": "2018-04-11T07:30:32Z"
+            },
+            "message": "Change machine token to JWT and rewrite auth mechanism",
+            "tree": {
+                "sha": "c3a852017b679c533b97aac2db4e1bcb7593eac4",
+                "url": "https://api.github.com/repos/eclipse/che/git/trees/c3a852017b679c533b97aac2db4e1bcb7593eac4"
+            },
+            "url": "https://api.github.com/repos/eclipse/che/git/commits/38ff5c084b5901960cc8825894e0677dd2ba93a7",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/eclipse/che/commits/38ff5c084b5901960cc8825894e0677dd2ba93a7",
+        "html_url": "https://github.com/eclipse/che/commit/38ff5c084b5901960cc8825894e0677dd2ba93a7",
+        "comments_url": "https://api.github.com/repos/eclipse/che/commits/38ff5c084b5901960cc8825894e0677dd2ba93a7/comments",
+        "author": {
+            "login": "akorneta",
+            "id": 12269156,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/12269156?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/akorneta",
+            "html_url": "https://github.com/akorneta",
+            "followers_url": "https://api.github.com/users/akorneta/followers",
+            "following_url": "https://api.github.com/users/akorneta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/akorneta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/akorneta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/akorneta/subscriptions",
+            "organizations_url": "https://api.github.com/users/akorneta/orgs",
+            "repos_url": "https://api.github.com/users/akorneta/repos",
+            "events_url": "https://api.github.com/users/akorneta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/akorneta/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "akorneta",
+            "id": 12269156,
+            "avatar_url": "https://avatars1.githubusercontent.com/u/12269156?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/akorneta",
+            "html_url": "https://github.com/akorneta",
+            "followers_url": "https://api.github.com/users/akorneta/followers",
+            "following_url": "https://api.github.com/users/akorneta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/akorneta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/akorneta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/akorneta/subscriptions",
+            "organizations_url": "https://api.github.com/users/akorneta/orgs",
+            "repos_url": "https://api.github.com/users/akorneta/repos",
+            "events_url": "https://api.github.com/users/akorneta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/akorneta/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "f85c0a299b71c5109aefe79d6cb4c560edc5c3e9",
+                "url": "https://api.github.com/repos/eclipse/che/commits/f85c0a299b71c5109aefe79d6cb4c560edc5c3e9",
+                "html_url": "https://github.com/eclipse/che/commit/f85c0a299b71c5109aefe79d6cb4c560edc5c3e9"
+            }
+        ]
+    }
+]
