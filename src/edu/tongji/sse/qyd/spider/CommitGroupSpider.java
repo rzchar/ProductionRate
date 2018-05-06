@@ -11,17 +11,20 @@ import java.util.Date;
  * Created by qyd on 2018/5/6.
  */
 public class CommitGroupSpider {
-    private class WeekCommitListSpider extends CommitListSpider {
-        public WeekCommitListSpider() {
+    static private class WeekCommitListSpider extends CommitListSpider {
+        public WeekCommitListSpider(String sinceUntil) {
             super();
-            this.startURL = URLOfBasicAPI.commits;
-            commitListFileName = Path.middleDataPath + File.separator + "commits"
-                    + File.separator + "#commitList" + (new Date()).getTime() + ".txt";
+            this.startURL = URLOfBasicAPI.commits + "?" + sinceUntil;
+            commitListFileName = Path.middleDataPath + File.separator + "commitGroups"
+                    + File.separator + "byWeek" + File.separator + "commitList"
+                    + sinceUntil.replaceAll("[-=:&]","") + ".txt";
             makeNewEmptyFile();
         }
+    }
 
-        @Override
-        protected void addURLParam(HttpsURLConnection connection) {
-        }
+    public static void main(String[] a){
+        //System.out.println("since=2018-01-01T00:00:00Z&until=2018-01-07T23:59:59Z".replaceAll("[-=:&]",""));
+        WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider("since=2018-01-01T00:00:00Z&until=2018-01-07T23:59:59Z");
+        weekCommitListSpider.getListToFile();
     }
 }
