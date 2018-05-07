@@ -2,8 +2,8 @@ package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.Path;
 import edu.tongji.sse.qyd.Util.URLOfBasicAPI;
+import edu.tongji.sse.qyd.Util.Util;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.io.File;
 import java.util.Date;
 
@@ -24,7 +24,10 @@ public class CommitGroupSpider {
 
     public static void main(String[] a){
         //System.out.println("since=2018-01-01T00:00:00Z&until=2018-01-07T23:59:59Z".replaceAll("[-=:&]",""));
-        WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider("since=2018-01-01T00:00:00Z&until=2018-01-07T23:59:59Z");
-        weekCommitListSpider.getListToFile();
+
+        //WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider("since=2018-01-01T00:00:00Z&until=2018-01-07T23:59:59Z");
+        //weekCommitListSpider.getListToFile();
+        Date nowTime=new Date();
+        System.out.println(Util.getISO8601Timestamp(nowTime));
     }
 }
