@@ -17,18 +17,9 @@ public class Path {
 
     static public final String outputPath = projectRoot + File.separator + "web" + File.separator + "output";
 
-    static private final Pattern commitURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/commits/([0-9a-fA-F]{40})$");
 
-    static public final String commitFileSuffix = ".json";
-
-    static public String getCommitHashFromURL(String url){
-        String result = "";
-        Matcher matcher = commitURLEnding.matcher(url);
-        if(matcher.find()){
-            result = matcher.group(1);
-        }
-        return result;
-    }
+    public static final String commitFileSuffix = ".json";
+    public static final String issueFileSuffix = ".json";
 
     static public void main(String[] args) {
 //        System.out.println(inputPath);
@@ -36,7 +27,7 @@ public class Path {
 //        System.out.println(outputPath);
 
         String commitURL = "https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333";
-        System.out.println(getCommitHashFromURL(commitURL));
+        // System.out.println(getCommitHashFromURL(commitURL));
     }
 
 

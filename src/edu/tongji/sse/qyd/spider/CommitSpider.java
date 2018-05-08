@@ -1,61 +1,25 @@
 package edu.tongji.sse.qyd.spider;
 
-import edu.tongji.sse.qyd.Util.ConnectionAssistant;
 import edu.tongji.sse.qyd.Util.Path;
 import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by qyd on 2018/4/24.
  */
-public class CommitSpider {
+public class CommitSpider extends EntitySpider<GitCommitInfo> {
 
-    private static String getCommitContentFromRequest(String urlString) {
-        String responseContent = "";
-
-        try {
-            URL url = new URL(urlString);
-            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-            ConnectionAssistant.addAuthority(connection);
-            connection.connect();
-            //connection.getInputStream();
-
-            //System.out.println("response code: " + connection.getResponseCode());
-            System.out.println("x-ratelimit-remaining: " + connection.getHeaderField("x-ratelimit-remaining"));
-
-            Thread.sleep(700L);
-            if (connection.getHeaderFieldInt("x-ratelimit-remaining", 5000) < 100) {
-                Thread.sleep(3700L * 1000L);
-            }
-
-            InputStream is = connection.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                responseContent += line + "\n";
-            }
-            //System.out.println(responseContent);
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return responseContent;
-    }
-
-    private static GitCommitInfo pickFilesInCommit(String responseContent) {
+    @Override
+    protected GitCommitInfo makeEntityInfoFromResponseContent(String responseContent) {
         List<GitCommitFileInfo> fileInfoList = new ArrayList<GitCommitFileInfo>();
         String authorId = "";
 
@@ -73,67 +37,53 @@ public class CommitSpider {
             }
         }
         if (commit.has("author")) {
-            authorId = String.valueOf(commit.getJSONObject("author").getInt("id"));
+            if (commit.isNull("author")) {
+                try {
+                    authorId = String.valueOf(commit.getJSONObject("commit").getJSONObject("author").getString("name"));
+                } catch (JSONException e) {
+                    System.out.println(commit.get("sha") + ": this commit has no author");
+                }
+            } else {
+                authorId = String.valueOf(commit.getJSONObject("author").getInt("id"));
+            }
         }
         return new GitCommitInfo(authorId, fileInfoList);
     }
 
-    public static GitCommitInfo getGitCommitInfo(String urlString) {
-        String commitHash = Path.getCommitHashFromURL(urlString);
-        String commitFileName = Path.middleDataPath + File.separator + "commits"
-                + File.separator + commitHash + Path.commitFileSuffix;
-        File commitInfoFile = new File(commitFileName);
+    static private final Pattern commitURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/commits/([0-9a-fA-F]{40})$");
 
-        String commitContentString = "";
-        String line = null;
-        if (commitInfoFile.exists()) {
-            //System.out.println("get commit from file " + commitHash);
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(commitInfoFile));
-                while ((line = br.readLine()) != null) {
-                    commitContentString += line;
-                }
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            //System.out.println("get commit from github " + commitHash);
-            commitContentString = getCommitContentFromRequest(urlString);
-            try {
-                commitInfoFile.createNewFile();
-                BufferedWriter bw = new BufferedWriter(new FileWriter(commitInfoFile));
-                bw.write(commitContentString);
-                bw.flush();
-                bw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    @Override
+    protected String getCommitHashFromURL(String url) {
+        String result = "";
+        Matcher matcher = commitURLEnding.matcher(url);
+        if (matcher.find()) {
+            result = matcher.group(1);
         }
-        return pickFilesInCommit(commitContentString);
+        return result;
     }
 
-    public static void getAllCommits() {
-        try {
-            File commitList = new File(Path.middleDataPath + File.separator + "commits" + File.separator + "#commitList.txt");
-            BufferedReader br = new BufferedReader(new FileReader(commitList));
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                getGitCommitInfo(line);
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    protected String getFileNameFromHash(String hash) {
+        return Path.middleDataPath + File.separator + "commits"
+                + File.separator + hash + Path.commitFileSuffix;
     }
 
+    @Override
+    protected String  getEntityListFileName(){
+        return Path.middleDataPath + File.separator + "commitGroups" + File.separator + "#commitList.txt";
+    }
+
+    protected static CommitSpider commitSpider = new CommitSpider();
+
+    public static CommitSpider getInstance() {
+        return commitSpider;
+    }
     public static void main(String[] args) {
         //getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che");
-        //getCommitContentFromRequest("https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333");
-        getGitCommitInfo("https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333");
-        getGitCommitInfo("https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406");
-        getGitCommitInfo("https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c");
+        //getInstance().getEntityInfo("https://api.github.com/repos/eclipse/che/commits/4b39f7f581f7816695629f13a604923a80395b72");
 
-
+        getInstance().getAllEntity();
+//        getInstance().getEntityInfo("https://api.github.com/repos/eclipse/che/commits/0a3ad3d184f9888a610839e838274b43ad9dd7c4");
+//        getInstance().getEntityInfo("https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406");
+//        getInstance().getEntityInfo("https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c");
     }
 }

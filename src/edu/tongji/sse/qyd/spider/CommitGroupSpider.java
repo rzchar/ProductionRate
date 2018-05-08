@@ -8,7 +8,6 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -18,7 +17,7 @@ public class CommitGroupSpider {
     static private class WeekCommitListSpider extends CommitListSpider {
         public WeekCommitListSpider(String sinceUntil) {
             this.startURL = URLOfBasicAPI.commits + "?" + sinceUntil;
-            this.commitListFileName = Path.middleDataPath + File.separator + "commitGroups"
+            this.listFileName = Path.middleDataPath + File.separator + "commitGroups"
                     + File.separator + "byWeek" + File.separator + "commitList"
                     + sinceUntil.replaceAll("[-=:&]", "") + ".txt";
             makeNewEmptyFile();

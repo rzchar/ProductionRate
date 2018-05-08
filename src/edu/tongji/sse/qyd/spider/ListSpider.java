@@ -16,16 +16,22 @@ import java.util.regex.Pattern;
  */
 public class ListSpider {
     protected BufferedWriter bw = null;
-    protected String startURL;
     protected Pattern nextLinkPattern = Pattern.compile("<(.*)>;\\srel=\"next\"");
-    protected String commitListFileName;
 
-    public ListSpider() {
+    protected String startURL;
+    protected String listFileName;
+
+    protected ListSpider() {
         this.startURL = "";
     }
 
+    public ListSpider(String startURL,String fileName){
+        this.startURL = startURL;
+        this.listFileName = fileName;
+    }
+
     protected void makeNewEmptyFile() {
-        File commitListFile = new File(commitListFileName);
+        File commitListFile = new File(listFileName);
         if (commitListFile.exists()) {
             commitListFile.delete();
         }

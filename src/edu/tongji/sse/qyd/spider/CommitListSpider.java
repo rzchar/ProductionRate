@@ -10,11 +10,15 @@ public class CommitListSpider extends ListSpider {
 
     protected int pagesCount = 0;
 
-    public CommitListSpider() {
+    protected CommitListSpider() {
         this.startURL = URLOfBasicAPI.commits;
-        commitListFileName = Path.middleDataPath + File.separator + "commits"
+        listFileName = Path.middleDataPath + File.separator + "commitGroups"
                 + File.separator + "#commitList" + (new Date()).getTime() + ".txt";
         makeNewEmptyFile();
+    }
+
+    public CommitListSpider(String startURL, String fileName) {
+        super(startURL, fileName);
     }
 
     private static String testString =

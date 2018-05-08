@@ -7,7 +7,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * Created by qyd on 2018/5/4.
@@ -17,7 +16,7 @@ public class TagListSpider extends ListSpider {
     public TagListSpider() {
         super();
         this.startURL = URLOfBasicAPI.tags;
-        commitListFileName = Path.middleDataPath + File.separator + "tags"
+        listFileName = Path.middleDataPath + File.separator + "tags"
                 + File.separator + "#tagList" + ".txt";
         makeNewEmptyFile();
     }
