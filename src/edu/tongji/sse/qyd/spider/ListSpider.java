@@ -30,6 +30,7 @@ public class ListSpider {
             commitListFile.delete();
         }
         try {
+            commitListFile.getParentFile().mkdirs();
             commitListFile.createNewFile();
             this.bw = new BufferedWriter(new FileWriter(commitListFile));
         } catch (IOException e) {
@@ -86,8 +87,10 @@ public class ListSpider {
             connection.connect();
 
             //get next page
-            String[] links = connection.getHeaderField("Link").split(",");
-            nextPage = getNextLink(links);
+            if (connection.getHeaderField("Link") != null) {
+                String[] links = connection.getHeaderField("Link").split(",");
+                nextPage = getNextLink(links);
+            }
 
             InputStream is = connection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));

@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class CommitSpider {
 
-    private static String getFileListFromRequest(String urlString) {
+    private static String getCommitContentFromRequest(String urlString) {
         String responseContent = "";
 
         try {
@@ -93,7 +93,7 @@ public class CommitSpider {
             }
         } else {
             System.out.println("get commit from github " + commitHash);
-            commitContentString = getFileListFromRequest(urlString);
+            commitContentString = getCommitContentFromRequest(urlString);
             try {
                 commitInfoFile.createNewFile();
                 BufferedWriter bw = new BufferedWriter(new FileWriter(commitInfoFile));
@@ -107,13 +107,7 @@ public class CommitSpider {
         return pickFilesInCommit(commitContentString);
     }
 
-    public static void main(String[] args) {
-        //getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che");
-        //getFileListFromRequest("https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333");
-        getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333");
-        getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406");
-        getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c");
-
+    public static void getAllCommits(){
         try{
             File commitList = new File(Path.middleDataPath + File.separator + "commits" + File.separator + "#commitList.txt");
             BufferedReader br =  new BufferedReader(new FileReader(commitList));
@@ -125,5 +119,15 @@ public class CommitSpider {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        //getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che");
+        //getCommitContentFromRequest("https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333");
+        getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333");
+        getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406");
+        getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c");
+
+
     }
 }
