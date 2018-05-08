@@ -3,6 +3,7 @@ package edu.tongji.sse.qyd.spider;
 import edu.tongji.sse.qyd.Util.ConnectionAssistant;
 import edu.tongji.sse.qyd.Util.Path;
 import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
+import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -32,8 +33,8 @@ public class CommitSpider {
             System.out.println("x-ratelimit-remaining: " + connection.getHeaderField("x-ratelimit-remaining"));
 
             Thread.sleep(700L);
-            if(connection.getHeaderFieldInt("x-ratelimit-remaining",5000)<100){
-                Thread.sleep(3700L*1000L);
+            if (connection.getHeaderFieldInt("x-ratelimit-remaining", 5000) < 100) {
+                Thread.sleep(3700L * 1000L);
             }
 
             InputStream is = connection.getInputStream();
@@ -48,20 +49,22 @@ public class CommitSpider {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch(InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return responseContent;
     }
 
-    private static List<GitCommitFileInfo> pickFilesInCommit(String responseContent) {
-        List<GitCommitFileInfo> result = new ArrayList<GitCommitFileInfo>();
+    private static GitCommitInfo pickFilesInCommit(String responseContent) {
+        List<GitCommitFileInfo> fileInfoList = new ArrayList<GitCommitFileInfo>();
+        String authorId = "";
+
         JSONObject commit = new JSONObject(responseContent);
         if (commit.has("files")) {
             JSONArray files = commit.getJSONArray("files");
             for (int i = 0; i < files.length(); i++) {
                 JSONObject fileObject = files.getJSONObject(i);
-                result.add(new GitCommitFileInfo(
+                fileInfoList.add(new GitCommitFileInfo(
                         fileObject.getInt("additions"),
                         fileObject.getInt("deletions"),
                         fileObject.getInt("changes"),
@@ -69,10 +72,13 @@ public class CommitSpider {
                 ));
             }
         }
-        return result;
+        if (commit.has("author")) {
+            authorId = String.valueOf(commit.getJSONObject("author").getInt("id"));
+        }
+        return new GitCommitInfo(authorId, fileInfoList);
     }
 
-    public static List<GitCommitFileInfo> getGitCommitFileInfoList(String urlString) {
+    public static GitCommitInfo getGitCommitInfo(String urlString) {
         String commitHash = Path.getCommitHashFromURL(urlString);
         String commitFileName = Path.middleDataPath + File.separator + "commits"
                 + File.separator + commitHash + Path.commitFileSuffix;
@@ -81,7 +87,7 @@ public class CommitSpider {
         String commitContentString = "";
         String line = null;
         if (commitInfoFile.exists()) {
-            System.out.println("get commit from file " + commitHash);
+            //System.out.println("get commit from file " + commitHash);
             try {
                 BufferedReader br = new BufferedReader(new FileReader(commitInfoFile));
                 while ((line = br.readLine()) != null) {
@@ -92,7 +98,7 @@ public class CommitSpider {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("get commit from github " + commitHash);
+            //System.out.println("get commit from github " + commitHash);
             commitContentString = getCommitContentFromRequest(urlString);
             try {
                 commitInfoFile.createNewFile();
@@ -107,16 +113,16 @@ public class CommitSpider {
         return pickFilesInCommit(commitContentString);
     }
 
-    public static void getAllCommits(){
-        try{
+    public static void getAllCommits() {
+        try {
             File commitList = new File(Path.middleDataPath + File.separator + "commits" + File.separator + "#commitList.txt");
-            BufferedReader br =  new BufferedReader(new FileReader(commitList));
+            BufferedReader br = new BufferedReader(new FileReader(commitList));
             String line = null;
-            while((line = br.readLine())!=null){
-                getGitCommitFileInfoList(line);
+            while ((line = br.readLine()) != null) {
+                getGitCommitInfo(line);
             }
             br.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -124,9 +130,9 @@ public class CommitSpider {
     public static void main(String[] args) {
         //getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che");
         //getCommitContentFromRequest("https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333");
-        getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333");
-        getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406");
-        getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c");
+        getGitCommitInfo("https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333");
+        getGitCommitInfo("https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406");
+        getGitCommitInfo("https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c");
 
 
     }

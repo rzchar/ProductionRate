@@ -4,10 +4,10 @@ package edu.tongji.sse.qyd.gitCommit;
  * Created by qyd on 2018/4/24.
  */
 public class GitCommitFileInfo {
-    int additionNum;
-    int deletionNum;
-    int changeNum;
-    String fileName;
+    private int additionNum;
+    private int deletionNum;
+    private int changeNum;
+    private String fileName;
 
     public int getAdditionNum() {
         return additionNum;

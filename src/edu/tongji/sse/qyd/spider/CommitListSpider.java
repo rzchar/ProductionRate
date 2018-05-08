@@ -11,7 +11,6 @@ public class CommitListSpider extends ListSpider {
     protected int pagesCount = 0;
 
     public CommitListSpider() {
-        super();
         this.startURL = URLOfBasicAPI.commits;
         commitListFileName = Path.middleDataPath + File.separator + "commits"
                 + File.separator + "#commitList" + (new Date()).getTime() + ".txt";
