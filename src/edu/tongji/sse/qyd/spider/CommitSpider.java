@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Get Commit from file or
  * Created by qyd on 2018/4/24.
  */
 public class CommitSpider extends EntitySpider<GitCommitInfo> {
@@ -53,7 +54,7 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
     static private final Pattern commitURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/commits/([0-9a-fA-F]{40})$");
 
     @Override
-    protected String getCommitHashFromURL(String url) {
+    protected String getEntityHashFromURL(String url) {
         String result = "";
         Matcher matcher = commitURLEnding.matcher(url);
         if (matcher.find()) {

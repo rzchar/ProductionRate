@@ -1,8 +1,10 @@
 package edu.tongji.sse.qyd.analyzer;
 
+import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 import edu.tongji.sse.qyd.spider.CommitSpider;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,9 +15,9 @@ import java.util.regex.Pattern;
  */
 public class WeekCommitAnalyzer {
 
-    String strTimeProid = "";
+    private String strTimeProid = "";
 
-    List<String> urls = null;
+    private List<String> urls = null;
 
     public WeekCommitAnalyzer(String strTimeProid, List<String> urls) {
         this.urls = urls;
@@ -28,22 +30,21 @@ public class WeekCommitAnalyzer {
                 Pattern.compile("\\.mvn$")};
         Set<String> authors = new HashSet<>();
         //Set<String> types = new HashSet<>();
-
+        List<GitCommitFileInfo> filesInWeek = new ArrayList<GitCommitFileInfo>();
 
         for (int iurl = 0; iurl < urls.size(); iurl++) {
             String url = urls.get(iurl);
             GitCommitInfo gitCommitInfo = CommitSpider.getInstance().getEntityInfo(url);
-            for (int ipatterns = 0; ipatterns < patterns.length; ipatterns++) {
-                sum[ipatterns] += gitCommitInfo.sumChanges(patterns[ipatterns]);
-            }
+            //for (int ipatterns = 0; ipatterns < patterns.length; ipatterns++) {
+            //sum[ipatterns] += gitCommitInfo.sumChanges(patterns[ipatterns]);
+            //}
+            filesInWeek.addAll(gitCommitInfo.getFiles());
             authors.add(gitCommitInfo.getAuthorId());
             gitCommitInfo.printFileTypes();
 
         }
         System.out.println("time:" + strTimeProid + ";" + "authors number:" + authors.size() + ";");
-        for (int ipatterns = 0; ipatterns < patterns.length; ipatterns++) {
-            System.out.print(sum[ipatterns] + ";");
-        }
+
         System.out.println();
     }
 }

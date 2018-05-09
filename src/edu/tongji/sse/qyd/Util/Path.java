@@ -27,7 +27,7 @@ public class Path {
 //        System.out.println(outputPath);
 
         String commitURL = "https://api.github.com/repos/eclipse/che/commits/d879c3faf2e601e24bda50e48222a019107a5333";
-        // System.out.println(getCommitHashFromURL(commitURL));
+        // System.out.println(getEntityHashFromURL(commitURL));
     }
 
 

@@ -16,10 +16,10 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
         return null;
     }
 
-    static private final Pattern issueURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/commits/([0-9]{1,5})$");
+    static private final Pattern issueURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/issues/([0-9]{1,5})$");
 
     @Override
-    protected String getCommitHashFromURL(String url) {
+    protected String getEntityHashFromURL(String url) {
         String result = "";
         Matcher matcher = issueURLEnding.matcher(url);
         if (matcher.find()) {
@@ -41,7 +41,7 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
 
     protected static IssuesSpider issuesSpider = new IssuesSpider();
 
-    public static IssuesSpider getInstance(){
+    public static EntitySpider getInstance(){
         return issuesSpider;
     }
 
