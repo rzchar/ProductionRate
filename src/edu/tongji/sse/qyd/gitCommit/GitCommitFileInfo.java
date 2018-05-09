@@ -8,7 +8,24 @@ public class GitCommitFileInfo {
     private int deletionNum;
     private int changeNum;
     private String fileName;
+    private String patch;
+    private String status;
 
+    public String getPatch() {
+        return patch;
+    }
+
+    public void setPatch(String patch) {
+        this.patch = patch;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public int getAdditionNum() {
         return additionNum;
     }
@@ -46,12 +63,16 @@ public class GitCommitFileInfo {
         this.deletionNum = 0;
         this.changeNum = 0;
         this.fileName = "";
+        this.patch = "";
+        this.status = "";
     }
 
-    public GitCommitFileInfo(int additionNum, int deletionNum, int changeNum, String fileName) {
+    public GitCommitFileInfo(int additionNum, int deletionNum, int changeNum, String fileName,String status, String patch) {
         this.additionNum = additionNum;
         this.deletionNum = deletionNum;
         this.changeNum = changeNum;
         this.fileName = fileName;
+        this.status = status;
+        this.patch = patch;
     }
 }

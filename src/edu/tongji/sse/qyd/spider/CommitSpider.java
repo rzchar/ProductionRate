@@ -21,20 +21,33 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
 
     @Override
     protected GitCommitInfo makeEntityInfoFromResponseContent(String responseContent) {
-        List<GitCommitFileInfo> fileInfoList = new ArrayList<GitCommitFileInfo>();
+        List<GitCommitFileInfo> fileInfoList = new ArrayList<>();
         String authorId = "";
 
         JSONObject commit = new JSONObject(responseContent);
         if (commit.has("files")) {
             JSONArray files = commit.getJSONArray("files");
             for (int i = 0; i < files.length(); i++) {
-                JSONObject fileObject = files.getJSONObject(i);
-                fileInfoList.add(new GitCommitFileInfo(
-                        fileObject.getInt("additions"),
-                        fileObject.getInt("deletions"),
-                        fileObject.getInt("changes"),
-                        fileObject.getString("filename")
-                ));
+                try {
+                    JSONObject fileObject = files.getJSONObject(i);
+                    String status = fileObject.getString("status");
+                    String patch = "";
+                    if (fileObject.has("patch")) {
+                        patch = fileObject.getString("patch");
+                    }
+                    fileInfoList.add(new GitCommitFileInfo(
+                            fileObject.getInt("additions"),
+                            fileObject.getInt("deletions"),
+                            fileObject.getInt("changes"),
+                            fileObject.getString("filename"),
+                            status,
+                            patch
+                    ));
+                } catch (JSONException e) {
+                    System.out.println(responseContent);
+                    e.printStackTrace();
+                    System.exit(1);
+                }
             }
         }
         if (commit.has("author")) {
@@ -51,7 +64,7 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
         return new GitCommitInfo(authorId, fileInfoList);
     }
 
-    static private final Pattern commitURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/commits/([0-9a-fA-F]{40})$");
+    static private final Pattern commitURLEnding = Pattern.compile("^https://api\\.github\\.com/repos/.*/commits/([0-9a-fA-F]{40})$");
 
     @Override
     protected String getEntityHashFromURL(String url) {
@@ -69,7 +82,7 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
     }
 
     @Override
-    protected String  getEntityListFileName(){
+    protected String getEntityListFileName() {
         return Path.middleDataPath + File.separator + "commitGroups" + File.separator + "#commitList.txt";
     }
 
@@ -78,6 +91,7 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
     public static CommitSpider getInstance() {
         return commitSpider;
     }
+
     public static void main(String[] args) {
         //getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che");
         //getInstance().getEntityInfo("https://api.github.com/repos/eclipse/che/commits/4b39f7f581f7816695629f13a604923a80395b72");

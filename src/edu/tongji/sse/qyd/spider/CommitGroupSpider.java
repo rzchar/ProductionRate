@@ -16,6 +16,7 @@ import java.util.Date;
 public class CommitGroupSpider {
     static private class WeekCommitListSpider extends CommitListSpider {
         public WeekCommitListSpider(String sinceUntil) {
+            super(sinceUntil);
             this.startURL = URLOfBasicAPI.commits + "?" + sinceUntil;
             this.listFileName = Path.middleDataPath + File.separator + "commitGroups"
                     + File.separator + "byWeek" + File.separator + "commitList"
@@ -32,10 +33,10 @@ public class CommitGroupSpider {
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             dateFormat.setTimeZone(Util.utc0);
-            Date adam = dateFormat.parse("2018-02-26 00:00:00");
+            Date adam = dateFormat.parse("2015-03-25 00:00:00");
             Date start= adam;
             Date end = Util.getDateAfter(start,7);
-            Date lilin = dateFormat.parse("2018-04-30 00:00:00");
+            Date lilin = dateFormat.parse("2015-03-30 00:00:00");
             while(start.before(lilin)){
                 String time = "since="+Util.getISO8601Timestamp(start) +"&until=" + Util.getISO8601Timestamp(end);
                 WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider(time);

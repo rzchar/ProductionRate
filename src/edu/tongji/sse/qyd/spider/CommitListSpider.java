@@ -21,6 +21,9 @@ public class CommitListSpider extends ListSpider {
         super(startURL, fileName);
     }
 
+    protected  CommitListSpider(String url){
+    }
+
     private static String testString =
             "<https://api.github.com/repositories/32935745/commits?page=6>; rel=\"next\","
                     + " <https://api.github.com/repositories/32935745/commits?page=204>; rel=\"last\","
