@@ -65,7 +65,7 @@ abstract public class EntitySpider<T> {
         String commitContentString = "";
         String line = null;
         if (entityInfoFile.exists()) {
-            System.out.println("get entity from file " + entityHash);
+            //System.out.println("get entity from file " + entityHash);
             try {
                 BufferedReader br = new BufferedReader(new FileReader(entityInfoFile));
                 while ((line = br.readLine()) != null) {

@@ -25,6 +25,11 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
         String authorId = "";
 
         JSONObject commit = new JSONObject(responseContent);
+        if(!commit.has("sha")){
+            System.out.println("A Commit Without Sha");
+            return null;
+        }
+        String commitHash = commit.getString("sha");
         if (commit.has("files")) {
             JSONArray files = commit.getJSONArray("files");
             for (int i = 0; i < files.length(); i++) {
@@ -36,12 +41,12 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
                         patch = fileObject.getString("patch");
                     }
                     fileInfoList.add(new GitCommitFileInfo(
+                            commitHash,
                             fileObject.getInt("additions"),
                             fileObject.getInt("deletions"),
                             fileObject.getInt("changes"),
                             fileObject.getString("filename"),
-                            status,
-                            patch
+                            status
                     ));
                 } catch (JSONException e) {
                     System.out.println(responseContent);
