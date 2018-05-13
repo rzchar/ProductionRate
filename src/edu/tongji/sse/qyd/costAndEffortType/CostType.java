@@ -1,7 +1,5 @@
 package edu.tongji.sse.qyd.costAndEffortType;
 
-import edu.tongji.sse.qyd.analyzer.AbstractFileCommitType;
-
 /**
  * Created by qyd on 2018/5/13.
  */

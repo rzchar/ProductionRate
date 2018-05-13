@@ -4,7 +4,6 @@ import edu.tongji.sse.qyd.Util.ConnectionAssistant;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -78,7 +77,7 @@ abstract public class EntitySpider<T> {
         } else {
             System.out.println("get entity from github " + entityHash);
             commitContentString = getEntityContentFromRequest(urlString);
-            if(!commitContentString.equals("")) {
+            if (!commitContentString.equals("")) {
                 try {
                     entityInfoFile.createNewFile();
                     BufferedWriter bw = new BufferedWriter(new FileWriter(entityInfoFile));

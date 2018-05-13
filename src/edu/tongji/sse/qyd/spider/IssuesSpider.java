@@ -11,12 +11,21 @@ import java.util.regex.Pattern;
  * Created by qyd on 2018/5/8.
  */
 public class IssuesSpider extends EntitySpider<IssueInfo> {
+    static private final Pattern issueURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/issues/([0-9]{1,5})$");
+    protected static IssuesSpider issuesSpider = new IssuesSpider();
+
+    public static EntitySpider getInstance() {
+        return issuesSpider;
+    }
+
+    public static void main(String[] args) {
+        getInstance().getAllEntity();
+    }
+
     @Override
     protected IssueInfo makeEntityInfoFromResponseContent(String responseContent) {
         return null;
     }
-
-    static private final Pattern issueURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/issues/([0-9]{1,5})$");
 
     @Override
     protected String getEntityHashFromURL(String url) {
@@ -37,15 +46,5 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
     @Override
     protected String getEntityListFileName() {
         return Path.middleDataPath + File.separator + "issueGroups" + File.separator + "#issueListAll.txt";
-    }
-
-    protected static IssuesSpider issuesSpider = new IssuesSpider();
-
-    public static EntitySpider getInstance(){
-        return issuesSpider;
-    }
-
-    public static void main(String[] args) {
-        getInstance().getAllEntity();
     }
 }

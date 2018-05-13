@@ -1,9 +1,5 @@
 package edu.tongji.sse.qyd.costAndEffortType;
 
-import edu.tongji.sse.qyd.costAndEffortType.CostType;
-import edu.tongji.sse.qyd.costAndEffortType.EffortType;
-
-import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
@@ -11,23 +7,8 @@ import java.util.regex.Pattern;
  */
 public class BasicFilePattern {
     protected CostType costType;
-
-    public CostType getCostType() {
-        return this.costType;
-    }
-
-    ;
-
     protected EffortType effortType;
-
-    public EffortType getEffortType() {
-        return this.effortType;
-    }
-
-    ;
-
     protected Pattern fileNamePattern;
-
     protected Pattern contentPattern;
 
     public BasicFilePattern(CostType c, EffortType e) {
@@ -51,8 +32,16 @@ public class BasicFilePattern {
         this.contentPattern = Pattern.compile(contentPattern);
     }
 
+    public CostType getCostType() {
+        return this.costType;
+    }
+
+    public EffortType getEffortType() {
+        return this.effortType;
+    }
+
     public boolean isThisType(String fileName, String content, String commitMessage) {
-        return isFileNamePatternMatched(fileName) && isContentPatternMatched(content) ;
+        return isFileNamePatternMatched(fileName) && isContentPatternMatched(content);
     }
 
     protected boolean isFileNamePatternMatched(String fileName) {

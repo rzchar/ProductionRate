@@ -4,7 +4,7 @@ package edu.tongji.sse.qyd.costAndEffortType;
  * Created by qyd on 2018/5/13.
  */
 public class CostTypeSet {
-    public CostType errorType = new CostType(-1, "errorType");
+    public CostType errorTypeCost = new CostType(-1, "errorTypeCost");
 
     public CostType traditionalCodeCost = new CostType(0, "traditionalCodeCost");
 
@@ -27,7 +27,7 @@ public class CostTypeSet {
     public CostType analyzeFeedbackAndLog = new CostType(9, "analyzeFeedbackAndLog");
 
     public CostType[] costTypeList = new CostType[]{
-            this.errorType,
+            this.errorTypeCost,
             this.traditionalCodeCost,
             this.developingEnvironmentEstablish,
             this.fetchReusableResourceWithCrawler,
@@ -39,4 +39,10 @@ public class CostTypeSet {
             this.getFeedback,
             this.analyzeFeedbackAndLog
     };
+
+    public void summary() {
+        for (CostType c : costTypeList) {
+            System.out.println(c.getTypeString() + " : " + c.summary());
+        }
+    }
 }

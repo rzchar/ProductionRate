@@ -11,6 +11,11 @@ import java.util.List;
 
 public class TotalAnalyzer {
 
+    public static void main(String[] args) {
+        TotalAnalyzer an = new TotalAnalyzer();
+        an.calculateEffortAndCost();
+    }
+
     private List<BasicPeriodCommitAnalyzer> getCommitURLListByWeek() {
 
         List<BasicPeriodCommitAnalyzer> basicPeriodCommitAnalyzers = new ArrayList<BasicPeriodCommitAnalyzer>();
@@ -35,7 +40,7 @@ public class TotalAnalyzer {
                         //System.out.println(line);
                     }
                 }
-                basicPeriodCommitAnalyzers.add(new BasicPeriodCommitAnalyzer(f.getName(),urls));
+                basicPeriodCommitAnalyzers.add(new BasicPeriodCommitAnalyzer(f.getName(), urls));
                 br.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -50,10 +55,5 @@ public class TotalAnalyzer {
             basicPeriodCommitAnalyzers.get(iweeks).statistic();
         }
         return basicPeriodCommitAnalyzers;
-    }
-
-    public static void main(String[] args) {
-        TotalAnalyzer an = new TotalAnalyzer();
-        an.calculateEffortAndCost();
     }
 }

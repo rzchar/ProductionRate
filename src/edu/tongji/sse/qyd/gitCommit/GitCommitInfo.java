@@ -11,11 +11,25 @@ import java.util.regex.Pattern;
  */
 public class GitCommitInfo {
     static private Set<String> blockedFileSuffix = new HashSet<>();
+    private List<GitCommitFileInfo> files;
+    private String authorId;
 
     {
         blockedFileSuffix.add(".java");
         blockedFileSuffix.add(".xml");
         blockedFileSuffix.add(".html");
+    }
+
+    public GitCommitInfo(String authorId, List<GitCommitFileInfo> files) {
+        this.files = files;
+        this.authorId = authorId;
+    }
+
+    public static void main(String[] a) {
+        String fileFullName = "assembly/assembly-wsmaster-war/src/main/webapp/WEB-INF/classes/codenvy/che.properties";
+        if (fileFullName.contains(".")) {
+            System.out.println(fileFullName.substring(fileFullName.lastIndexOf(".")));
+        }
     }
 
     public List<GitCommitFileInfo> getFiles() {
@@ -31,14 +45,6 @@ public class GitCommitInfo {
     }
 
     public void setAuthorId(String authorId) {
-        this.authorId = authorId;
-    }
-
-    private List<GitCommitFileInfo> files;
-    private String authorId;
-
-    public GitCommitInfo(String authorId, List<GitCommitFileInfo> files) {
-        this.files = files;
         this.authorId = authorId;
     }
 
@@ -94,12 +100,5 @@ public class GitCommitInfo {
             System.out.print(str + "; ");
         }
         System.out.println();
-    }
-
-    public static void main(String[] a) {
-        String fileFullName = "assembly/assembly-wsmaster-war/src/main/webapp/WEB-INF/classes/codenvy/che.properties";
-        if (fileFullName.contains(".")) {
-            System.out.println(fileFullName.substring(fileFullName.lastIndexOf(".")));
-        }
     }
 }

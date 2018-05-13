@@ -1,8 +1,6 @@
 package edu.tongji.sse.qyd.Util;
 
 import java.io.File;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by qyd on 2018/4/28.

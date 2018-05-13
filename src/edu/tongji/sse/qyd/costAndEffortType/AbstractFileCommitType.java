@@ -1,4 +1,6 @@
-package edu.tongji.sse.qyd.analyzer;
+package edu.tongji.sse.qyd.costAndEffortType;
+
+import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 
 /**
  * Created by qyd on 2018/5/13.
@@ -13,6 +15,22 @@ public class AbstractFileCommitType {
 
     public AbstractFileCommitType() {
         this.addLineSum = 0;
+    }
+
+    public AbstractFileCommitType(int num, String typeString) {
+        super();
+        this.num = num;
+        this.typeString = typeString;
+        this.rate = 1;
+        this.resetAll();
+    }
+
+    public AbstractFileCommitType(int num, String typeString, int rate) {
+        super();
+        this.num = num;
+        this.typeString = typeString;
+        this.rate = rate;
+        this.resetAll();
     }
 
     public int getRate() {
@@ -49,19 +67,9 @@ public class AbstractFileCommitType {
         this.changeLineSum = 0;
     }
 
-    public AbstractFileCommitType(int num, String typeString) {
-        super();
-        this.num = num;
-        this.typeString = typeString;
-        this.rate = 1;
-        this.resetAll();
-    }
-
-    public AbstractFileCommitType(int num, String typeString, int rate) {
-        super();
-        this.num = num;
-        this.typeString = typeString;
-        this.rate = rate;
-        this.resetAll();
+    public void addCommitData(GitCommitFileInfo info) {
+        this.addLineSum += info.getAdditionNum();
+        this.deleteLineSum += info.getDeletionNum();
+        this.changeLineSum += info.getChangeNum();
     }
 }

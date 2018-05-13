@@ -25,7 +25,7 @@ public class ListSpider {
         this.startURL = "";
     }
 
-    public ListSpider(String startURL,String fileName){
+    public ListSpider(String startURL, String fileName) {
         this.startURL = startURL;
         this.listFileName = fileName;
     }

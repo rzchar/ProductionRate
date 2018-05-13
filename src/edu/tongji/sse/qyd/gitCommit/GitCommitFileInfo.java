@@ -1,8 +1,5 @@
 package edu.tongji.sse.qyd.gitCommit;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created by qyd on 2018/4/24.
  */
@@ -14,6 +11,26 @@ public class GitCommitFileInfo {
     private String fileName;
     private String patch;
     private String status;
+
+    public GitCommitFileInfo() {
+        this.gitHash = "";
+        this.additionNum = 0;
+        this.deletionNum = 0;
+        this.changeNum = 0;
+        this.fileName = "";
+        this.patch = "";
+        this.status = "";
+    }
+
+    public GitCommitFileInfo(String gitHash, int additionNum, int deletionNum, int changeNum, String fileName, String status, String patch) {
+        this.gitHash = gitHash;
+        this.additionNum = additionNum;
+        this.deletionNum = deletionNum;
+        this.changeNum = changeNum;
+        this.fileName = fileName;
+        this.status = status;
+        this.patch = patch;
+    }
 
     public String getGitHash() {
         return gitHash;
@@ -69,25 +86,5 @@ public class GitCommitFileInfo {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
-    }
-
-    public GitCommitFileInfo() {
-        this.gitHash = "";
-        this.additionNum = 0;
-        this.deletionNum = 0;
-        this.changeNum = 0;
-        this.fileName = "";
-        this.patch = "";
-        this.status = "";
-    }
-
-    public GitCommitFileInfo(String gitHash, int additionNum, int deletionNum, int changeNum, String fileName, String status, String patch) {
-        this.gitHash = gitHash;
-        this.additionNum = additionNum;
-        this.deletionNum = deletionNum;
-        this.changeNum = changeNum;
-        this.fileName = fileName;
-        this.status = status;
-        this.patch = patch;
     }
 }

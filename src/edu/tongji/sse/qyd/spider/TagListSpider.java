@@ -21,6 +21,11 @@ public class TagListSpider extends ListSpider {
         makeNewEmptyFile();
     }
 
+    public static void main(String[] a) {
+        TagListSpider tls = new TagListSpider();
+        tls.getListToFile();
+    }
+
     @Override
     protected void writeContentToFile(String responseContent) {
         if (bw == null) {
@@ -33,17 +38,12 @@ public class TagListSpider extends ListSpider {
                 entityOBJ.remove("zipball_url");
                 entityOBJ.remove("tarball_url");
 
-                this.bw.write(entityOBJ.toString()+"\n");
+                this.bw.write(entityOBJ.toString() + "\n");
                 this.bw.flush();
 
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] a) {
-        TagListSpider tls = new TagListSpider();
-        tls.getListToFile();
     }
 }

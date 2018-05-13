@@ -1,7 +1,6 @@
 package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.Util.URLOfBasicAPI;
 
 import java.io.File;
 import java.util.Date;
@@ -27,8 +26,8 @@ public class IssueListSpider extends ListSpider {
     public static void main(String[] args) {
         //IssueListSpider issueListSpider = new IssueListSpider();
         //issueListSpider.getListToFile();
-        for(int i =4734;i>0;i--){
-            System.out.println("https://api.github.com/repos/eclipse/che/issues/"+ i);
+        for (int i = 4734; i > 0; i--) {
+            System.out.println("https://api.github.com/repos/eclipse/che/issues/" + i);
         }
     }
 }

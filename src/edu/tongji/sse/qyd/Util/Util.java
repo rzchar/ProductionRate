@@ -57,7 +57,7 @@ public class Util {
         return calendar.getTime();
     }
 
-    private static Date getDateFromString(String str,int group){
+    private static Date getDateFromString(String str, int group) {
         Matcher matcher = commitGroupFileNamePattern.matcher(str);
         if (matcher.find()) {
             try {
@@ -70,11 +70,11 @@ public class Util {
     }
 
     public static Date getSince(String str) {
-        return getDateFromString(str,1);
+        return getDateFromString(str, 1);
     }
 
     public static Date getUntil(String str) {
-        return getDateFromString(str,2);
+        return getDateFromString(str, 2);
     }
 
 }

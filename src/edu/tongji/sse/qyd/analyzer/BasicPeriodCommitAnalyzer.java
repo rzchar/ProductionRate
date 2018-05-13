@@ -49,6 +49,8 @@ public class BasicPeriodCommitAnalyzer {
                 String patch = gitCommitFileInfo.getPatch();
                 for (BasicFilePattern basicFilePattern : this.patternList) {
                     if (basicFilePattern.isThisType(fileName, patch, "")) {
+                        basicFilePattern.getCostType().addCommitData(gitCommitFileInfo);
+                        basicFilePattern.getEffortType().addCommitData(gitCommitFileInfo);
                         succeedMatch = true;
                     }
                 }
@@ -61,6 +63,8 @@ public class BasicPeriodCommitAnalyzer {
 
         }
         //System.out.println( "authors number:" + authors.size() + ";");
+        this.costTypeSet.summary();
+        this.effortTypeSet.summary();
         System.out.println("=======");
     }
 
@@ -68,38 +72,47 @@ public class BasicPeriodCommitAnalyzer {
         BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
                 new BasicFilePattern(
                         costTypeSet.traditionalCodeCost,
-                        effortTypeSet.traditionalCode,
+                        effortTypeSet.traditionalCodeEffort,
                         "\\.(java|js|go|html|ts|sql|css|svg|jsp)$"),
 
                 new BasicFilePattern(
-                        costTypeSet.traditionalCodeCost,
-                        effortTypeSet.traditionalCode,
-                        "(pom\\.xml|\\.helmignore)$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.tpl$"),
+                        costTypeSet.runtimeEnvironmentEstablish,
+                        effortTypeSet.autoScriptEffort,
+                        "^docker(files)?"),
+
                 new BasicFilePattern(
-                        costTypeSet.traditionalCodeCost,
-                        effortTypeSet.traditionalCode,
+                        costTypeSet.developingEnvironmentEstablish,
+                        effortTypeSet.autoScriptEffort,
+                        "(pom\\.xml|\\.helmignore)$"),
+
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.gitignore$"),
+
+
+
+
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.tpl$"),
+                new BasicFilePattern(
+                        costTypeSet.errorTypeCost,
+                        effortTypeSet.errorTypeEffort,
                         "che\\.properties$"),
                 new BasicFilePattern(
-                        costTypeSet.traditionalCodeCost,
-                        effortTypeSet.traditionalCode,
+                        costTypeSet.errorTypeCost,
+                        effortTypeSet.errorTypeEffort,
                         "(?<!che)\\.properties$"),
 
 
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.styl$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "LICENSE$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.gitignore$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.TckModule$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.ver$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.sh$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.env(.erb)?$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.yml$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.yaml$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.md$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "\\.json$"),
-                new BasicFilePattern(costTypeSet.traditionalCodeCost, effortTypeSet.traditionalCode, "(?<!pom)\\.xml$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.styl$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "LICENSE$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.TckModule$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.ver$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.sh$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.env(.erb)?$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.yml$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.yaml$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.md$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.json$"),
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "(?<!pom)\\.xml$")
 
-                new BasicFilePattern(costTypeSet.runtimeEnvironmentEstablish, effortTypeSet.autoScript, "^docker(files)?")
 
         };
 
