@@ -18,4 +18,11 @@ public class EffortTypeSet {
 
     public EffortType repairDefect = new EffortType(4, "repairDefect");
 
+    public EffortType[] effortTypeList = new EffortType[]{
+            this.traditionalCode,
+            this.reusableCode,
+            this.autoScript,
+            this.reportDefect,
+            this.repairDefect
+    };
 }

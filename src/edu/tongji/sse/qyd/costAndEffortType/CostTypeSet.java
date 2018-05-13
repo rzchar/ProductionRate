@@ -1,7 +1,5 @@
 package edu.tongji.sse.qyd.costAndEffortType;
 
-import edu.tongji.sse.qyd.costAndEffortType.CostType;
-
 /**
  * Created by qyd on 2018/5/13.
  */
@@ -27,4 +25,18 @@ public class CostTypeSet {
     public CostType getFeedback = new CostType(8, "getFeedback");
 
     public CostType analyzeFeedbackAndLog = new CostType(9, "analyzeFeedbackAndLog");
+
+    public CostType[] costTypeList = new CostType[]{
+            this.errorType,
+            this.traditionalCodeCost,
+            this.developingEnvironmentEstablish,
+            this.fetchReusableResourceWithCrawler,
+            this.fetchReusableResourceWithVCS,
+            this.autoCompile,
+            this.autoTest,
+            this.runtimeEnvironmentEstablish,
+            this.deployMidwareAndApplication,
+            this.getFeedback,
+            this.analyzeFeedbackAndLog
+    };
 }

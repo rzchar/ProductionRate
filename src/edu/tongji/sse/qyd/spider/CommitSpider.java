@@ -46,7 +46,8 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
                             fileObject.getInt("deletions"),
                             fileObject.getInt("changes"),
                             fileObject.getString("filename"),
-                            status
+                            status,
+                            patch
                     ));
                 } catch (JSONException e) {
                     System.out.println(responseContent);

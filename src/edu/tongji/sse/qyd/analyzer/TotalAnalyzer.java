@@ -9,17 +9,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by qyd on 2018/5/8.
- */
 public class TotalAnalyzer {
 
-    private List<List<String>> getCommitURLListByWeek() {
-        List<List<String>> commitListByWeeks = new ArrayList<List<String>>();
+    private List<BasicPeriodCommitAnalyzer> getCommitURLListByWeek() {
+
+        List<BasicPeriodCommitAnalyzer> basicPeriodCommitAnalyzers = new ArrayList<BasicPeriodCommitAnalyzer>();
+
         String folderPath = Path.middleDataPath + File.separator + "commitGroups" + File.separator + "byWeekExample1";
+
         File folder = new File(folderPath);
         if (!folder.isDirectory()) {
-            return commitListByWeeks;
+            return basicPeriodCommitAnalyzers;
         }
         File[] files = folder.listFiles();
         for (int i = 0; i < files.length; i++) {
@@ -28,33 +28,28 @@ public class TotalAnalyzer {
             List<String> urls = new ArrayList<>();
             try {
                 BufferedReader br = new BufferedReader(new FileReader(f));
-                String line = "";
+                String line;
                 while ((line = br.readLine()) != null) {
                     if (!line.equals("")) {
                         urls.add(line);
                         //System.out.println(line);
                     }
                 }
-                commitListByWeeks.add(urls);
+                basicPeriodCommitAnalyzers.add(new BasicPeriodCommitAnalyzer(f.getName(),urls));
                 br.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return commitListByWeeks;
+        return basicPeriodCommitAnalyzers;
     }
 
-    public void calculateEffortAndCost() {
-        List<List<String>> commitListByWeeks = this.getCommitURLListByWeek();
-        for (int iweeks = 0; iweeks < commitListByWeeks.size(); iweeks++) {
-            List<String> urls = commitListByWeeks.get(iweeks);
-            System.out.println("week " + iweeks);
-            for(String commits : urls){
-                System.out.println(urls);
-            }
-
+    public List<BasicPeriodCommitAnalyzer> calculateEffortAndCost() {
+        List<BasicPeriodCommitAnalyzer> basicPeriodCommitAnalyzers = this.getCommitURLListByWeek();
+        for (int iweeks = 0; iweeks < basicPeriodCommitAnalyzers.size(); iweeks++) {
+            basicPeriodCommitAnalyzers.get(iweeks).statistic();
         }
-
+        return basicPeriodCommitAnalyzers;
     }
 
     public static void main(String[] args) {

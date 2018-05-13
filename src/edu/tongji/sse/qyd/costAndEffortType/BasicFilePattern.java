@@ -51,8 +51,8 @@ public class BasicFilePattern {
         this.contentPattern = Pattern.compile(contentPattern);
     }
 
-    public boolean isThisType(String fileName, String content, String commitMessage, Set<String> currentTag) {
-        return isFileNamePatternMatched(fileName) && isContentPatternMatched(content);
+    public boolean isThisType(String fileName, String content, String commitMessage) {
+        return isFileNamePatternMatched(fileName) && isContentPatternMatched(content) ;
     }
 
     protected boolean isFileNamePatternMatched(String fileName) {

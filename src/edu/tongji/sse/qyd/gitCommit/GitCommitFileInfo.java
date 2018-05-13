@@ -12,7 +12,7 @@ public class GitCommitFileInfo {
     private int deletionNum;
     private int changeNum;
     private String fileName;
-    private Set<String> tags;
+    private String patch;
     private String status;
 
     public String getGitHash() {
@@ -23,20 +23,12 @@ public class GitCommitFileInfo {
         this.gitHash = gitHash;
     }
 
-    public Set<String> getTags() {
-        return tags;
-    }
-
-    public void addTag(String tag) {
-        tags.add(tag);
-    }
-
-    public void removeTag(String tag) {
-        tags.remove(tag);
+    public String getPatch() {
+        return patch;
     }
 
     public boolean hasTag(String tag) {
-        return tags.contains(tag);
+        return patch.contains(tag);
     }
 
     public String getStatus() {
@@ -85,17 +77,17 @@ public class GitCommitFileInfo {
         this.deletionNum = 0;
         this.changeNum = 0;
         this.fileName = "";
-        this.tags = new HashSet<String>();
+        this.patch = "";
         this.status = "";
     }
 
-    public GitCommitFileInfo(String gitHash, int additionNum, int deletionNum, int changeNum, String fileName, String status) {
+    public GitCommitFileInfo(String gitHash, int additionNum, int deletionNum, int changeNum, String fileName, String status, String patch) {
         this.gitHash = gitHash;
         this.additionNum = additionNum;
         this.deletionNum = deletionNum;
         this.changeNum = changeNum;
         this.fileName = fileName;
         this.status = status;
-        this.tags = new HashSet<>();
+        this.patch = patch;
     }
 }
