@@ -1,18 +1,13 @@
 package edu.tongji.sse.qyd.analyzer;
 
 import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
-import edu.tongji.sse.qyd.spider.CommitSpider;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.regex.Pattern;
 
 /**
  * Created by qyd on 2018/5/8.
@@ -49,11 +44,14 @@ public class TotalAnalyzer {
         return commitListByWeeks;
     }
 
-    public void calculateProductionAndCost() {
+    public void calculateEffortAndCost() {
         List<List<String>> commitListByWeeks = this.getCommitURLListByWeek();
         for (int iweeks = 0; iweeks < commitListByWeeks.size(); iweeks++) {
             List<String> urls = commitListByWeeks.get(iweeks);
-
+            System.out.println("week " + iweeks);
+            for(String commits : urls){
+                System.out.println(urls);
+            }
 
         }
 
@@ -61,6 +59,6 @@ public class TotalAnalyzer {
 
     public static void main(String[] args) {
         TotalAnalyzer an = new TotalAnalyzer();
-        an.calculateProductionAndCost();
+        an.calculateEffortAndCost();
     }
 }
