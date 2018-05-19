@@ -5,6 +5,8 @@ import edu.tongji.sse.qyd.Util.ConnectionAssistant;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * To get Entity in one Subject
@@ -94,17 +96,20 @@ abstract public class EntitySpider<T> {
 
     protected abstract String getEntityListFileName();
 
-    public void getAllEntity() {
+    public List<T> getAllEntity() {
+        List<T> result = new ArrayList<T>();
         try {
             File entityList = new File(getEntityListFileName());
             BufferedReader br = new BufferedReader(new FileReader(entityList));
             String line;
             while ((line = br.readLine()) != null) {
-                getEntityInfo(line);
+                result.add(getEntityInfo(line));
             }
             br.close();
+            return  result;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

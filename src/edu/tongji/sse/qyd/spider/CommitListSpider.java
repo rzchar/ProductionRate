@@ -26,9 +26,6 @@ public class CommitListSpider extends ListSpider {
         super(startURL, fileName);
     }
 
-    protected CommitListSpider(String url) {
-    }
-
     //Set<String> urls = new HashSet<>();
 
     public static void main(String[] args) {

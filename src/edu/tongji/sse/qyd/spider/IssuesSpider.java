@@ -1,7 +1,10 @@
 package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.Path;
+import edu.tongji.sse.qyd.Util.Util;
 import edu.tongji.sse.qyd.gitIssue.IssueInfo;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.regex.Matcher;
@@ -12,6 +15,7 @@ import java.util.regex.Pattern;
  */
 public class IssuesSpider extends EntitySpider<IssueInfo> {
     static private final Pattern issueURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/issues/([0-9]{1,5})$");
+
     protected static IssuesSpider issuesSpider = new IssuesSpider();
 
     public static EntitySpider getInstance() {
@@ -24,6 +28,21 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
 
     @Override
     protected IssueInfo makeEntityInfoFromResponseContent(String responseContent) {
+        try {
+
+            JSONObject issue = new JSONObject(responseContent);
+            IssueInfo issueInfo = new IssueInfo(issue.getInt("number"));
+            if (issue.has("created_at") && !issue.isNull("created_at")) {
+                issueInfo.setCreatedAt(Util.getDateFromISO8601(issue.getString("created_at")));
+            }
+            if (issue.has("closed_at") && !issue.isNull("closed_at")) {
+                issueInfo.setCreatedAt(Util.getDateFromISO8601(issue.getString("closed_at")));
+            }
+            return issueInfo;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            System.out.println(responseContent);
+        }
         return null;
     }
 

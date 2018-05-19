@@ -1,5 +1,6 @@
 package edu.tongji.sse.qyd.analyzer;
 
+import edu.tongji.sse.qyd.Util.DatePeriod;
 import edu.tongji.sse.qyd.Util.Util;
 import edu.tongji.sse.qyd.costAndEffortType.BasicFilePattern;
 import edu.tongji.sse.qyd.costAndEffortType.CostTypeSet;
@@ -13,7 +14,7 @@ import java.util.*;
 /**
  * Created by qyd on 2018/5/8.
  */
-public class BasicPeriodCommitAnalyzer {
+public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
 
     private Date since;
 
@@ -29,10 +30,11 @@ public class BasicPeriodCommitAnalyzer {
 
     private EffortTypeSet effortTypeSet = new EffortTypeSet();
 
-    public BasicPeriodCommitAnalyzer(String fileName, List<String> urls) {
+    public CommitSinglePeriodAnalyzer(DatePeriod datePeriod, List<String> urls) {
+        super(datePeriod,urls);
         this.urls = urls;
-        this.since = Util.getSince(fileName);
-        this.until = Util.getUntil(fileName);
+        this.since = datePeriod.getStart();
+        this.until = datePeriod.getEnd();
         //System.out.println(this.since.toString() + " "+ this.until.toString());
         this.setPatterns();
     }

@@ -27,6 +27,20 @@ public class Util {
         return nowAsISO;
     }
 
+    public static Date getDateFromISO8601(String time){
+        if(time == null){
+            return  null;
+        }
+        //String simpleTime = time.replace("[^0-9TZ]","");
+        try{
+            dateFormatISO8601.setTimeZone(utc0);
+            return dateFormatISO8601.parse(time);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * 得到几天前的时间
      *
