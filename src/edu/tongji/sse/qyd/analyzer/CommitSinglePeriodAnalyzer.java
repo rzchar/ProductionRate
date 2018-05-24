@@ -1,7 +1,6 @@
 package edu.tongji.sse.qyd.analyzer;
 
 import edu.tongji.sse.qyd.Util.DatePeriod;
-import edu.tongji.sse.qyd.Util.Util;
 import edu.tongji.sse.qyd.costAndEffortType.BasicFilePattern;
 import edu.tongji.sse.qyd.costAndEffortType.CostTypeSet;
 import edu.tongji.sse.qyd.costAndEffortType.EffortTypeSet;
@@ -9,37 +8,28 @@ import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 import edu.tongji.sse.qyd.spider.CommitSpider;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by qyd on 2018/5/8.
  */
 public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
 
-    private Date since;
-
-    private Date until;
-
-    private List<String> urls = null;
-
-    private List<String> issues = null;
-
     private List<BasicFilePattern> patternList;
 
-    private CostTypeSet costTypeSet = new CostTypeSet();
-
-    private EffortTypeSet effortTypeSet = new EffortTypeSet();
-
     public CommitSinglePeriodAnalyzer(DatePeriod datePeriod, List<String> urls) {
-        super(datePeriod,urls);
-        this.urls = urls;
-        this.since = datePeriod.getStart();
-        this.until = datePeriod.getEnd();
+        super(datePeriod, urls);
         //System.out.println(this.since.toString() + " "+ this.until.toString());
         this.setPatterns();
     }
 
-    public void statistic() {
+    @Override
+    public AnalyzeResult statistic() {
+        this.costTypeSet.clear();
+        this.effortTypeSet.clear();
         Set<String> authors = new HashSet<>();
         for (int iurl = 0; iurl < urls.size(); iurl++) {
             String url = urls.get(iurl);
@@ -65,55 +55,58 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
 
         }
         //System.out.println( "authors number:" + authors.size() + ";");
-        this.costTypeSet.summary();
-        this.effortTypeSet.summary();
-        System.out.println("=======");
+        return new AnalyzeResult(this.costTypeSet, this.effortTypeSet);
     }
 
     public void setPatterns() {
         BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
                 new BasicFilePattern(
-                        costTypeSet.traditionalCodeCost,
-                        effortTypeSet.traditionalCodeEffort,
+                        this.costTypeSet.traditionalCodeCost,
+                        this.effortTypeSet.traditionalCodeEffort,
                         "\\.(java|js|go|html|ts|sql|css|svg|jsp)$"),
 
                 new BasicFilePattern(
-                        costTypeSet.runtimeEnvironmentEstablish,
-                        effortTypeSet.autoScriptEffort,
+                        this.costTypeSet.runtimeEnvironmentEstablish,
+                        this.effortTypeSet.autoScriptEffort,
                         "^docker(files)?"),
 
                 new BasicFilePattern(
-                        costTypeSet.developingEnvironmentEstablish,
-                        effortTypeSet.autoScriptEffort,
+                        this.costTypeSet.developingEnvironmentEstablish,
+                        this.effortTypeSet.autoScriptEffort,
                         "(pom\\.xml|\\.helmignore)$"),
 
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.gitignore$"),
-
-
-
-
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.tpl$"),
                 new BasicFilePattern(
-                        costTypeSet.errorTypeCost,
-                        effortTypeSet.errorTypeEffort,
+                        this.costTypeSet.errorTypeCost,
+                        this.effortTypeSet.errorTypeEffort, "\\.gitignore$"),
+
+
+                new BasicFilePattern(
+                        this.costTypeSet.errorTypeCost,
+                        this.effortTypeSet.errorTypeEffort,
+                        "\\.tpl$"),
+
+
+                new BasicFilePattern(
+                        this.costTypeSet.errorTypeCost,
+                        this.effortTypeSet.errorTypeEffort,
                         "che\\.properties$"),
                 new BasicFilePattern(
-                        costTypeSet.errorTypeCost,
-                        effortTypeSet.errorTypeEffort,
+                        this.costTypeSet.errorTypeCost,
+                        this.effortTypeSet.errorTypeEffort,
                         "(?<!che)\\.properties$"),
 
 
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.styl$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "LICENSE$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.TckModule$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.ver$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.sh$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.env(.erb)?$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.yml$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.yaml$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.md$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.json$"),
-                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "(?<!pom)\\.xml$")
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.styl$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "LICENSE$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.TckModule$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.ver$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.sh$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.env(.erb)?$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.yml$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.yaml$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.md$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.json$"),
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "(?<!pom)\\.xml$")
 
 
         };

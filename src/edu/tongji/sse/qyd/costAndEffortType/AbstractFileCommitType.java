@@ -8,13 +8,15 @@ import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 public class AbstractFileCommitType {
     String typeString;
     int num;
-    int rate;
-    int addLineSum;
-    int deleteLineSum;
-    int changeLineSum;
+    double rate;
+    double addLineSum;
+    double deleteLineSum;
+    double changeLineSum;
 
     public AbstractFileCommitType() {
         this.addLineSum = 0;
+        this.deleteLineSum = 0;
+        this.changeLineSum = 0;
     }
 
     public AbstractFileCommitType(int num, String typeString) {
@@ -33,7 +35,7 @@ public class AbstractFileCommitType {
         this.resetAll();
     }
 
-    public int getRate() {
+    public double getRate() {
         return this.rate;
     }
 
@@ -43,6 +45,19 @@ public class AbstractFileCommitType {
 
     public String getTypeString() {
         return typeString;
+    }
+
+
+    public double getAddLineSum() {
+        return addLineSum;
+    }
+
+    public double getDeleteLineSum() {
+        return deleteLineSum;
+    }
+
+    public double getChangeLineSum() {
+        return changeLineSum;
     }
 
     public String summary() {

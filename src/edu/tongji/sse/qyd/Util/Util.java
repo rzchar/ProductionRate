@@ -27,15 +27,15 @@ public class Util {
         return nowAsISO;
     }
 
-    public static Date getDateFromISO8601(String time){
-        if(time == null){
-            return  null;
+    public static Date getDateFromISO8601(String time) {
+        if (time == null) {
+            return null;
         }
         //String simpleTime = time.replace("[^0-9TZ]","");
-        try{
+        try {
             dateFormatISO8601.setTimeZone(utc0);
             return dateFormatISO8601.parse(time);
-        }catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return null;
@@ -89,6 +89,10 @@ public class Util {
 
     public static Date getUntil(String str) {
         return getDateFromString(str, 2);
+    }
+
+    public static void log(Class c, String message) {
+        System.out.println("[" + c.getName() + "]" + message);
     }
 
 }

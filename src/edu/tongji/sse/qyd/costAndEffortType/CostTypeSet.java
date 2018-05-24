@@ -40,9 +40,19 @@ public class CostTypeSet {
             this.analyzeFeedbackAndLog
     };
 
-    public void summary() {
+    public void clear() {
         for (CostType c : costTypeList) {
-            System.out.println(c.getTypeString() + " : " + c.summary());
+            c.resetAll();
         }
+    }
+
+    public void summary() {
+        double sum = 0d;
+        for (CostType c : costTypeList) {
+            sum += c.getAddLineSum();
+            System.out.print(c.getTypeString() + ":" + c.summary() + ";   ");
+        }
+        System.out.println();
+        System.out.println("total:" + sum);
     }
 }

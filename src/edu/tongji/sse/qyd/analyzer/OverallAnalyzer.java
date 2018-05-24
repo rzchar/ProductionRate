@@ -17,15 +17,31 @@ public class OverallAnalyzer {
 
     public List<CommitSinglePeriodAnalyzer> calculateEffortAndCost() {
 
-        String commitGroupFolderPath = Path.middleDataPath + File.separator + "commitGroups" + File.separator + "byWeekExample1";
-
         CommitTotalPeriodAnalyzer commitTotalPeriodAnalyzer = new CommitTotalPeriodAnalyzer();
+        IssuesCreatedTotalPeriodAnalyzer issuesCreatedTotalPeriodAnalyzer = new IssuesCreatedTotalPeriodAnalyzer();
+        IssuesClosedTotalPeriodAnalyzer issueClosedTotalPeriodAnalyzer = new IssuesClosedTotalPeriodAnalyzer();
 
-        String path = Path.middleDataPath + File.separator + "commitGroups" + File.separator + "byWeekWhole2";
-        List<CommitSinglePeriodAnalyzer> commitSinglePeriodAnalyzers =commitTotalPeriodAnalyzer.getAnalyzerByPeroid(path, DatePeriod.getEclipseCheLifeTime());
-        for (int iweeks = 0; iweeks < commitSinglePeriodAnalyzers.size(); iweeks++) {
-            commitSinglePeriodAnalyzers.get(iweeks).statistic();
+
+        String commitGroupFolderPath = Path.middleDataPath + File.separator + "commitGroups" + File.separator + "byWeekWhole2";
+        String issuesClosedFolderPath = Path.middleDataPath + File.separator + "issueGroups" + File.separator + "GroupByClosedAt";
+        String issuesCreatedFolderPath = Path.middleDataPath + File.separator + "issueGroups" + File.separator + "GroupByCreatedAt";
+        //String commitGroupFolderPath = Path.middleDataPath + File.separator + "commitGroups" + File.separator + "byWeekExample1";
+
+        List<DatePeriod> eclipseCheLifeTime = DatePeriod.getEclipseCheLifeTime();
+        List<CommitSinglePeriodAnalyzer> commitSinglePeriodAnalyzers = commitTotalPeriodAnalyzer.getAnalyzerByPeroid(commitGroupFolderPath, eclipseCheLifeTime);
+        List<IssueCreatedSinglePeriodAnalyzer> issueCreatedSinglePeriodAnalyzers = issuesCreatedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesCreatedFolderPath, eclipseCheLifeTime);
+        List<IssueClosedSinglePeriodAnalyzer> issueClosedSinglePeriodAnalyzers = issueClosedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesClosedFolderPath,eclipseCheLifeTime);
+
+        System.out.println(eclipseCheLifeTime.size());
+        System.out.println(commitSinglePeriodAnalyzers.size());
+        System.out.println(issueCreatedSinglePeriodAnalyzers.size());
+        System.out.println(issueClosedSinglePeriodAnalyzers.size());
+        for (int iweeks = 0; iweeks < eclipseCheLifeTime.size(); iweeks++) {
+            System.out.println(eclipseCheLifeTime.get(iweeks).getSinceUntilFileName("",""));
+            commitSinglePeriodAnalyzers.get(iweeks).statistic().summary();
+            //issueCreatedSinglePeriodAnalyzers.get(iweeks).statistic().summary();
+            //issueClosedSinglePeriodAnalyzers.get(iweeks).statistic().summary();
         }
-        return commitSinglePeriodAnalyzers;
+        return null;
     }
 }

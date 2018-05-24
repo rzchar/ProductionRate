@@ -36,12 +36,12 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
                 issueInfo.setCreatedAt(Util.getDateFromISO8601(issue.getString("created_at")));
             }
             if (issue.has("closed_at") && !issue.isNull("closed_at")) {
-                issueInfo.setCreatedAt(Util.getDateFromISO8601(issue.getString("closed_at")));
+                issueInfo.setClosedAt(Util.getDateFromISO8601(issue.getString("closed_at")));
             }
             return issueInfo;
         } catch (JSONException e) {
             e.printStackTrace();
-            System.out.println(responseContent);
+            Util.log(this.getClass(), responseContent);
         }
         return null;
     }

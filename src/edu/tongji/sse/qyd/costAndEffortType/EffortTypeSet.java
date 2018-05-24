@@ -4,7 +4,7 @@ package edu.tongji.sse.qyd.costAndEffortType;
  * Created by qyd on 2018/5/13.
  */
 public class EffortTypeSet {
-    public EffortType errorTypeEffort = new EffortType(-1, "errorTypeCost");
+    public EffortType errorTypeEffort = new EffortType(-1, "errorTypeEffort");
 
     public EffortType traditionalCodeEffort = new EffortType(0, "traditionalCodeEffort");
 
@@ -25,9 +25,19 @@ public class EffortTypeSet {
             this.repairDefectEffort
     };
 
-    public void summary() {
+    public void clear() {
         for (EffortType e : effortTypeList) {
-            System.out.println(e.getTypeString() + " : " + e.summary());
+            e.resetAll();
         }
+    }
+
+    public void summary() {
+        double sum = 0d;
+        for (EffortType e : effortTypeList) {
+            sum += e.getAddLineSum();
+            System.out.print(e.getTypeString() + ":" + e.summary() + ";   ");
+        }
+        System.out.println();
+        System.out.println("total:" + sum);
     }
 }
