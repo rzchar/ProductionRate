@@ -53,6 +53,6 @@ public class CostTypeSet {
             System.out.print(c.getTypeString() + ":" + c.summary() + ";   ");
         }
         System.out.println();
-        System.out.println("total:" + sum);
+        System.out.println("total added:" + sum);
     }
 }

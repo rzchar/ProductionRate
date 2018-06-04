@@ -2,8 +2,6 @@ package edu.tongji.sse.qyd.analyzer;
 
 import edu.tongji.sse.qyd.Util.DatePeriod;
 import edu.tongji.sse.qyd.costAndEffortType.BasicFilePattern;
-import edu.tongji.sse.qyd.costAndEffortType.CostTypeSet;
-import edu.tongji.sse.qyd.costAndEffortType.EffortTypeSet;
 import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 import edu.tongji.sse.qyd.spider.CommitSpider;
@@ -63,12 +61,12 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                 new BasicFilePattern(
                         this.costTypeSet.traditionalCodeCost,
                         this.effortTypeSet.traditionalCodeEffort,
-                        "\\.(java|js|go|html|ts|sql|css|svg|jsp)$"),
+                        "\\.(java|js|go|html|ts|sql|css|svg|jsp|styl)$"),
 
                 new BasicFilePattern(
-                        this.costTypeSet.runtimeEnvironmentEstablish,
+                        this.costTypeSet.deployMidwareAndApplication,
                         this.effortTypeSet.autoScriptEffort,
-                        "^docker(files)?"),
+                        "^[Dd]ocker(files)?"),
 
                 new BasicFilePattern(
                         this.costTypeSet.developingEnvironmentEstablish,
@@ -76,37 +74,57 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                         "(pom\\.xml|\\.helmignore)$"),
 
                 new BasicFilePattern(
+                        this.costTypeSet.autoCompile,
+                        this.effortTypeSet.autoScriptEffort,
+                        "\\.sh$"),
+
+                new BasicFilePattern(
+                        this.costTypeSet.deployMidwareAndApplication,
+                        this.effortTypeSet.autoScriptEffort,
+                        "che\\.properties$"),
+
+                new BasicFilePattern(
+                        this.costTypeSet.runtimeEnvironmentEstablish,
+                        this.effortTypeSet.autoScriptEffort,
+                        "\\.md$"),
+
+
+                new BasicFilePattern(
+                        this.costTypeSet.deployMidwareAndApplication,
+                        this.effortTypeSet.autoScriptEffort,
+                        "\\.(yml|yaml)$"),
+
+                new BasicFilePattern(
+                        this.costTypeSet.deployMidwareAndApplication,
+                        this.effortTypeSet.autoScriptEffort,
+                        "(?<!pom)\\.xml$"),
+
+                new BasicFilePattern(
+                        this.costTypeSet.autoTest,
+                        this.effortTypeSet.autoScriptEffort,
+                        "org\\.testng\\.ITestNGListener"
+                ),
+   /*================================================================================================*/
+
+                new BasicFilePattern(
                         this.costTypeSet.errorTypeCost,
                         this.effortTypeSet.errorTypeEffort, "\\.gitignore$"),
-
 
                 new BasicFilePattern(
                         this.costTypeSet.errorTypeCost,
                         this.effortTypeSet.errorTypeEffort,
                         "\\.tpl$"),
 
-
-                new BasicFilePattern(
-                        this.costTypeSet.errorTypeCost,
-                        this.effortTypeSet.errorTypeEffort,
-                        "che\\.properties$"),
                 new BasicFilePattern(
                         this.costTypeSet.errorTypeCost,
                         this.effortTypeSet.errorTypeEffort,
                         "(?<!che)\\.properties$"),
 
-
-                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.styl$"),
                 new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "LICENSE$"),
                 new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.TckModule$"),
                 new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.ver$"),
-                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.sh$"),
                 new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.env(.erb)?$"),
-                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.yml$"),
-                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.yaml$"),
-                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.md$"),
-                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.json$"),
-                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "(?<!pom)\\.xml$")
+                new BasicFilePattern(this.costTypeSet.errorTypeCost, this.effortTypeSet.errorTypeEffort, "\\.json$")
 
 
         };

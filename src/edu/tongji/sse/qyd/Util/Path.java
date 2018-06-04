@@ -7,6 +7,7 @@ import java.io.File;
  */
 public class Path {
 
+    static public String projectName = "che";
     static public final File emptyFile = new File("");
     static public final String projectRoot = emptyFile.getAbsolutePath();
     static public final String inputPath = projectRoot + File.separator + "web" + File.separator + "input";

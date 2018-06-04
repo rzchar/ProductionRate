@@ -4,6 +4,7 @@ import edu.tongji.sse.qyd.Util.DatePeriod;
 import edu.tongji.sse.qyd.Util.Path;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OverallAnalyzer {
@@ -16,6 +17,9 @@ public class OverallAnalyzer {
 
 
     public List<CommitSinglePeriodAnalyzer> calculateEffortAndCost() {
+
+
+        ExcelWriter excelWriter = new ExcelWriter("analyze.xls");
 
         CommitTotalPeriodAnalyzer commitTotalPeriodAnalyzer = new CommitTotalPeriodAnalyzer();
         IssuesCreatedTotalPeriodAnalyzer issuesCreatedTotalPeriodAnalyzer = new IssuesCreatedTotalPeriodAnalyzer();
@@ -38,10 +42,14 @@ public class OverallAnalyzer {
         System.out.println(issueClosedSinglePeriodAnalyzers.size());
         for (int iweeks = 0; iweeks < eclipseCheLifeTime.size(); iweeks++) {
             System.out.println(eclipseCheLifeTime.get(iweeks).getSinceUntilFileName("",""));
-            commitSinglePeriodAnalyzers.get(iweeks).statistic().summary();
-            //issueCreatedSinglePeriodAnalyzers.get(iweeks).statistic().summary();
-            //issueClosedSinglePeriodAnalyzers.get(iweeks).statistic().summary();
+            List<AnalyzeResult> analyzeResultInThisWeek = new ArrayList<>();
+            analyzeResultInThisWeek.add(commitSinglePeriodAnalyzers.get(iweeks).statistic());
+            analyzeResultInThisWeek.add(issueCreatedSinglePeriodAnalyzers.get(iweeks).statistic());
+            analyzeResultInThisWeek.add(issueClosedSinglePeriodAnalyzers.get(iweeks).statistic());
+            excelWriter.addRow(analyzeResultInThisWeek, eclipseCheLifeTime.get(iweeks));
         }
+
+        excelWriter.close();
         return null;
     }
 }

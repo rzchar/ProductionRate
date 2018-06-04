@@ -64,15 +64,15 @@ public class AbstractFileCommitType {
         return "add: " + this.addLineSum + ";  delete: " + this.deleteLineSum + ";  change: " + changeLineSum + "; ";
     }
 
-    public void addAddLine(int add) {
+    public void addAddLine(double add) {
         this.addLineSum += add;
     }
 
-    public void addDeleteLine(int delete) {
+    public void addDeleteLine(double delete) {
         this.deleteLineSum += delete;
     }
 
-    public void addChangeLine(int change) {
+    public void addChangeLine(double change) {
         this.changeLineSum += change;
     }
 
