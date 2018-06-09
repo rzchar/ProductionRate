@@ -1,6 +1,7 @@
 package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.Path;
+import edu.tongji.sse.qyd.Util.Util;
 import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 import org.json.JSONArray;
@@ -78,7 +79,7 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
                 try {
                     authorId = String.valueOf(commit.getJSONObject("commit").getJSONObject("author").getString("name"));
                 } catch (JSONException e) {
-                    System.out.println(commit.get("sha") + ": this commit has no author");
+                    Util.log(this.getClass(), commit.get("sha") + ": this commit has no author");
                 }
             } else {
                 authorId = String.valueOf(commit.getJSONObject("author").getInt("id"));

@@ -22,14 +22,10 @@ public class CommitGroupSpider {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setTimeZone(Util.utc0);
-        List<DatePeriod> datePeriodList = DatePeriod.getEclipseCheLifeTime();
-        for (DatePeriod dd : datePeriodList) {
-            String time = "since=" + Util.getISO8601Timestamp(dd.getStart())
-                    + "&until=" + Util.getISO8601Timestamp(dd.getEnd());
-            System.out.println(time);
-            WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider(time);
-            weekCommitListSpider.getListToFile();
-        }
+        //List<DatePeriod> datePeriodList = DatePeriod.getEclipseCheWholeLifeTime();
+        getOneWeek(DatePeriod.getEclipseCheV4LifeTime(),"v4");
+        //getOneWeek(DatePeriod.getEclipseCheV5LifeTime(),"v5");
+        //getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"v6");
 //            while (start.before(lilin)) {
 //                String time = "since=" + Util.getISO8601Timestamp(start) + "&until=" + Util.getISO8601Timestamp(end);
 //                start = end;
@@ -37,14 +33,29 @@ public class CommitGroupSpider {
 //            }
         //System.out.println(Util.getISO8601Timestamp(Util.getDateAfter(adam, 7)));
 
+    }
 
+    static public void getOneWeek(List<DatePeriod> datePeriodList, String subFolderName){
+        for (DatePeriod dd : datePeriodList) {
+            String time = "since=" + Util.getISO8601Timestamp(dd.getStart())
+                    + "&until=" + Util.getISO8601Timestamp(dd.getEnd());
+            System.out.println(time);
+            WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider(time, subFolderName );
+            weekCommitListSpider.getListToFile();
+        }
     }
 
     static private class WeekCommitListSpider extends CommitListSpider {
-        public WeekCommitListSpider(String sinceUntil) {
+        public WeekCommitListSpider(String sinceUntil, String subFolderName) {
+            super(sinceUntil, subFolderName);
+            File dir = new File(Path.middleDataPath + File.separator +  "commitGroups"
+                    + File.separator + subFolderName);
+            if(!dir.exists()){
+                dir.mkdirs();
+            }
             this.startURL = URLOfBasicAPI.commits + "?" + sinceUntil;
-            this.listFileName = Path.middleDataPath + File.separator + "commitGroups"
-                    + File.separator + "byWeek" + File.separator + "commitList"
+            this.listFileName = Path.middleDataPath + File.separator +  "commitGroups"
+                    + File.separator + subFolderName  + File.separator + "commitList"
                     + sinceUntil.replaceAll("[-=:&]", "") + ".txt";
             makeNewEmptyFile();
         }

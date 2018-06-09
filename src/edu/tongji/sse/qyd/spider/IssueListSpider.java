@@ -26,7 +26,7 @@ public class IssueListSpider extends ListSpider {
     public static void main(String[] args) {
         //IssueListSpider issueListSpider = new IssueListSpider();
         //issueListSpider.getListToFile();
-        for (int i = 4734; i > 0; i--) {
+        for (int i = 9984; i > 9645; i--) {
             System.out.println("https://api.github.com/repos/eclipse/che/issues/" + i);
         }
     }

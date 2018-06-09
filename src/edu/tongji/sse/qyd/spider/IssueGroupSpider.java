@@ -20,15 +20,11 @@ import java.util.Map;
  * Created by qyd on 2018/5/14.
  */
 public class IssueGroupSpider {
+
+
     public enum GroupBy {createdTime, closedTime}
 
-    private static String folderPath = Path.middleDataPath + File.separator + "issueGroups" + File.separator + "GroupByCreatedAt";
-
     public static Map<DatePeriod, List<IssueInfo>> getIssueGroupByTime(List<DatePeriod> datePeriodList, GroupBy groupBy) {
-        File folder = new File(folderPath);
-        if(!folder.exists()){
-            folder.mkdir();
-        }
         List<IssueInfo> issueInfoList = IssuesSpider.getInstance().getAllEntity();
         Map<DatePeriod, List<IssueInfo>> issuesByCreatedTime = new HashMap<>();
         for (IssueInfo issue : issueInfoList) {
@@ -48,14 +44,18 @@ public class IssueGroupSpider {
         return issuesByCreatedTime;
     }
 
-    static public void main(String[] args) {
+    public static void makeList(GroupBy groupBy, String folderPath, List<DatePeriod> datePeriodList) {
 
-        List<DatePeriod> datePeriodList = DatePeriod.getEclipseCheLifeTime();
-        Map<DatePeriod, List<IssueInfo>> devidedIssuesMap = getIssueGroupByTime(datePeriodList, GroupBy.createdTime);
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        Map<DatePeriod, List<IssueInfo>> devidedIssuesMap = getIssueGroupByTime(datePeriodList, groupBy);
         for (DatePeriod datePeriod : devidedIssuesMap.keySet()) {
             String fileName = datePeriod.getSinceUntilFileName("issuesList", ".txt");
             File f = new File(folderPath + File.separator + fileName);
-            if(f.exists()){
+            if (f.exists()) {
                 f.delete();
             }
             List<IssueInfo> issueInfoList = devidedIssuesMap.get(datePeriod);
@@ -69,6 +69,17 @@ public class IssueGroupSpider {
                 e.printStackTrace();
             }
         }
+    }
+
+    static public void main(String[] args) {
+        String createdFolderPath = Path.middleDataPath + File.separator + "issueGroupsByCreatedAt";
+        String closedFolderPath = Path.middleDataPath + File.separator + "issueGroupsByClosedAt";
+        IssueGroupSpider.makeList(GroupBy.createdTime, createdFolderPath + File.separator + "V4", DatePeriod.getEclipseCheV4LifeTime());
+        IssueGroupSpider.makeList(GroupBy.closedTime, closedFolderPath + File.separator + "V4", DatePeriod.getEclipseCheV4LifeTime());
+        IssueGroupSpider.makeList(GroupBy.createdTime, createdFolderPath + File.separator + "V5", DatePeriod.getEclipseCheV5LifeTime());
+        IssueGroupSpider.makeList(GroupBy.closedTime, closedFolderPath + File.separator + "V5", DatePeriod.getEclipseCheV5LifeTime());
+        IssueGroupSpider.makeList(GroupBy.createdTime, createdFolderPath + File.separator + "V6", DatePeriod.getEclipseCheV6LifeTime());
+        IssueGroupSpider.makeList(GroupBy.closedTime, closedFolderPath + File.separator + "V6", DatePeriod.getEclipseCheV6LifeTime());
     }
 
 }

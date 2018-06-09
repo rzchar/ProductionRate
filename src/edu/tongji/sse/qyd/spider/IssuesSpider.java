@@ -64,6 +64,6 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
 
     @Override
     protected String getEntityListFileName() {
-        return Path.middleDataPath + File.separator + "issueGroups" + File.separator + "#issueListAll.txt";
+        return Path.middleDataPath + File.separator + "issueGroupsAll" + File.separator + "#issueListAll.txt";
     }
 }

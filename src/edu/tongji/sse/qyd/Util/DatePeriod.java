@@ -55,18 +55,41 @@ public class DatePeriod {
         return dd;
     }
 
-    public static List<DatePeriod> getEclipseCheLifeTime() {
+    /* Time Point
+     *  4.0.0-RC4  2016-02-15T21:12:15Z
+     *  5.0.0-M1  2016-09-14T15:50:16Z
+     *  6.0.0-M1  2017-11-02T12:39:49Z
+     */
+
+    public static List<DatePeriod> getEclipseCheWholeLifeTime() {
+        return getTimePeriodListByString("2015-03-27 00:00:00", "2018-05-30 00:00:00");
+    }
+
+    public static List<DatePeriod> getEclipseCheV4LifeTime() {
+        return getTimePeriodListByString("2016-06-15 00:00:00", "2016-09-14 00:00:00");
+    }
+
+    public static List<DatePeriod> getEclipseCheV5LifeTime() {
+        return getTimePeriodListByString("2016-09-14 00:00:00", "2017-11-02 00:00:00");
+    }
+
+    public static List<DatePeriod> getEclipseCheV6LifeTime() {
+        return getTimePeriodListByString("2017-11-02 00:00:00", "2018-05-30 00:00:00");
+    }
+
+    public static List<DatePeriod> getTimePeriodListByString(String startTimeString, String endTimeString){
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             dateFormat.setTimeZone(Util.utc0);
-            Date adam = dateFormat.parse("2015-03-27 00:00:00");
+            Date adam = dateFormat.parse(startTimeString);
             Date start = adam;
             Date end = Util.getDateAfter(start, 7);
-            Date lilin = dateFormat.parse("2018-04-30 00:00:00");
+            Date lilin = dateFormat.parse(endTimeString);
             return DatePeriod.getPeriodList(adam, lilin, 7);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return null;
     }
+
 }

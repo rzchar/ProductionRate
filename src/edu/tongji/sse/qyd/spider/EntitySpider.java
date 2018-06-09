@@ -1,6 +1,7 @@
 package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.ConnectionAssistant;
+import edu.tongji.sse.qyd.Util.Util;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
@@ -30,7 +31,7 @@ abstract public class EntitySpider<T> {
             //connection.getInputStream();
 
             //System.out.println("response code: " + connection.getResponseCode());
-            System.out.println("x-ratelimit-remaining: " + connection.getHeaderField("x-ratelimit-remaining"));
+            Util.log(this.getClass(), "x-ratelimit-remaining: " + connection.getHeaderField("x-ratelimit-remaining"));
 
             Thread.sleep(700L);
             if (connection.getHeaderFieldInt("x-ratelimit-remaining", 5000) < 100) {
@@ -106,7 +107,7 @@ abstract public class EntitySpider<T> {
                 result.add(getEntityInfo(line));
             }
             br.close();
-            return  result;
+            return result;
         } catch (IOException e) {
             e.printStackTrace();
         }

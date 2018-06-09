@@ -15,6 +15,7 @@ public class CommitListSpider extends ListSpider {
                     + " <https://api.github.com/repositories/32935745/commits?page=4>; rel=\"prev\"";
     protected int pagesCount = 0;
 
+
     protected CommitListSpider() {
         this.startURL = URLOfBasicAPI.commits;
         listFileName = Path.middleDataPath + File.separator + "commitGroups"

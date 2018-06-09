@@ -2,3 +2,4 @@
 /ProductionRate.iml
 /web/middleData/commits/*.json
 /web/middleData/issues/*.json
+/out/
