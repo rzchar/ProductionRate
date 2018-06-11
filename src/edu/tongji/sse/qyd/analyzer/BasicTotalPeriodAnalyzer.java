@@ -1,6 +1,7 @@
 package edu.tongji.sse.qyd.analyzer;
 
 import edu.tongji.sse.qyd.Util.DatePeriod;
+import edu.tongji.sse.qyd.Util.Util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,8 +25,8 @@ abstract public class BasicTotalPeriodAnalyzer<T extends BasicSinglePeriodAnalyz
             List<String> urls = new ArrayList<>();
 
             if (!f.exists()) {
-                System.out.println("file doesn't exist: " + f.getAbsolutePath() + ", add empty analyzer.");
-            }else{
+                Util.log(this.getClass(), "file doesn't exist: " + f.getAbsolutePath() + ", add empty analyzer.");
+            } else {
                 try {
                     BufferedReader br = new BufferedReader(new FileReader(f));
                     String line;
@@ -36,13 +37,13 @@ abstract public class BasicTotalPeriodAnalyzer<T extends BasicSinglePeriodAnalyz
                         }
                     }
                     br.close();
-                }catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
             //System.out.println(f.getName());
             T someSinglePeriodAnalyzer = null;
-            try{
+            try {
                 someSinglePeriodAnalyzer = getSingleEntityType().getConstructor(DatePeriod.class, List.class).newInstance(datePeriodList.get(i), urls);
             } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
                 e.printStackTrace();

@@ -1,9 +1,8 @@
 package edu.tongji.sse.qyd.analyzer;
 
 import edu.tongji.sse.qyd.Util.DatePeriod;
-import edu.tongji.sse.qyd.costAndEffortType.CostTypeSet;
-import edu.tongji.sse.qyd.costAndEffortType.EffortTypeSet;
 import edu.tongji.sse.qyd.gitIssue.IssueInfo;
+import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
 import edu.tongji.sse.qyd.spider.IssuesSpider;
 
 import java.util.List;

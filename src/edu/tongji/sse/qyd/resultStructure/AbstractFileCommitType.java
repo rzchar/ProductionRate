@@ -1,4 +1,4 @@
-package edu.tongji.sse.qyd.costAndEffortType;
+package edu.tongji.sse.qyd.resultStructure;
 
 import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 

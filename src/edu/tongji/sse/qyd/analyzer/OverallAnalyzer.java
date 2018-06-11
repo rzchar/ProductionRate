@@ -2,6 +2,8 @@ package edu.tongji.sse.qyd.analyzer;
 
 import edu.tongji.sse.qyd.Util.DatePeriod;
 import edu.tongji.sse.qyd.Util.Path;
+import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,12 +16,12 @@ public class OverallAnalyzer {
 
         FileNames fileNamesWhole = new FileNames();
         fileNamesWhole.setOutputExcelName("analyze.xls");
-        fileNamesWhole.setCommitGroupsFolderName("byWeekWhole2");
+        fileNamesWhole.setCommitGroupsFolderName("whole");
         fileNamesWhole.setIssueGroupsByClosedAtFolderName("whole");
         fileNamesWhole.setIssueGroupsByCreatedAtFolderName("whole");
         fileNamesWhole.setDatePeriodList(DatePeriod.getEclipseCheWholeLifeTime());
         OverallAnalyzer wholeAnalyzer = new OverallAnalyzer();
-        //wholeAnalyzer.calculateEffortAndCost(fileNamesWhole);
+        wholeAnalyzer.calculateEffortAndCost(fileNamesWhole);
 
         FileNames fileNamesV4 = new FileNames();
         fileNamesV4.setOutputExcelName("analyzeV4.xls");
@@ -135,17 +137,18 @@ public class OverallAnalyzer {
         List<IssueCreatedSinglePeriodAnalyzer> issueCreatedSinglePeriodAnalyzers = issuesCreatedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesCreatedFolderPath, eclipseCheLifeTime);
         List<IssueClosedSinglePeriodAnalyzer> issueClosedSinglePeriodAnalyzers = issueClosedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesClosedFolderPath,eclipseCheLifeTime);
 
-        System.out.println(eclipseCheLifeTime.size());
-        System.out.println(commitSinglePeriodAnalyzers.size());
-        System.out.println(issueCreatedSinglePeriodAnalyzers.size());
-        System.out.println(issueClosedSinglePeriodAnalyzers.size());
-        for (int iweeks = 0; iweeks < eclipseCheLifeTime.size(); iweeks++) {
-            System.out.println(eclipseCheLifeTime.get(iweeks).getSinceUntilFileName("",""));
+        Util.log(this.getClass(), "eclipseCheLifeTime" + " size " + eclipseCheLifeTime.size());
+        Util.log(this.getClass(), "commitGroupFolderPath" + " size " + commitSinglePeriodAnalyzers.size());
+        Util.log(this.getClass(), "issueCreatedSinglePeriodAnalyzers"+ " size " + issueCreatedSinglePeriodAnalyzers.size());
+        Util.log(this.getClass(), "issueClosedSinglePeriodAnalyzers" + " size " + issueClosedSinglePeriodAnalyzers.size());
+
+        for (int iWeeks = 0; iWeeks < eclipseCheLifeTime.size(); iWeeks++) {
+            Util.log(this.getClass(), eclipseCheLifeTime.get(iWeeks).getSinceUntilFileName("",""));
             List<AnalyzeResult> analyzeResultInThisWeek = new ArrayList<>();
-            analyzeResultInThisWeek.add(commitSinglePeriodAnalyzers.get(iweeks).statistic());
-            analyzeResultInThisWeek.add(issueCreatedSinglePeriodAnalyzers.get(iweeks).statistic());
-            analyzeResultInThisWeek.add(issueClosedSinglePeriodAnalyzers.get(iweeks).statistic());
-            excelWriter.addRow(analyzeResultInThisWeek, eclipseCheLifeTime.get(iweeks));
+            analyzeResultInThisWeek.add(commitSinglePeriodAnalyzers.get(iWeeks).statistic());
+            analyzeResultInThisWeek.add(issueCreatedSinglePeriodAnalyzers.get(iWeeks).statistic());
+            analyzeResultInThisWeek.add(issueClosedSinglePeriodAnalyzers.get(iWeeks).statistic());
+            excelWriter.addRow(analyzeResultInThisWeek, eclipseCheLifeTime.get(iWeeks));
         }
         excelWriter.close();
         return null;

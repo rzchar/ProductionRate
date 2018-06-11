@@ -74,11 +74,11 @@ public class IssueGroupSpider {
     static public void main(String[] args) {
         String createdFolderPath = Path.middleDataPath + File.separator + "issueGroupsByCreatedAt";
         String closedFolderPath = Path.middleDataPath + File.separator + "issueGroupsByClosedAt";
-        IssueGroupSpider.makeList(GroupBy.createdTime, createdFolderPath + File.separator + "V4", DatePeriod.getEclipseCheV4LifeTime());
-        IssueGroupSpider.makeList(GroupBy.closedTime, closedFolderPath + File.separator + "V4", DatePeriod.getEclipseCheV4LifeTime());
-        IssueGroupSpider.makeList(GroupBy.createdTime, createdFolderPath + File.separator + "V5", DatePeriod.getEclipseCheV5LifeTime());
-        IssueGroupSpider.makeList(GroupBy.closedTime, closedFolderPath + File.separator + "V5", DatePeriod.getEclipseCheV5LifeTime());
-        IssueGroupSpider.makeList(GroupBy.createdTime, createdFolderPath + File.separator + "V6", DatePeriod.getEclipseCheV6LifeTime());
+//        IssueGroupSpider.makeList(GroupBy.createdTime, createdFolderPath + File.separator + "V4", DatePeriod.getEclipseCheV4LifeTime());
+//        IssueGroupSpider.makeList(GroupBy.closedTime, closedFolderPath + File.separator + "V4", DatePeriod.getEclipseCheV4LifeTime());
+//        IssueGroupSpider.makeList(GroupBy.createdTime, createdFolderPath + File.separator + "V5", DatePeriod.getEclipseCheV5LifeTime());
+//        IssueGroupSpider.makeList(GroupBy.closedTime, closedFolderPath + File.separator + "V5", DatePeriod.getEclipseCheV5LifeTime());
+       IssueGroupSpider.makeList(GroupBy.createdTime, createdFolderPath + File.separator + "V6", DatePeriod.getEclipseCheV6LifeTime());
         IssueGroupSpider.makeList(GroupBy.closedTime, closedFolderPath + File.separator + "V6", DatePeriod.getEclipseCheV6LifeTime());
     }
 

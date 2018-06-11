@@ -1,4 +1,4 @@
-package edu.tongji.sse.qyd.costAndEffortType;
+package edu.tongji.sse.qyd.resultStructure.effort;
 
 /**
  * Created by qyd on 2018/5/13.

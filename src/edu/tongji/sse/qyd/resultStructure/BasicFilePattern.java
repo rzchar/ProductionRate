@@ -1,4 +1,7 @@
-package edu.tongji.sse.qyd.costAndEffortType;
+package edu.tongji.sse.qyd.resultStructure;
+
+import edu.tongji.sse.qyd.resultStructure.cost.CostType;
+import edu.tongji.sse.qyd.resultStructure.effort.EffortType;
 
 import java.util.regex.Pattern;
 

@@ -92,7 +92,7 @@ public class Util {
     }
 
     public static void log(Class c, String message) {
-        System.out.println("[" + c.getName() + "]" + message);
+        //System.out.println("[" + c.getName() + "]" + message);
     }
 
 }

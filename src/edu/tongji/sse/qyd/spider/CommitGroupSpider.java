@@ -23,7 +23,8 @@ public class CommitGroupSpider {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setTimeZone(Util.utc0);
         //List<DatePeriod> datePeriodList = DatePeriod.getEclipseCheWholeLifeTime();
-        getOneWeek(DatePeriod.getEclipseCheV4LifeTime(),"v4");
+        getOneWeek(DatePeriod.getEclipseCheWholeLifeTime(),"v0");
+        //getOneWeek(DatePeriod.getEclipseCheV4LifeTime(),"v4");
         //getOneWeek(DatePeriod.getEclipseCheV5LifeTime(),"v5");
         //getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"v6");
 //            while (start.before(lilin)) {

@@ -1,9 +1,13 @@
 package edu.tongji.sse.qyd.analyzer;
 
 import edu.tongji.sse.qyd.Util.DatePeriod;
-import edu.tongji.sse.qyd.costAndEffortType.BasicFilePattern;
+import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
+import edu.tongji.sse.qyd.resultStructure.BasicFilePattern;
 import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
+import edu.tongji.sse.qyd.resultStructure.info.Contributor;
+import edu.tongji.sse.qyd.resultStructure.info.InfoSet;
 import edu.tongji.sse.qyd.spider.CommitSpider;
 
 import java.util.ArrayList;
@@ -30,9 +34,12 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
         this.effortTypeSet.clear();
         Set<String> authors = new HashSet<>();
         for (int iurl = 0; iurl < urls.size(); iurl++) {
+            Contributor contributor = new Contributor();
             String url = urls.get(iurl);
             GitCommitInfo gitCommitInfo = CommitSpider.getInstance().getEntityInfo(url);
             List<GitCommitFileInfo> gitCommitFileInfoList = gitCommitInfo.getFiles();
+
+            contributor.addAuthor(gitCommitInfo.getAuthorId());
             for (GitCommitFileInfo gitCommitFileInfo : gitCommitFileInfoList) {
                 boolean succeedMatch = false;
                 String fileName = gitCommitFileInfo.getFileName();
@@ -45,7 +52,7 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                     }
                 }
                 if (!succeedMatch) {
-                    System.out.println("File Not Marked: " + fileName + " in " + gitCommitFileInfo.getGitHash());
+                    Util.log(this.getClass(), "File Not Marked: " + fileName + " in " + gitCommitFileInfo.getGitHash());
                 }
             }
 
@@ -53,7 +60,10 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
 
         }
         //System.out.println( "authors number:" + authors.size() + ";");
-        return new AnalyzeResult(this.costTypeSet, this.effortTypeSet);
+        InfoSet infoSet = new InfoSet();
+        infoSet.setCommitterAmount(authors.size());
+
+        return new AnalyzeResult(this.costTypeSet, this.effortTypeSet, infoSet);
     }
 
     public void setPatterns() {

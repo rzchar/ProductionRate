@@ -1,8 +1,9 @@
-package edu.tongji.sse.qyd.analyzer;
+package edu.tongji.sse.qyd.resultStructure;
 
 import edu.tongji.sse.qyd.Util.Util;
-import edu.tongji.sse.qyd.costAndEffortType.CostTypeSet;
-import edu.tongji.sse.qyd.costAndEffortType.EffortTypeSet;
+import edu.tongji.sse.qyd.resultStructure.cost.CostTypeSet;
+import edu.tongji.sse.qyd.resultStructure.effort.EffortTypeSet;
+import edu.tongji.sse.qyd.resultStructure.info.InfoSet;
 
 /**
  * Created by qyd on 2018/5/21.
@@ -10,10 +11,18 @@ import edu.tongji.sse.qyd.costAndEffortType.EffortTypeSet;
 public class AnalyzeResult {
     private CostTypeSet costTypeSet;
     private EffortTypeSet effortTypeSet;
+    private InfoSet infoSet;
 
     public AnalyzeResult(CostTypeSet costTypeSet, EffortTypeSet effortTypeSet) {
         this.costTypeSet = costTypeSet;
         this.effortTypeSet = effortTypeSet;
+        this.infoSet = new InfoSet();
+    }
+
+    public AnalyzeResult(CostTypeSet costTypeSet, EffortTypeSet effortTypeSet, InfoSet infoSet) {
+        this.costTypeSet = costTypeSet;
+        this.effortTypeSet = effortTypeSet;
+        this.infoSet = infoSet;
     }
 
     public CostTypeSet getCostTypeSet() {
@@ -30,6 +39,14 @@ public class AnalyzeResult {
 
     public void setEffortTypeSet(EffortTypeSet effortTypeSet) {
         this.effortTypeSet = effortTypeSet;
+    }
+
+    public InfoSet getInfoSet() {
+        return infoSet;
+    }
+
+    public void setInfoSet(InfoSet infoSet) {
+        this.infoSet = infoSet;
     }
 
     public void summary() {

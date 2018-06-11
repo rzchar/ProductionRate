@@ -78,6 +78,7 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
             if (commit.isNull("author")) {
                 try {
                     authorId = String.valueOf(commit.getJSONObject("commit").getJSONObject("author").getString("name"));
+                    //Util.log(this.getClass(), "authorId:" + authorId);
                 } catch (JSONException e) {
                     Util.log(this.getClass(), commit.get("sha") + ": this commit has no author");
                 }

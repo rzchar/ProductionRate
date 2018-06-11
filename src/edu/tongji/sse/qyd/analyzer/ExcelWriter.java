@@ -2,8 +2,10 @@ package edu.tongji.sse.qyd.analyzer;
 
 import edu.tongji.sse.qyd.Util.DatePeriod;
 import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.costAndEffortType.CostTypeSet;
-import edu.tongji.sse.qyd.costAndEffortType.EffortTypeSet;
+import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
+import edu.tongji.sse.qyd.resultStructure.cost.CostTypeSet;
+import edu.tongji.sse.qyd.resultStructure.effort.EffortTypeSet;
+import edu.tongji.sse.qyd.resultStructure.info.InfoSet;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -11,7 +13,6 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.FillPatternType;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -73,6 +74,16 @@ public class ExcelWriter {
             rowDEL.createCell(i + offset).setCellValue(resultForHeader.getEffortTypeSet().effortTypeList[i].getTypeString());
             rowCHG.createCell(i + offset).setCellValue(resultForHeader.getEffortTypeSet().effortTypeList[i].getTypeString());
         }
+        offset += resultForHeader.getEffortTypeSet().effortTypeList.length;
+        for (int i = 0; i < InfoSet.getHeader().length; i++) {
+            rowADD.createCell(i + offset).setCellValue(InfoSet.getHeader()[i]);
+            rowDEL.createCell(i + offset).setCellValue(InfoSet.getHeader()[i]);
+            rowCHG.createCell(i + offset).setCellValue(InfoSet.getHeader()[i]);
+            rowADD.getCell(i+ offset).setCellStyle(this.cellStyle);
+            rowDEL.getCell(i+ offset).setCellStyle(this.cellStyle);
+            rowCHG.getCell(i+ offset).setCellStyle(this.cellStyle);
+        }
+
         try {
             workbook.write(outputFile);
         } catch (IOException e) {
@@ -102,6 +113,8 @@ public class ExcelWriter {
                 sumResult.getEffortTypeSet().effortTypeList[i].addChangeLine(changed);
             }
 
+            InfoSet sumInfoSet  = sumResult.getInfoSet();
+            sumInfoSet.addCommitterAmount(result.getInfoSet().getCommitterAmount());
         }
     }
 
@@ -129,6 +142,18 @@ public class ExcelWriter {
             rowDEL.createCell(i + offset).setCellValue(sumResult.getEffortTypeSet().effortTypeList[i].getAddLineSum());
             rowCHG.createCell(i + offset).setCellValue(sumResult.getEffortTypeSet().effortTypeList[i].getAddLineSum());
         }
+
+        offset += sumResult.getEffortTypeSet().effortTypeList.length;
+        for (int i = 0; i < sumResult.getInfoSet().getInfomation().length; i++) {
+            rowADD.createCell(i + offset).setCellValue(sumResult.getInfoSet().getInfomation()[i]);
+            rowDEL.createCell(i + offset).setCellValue(sumResult.getInfoSet().getInfomation()[i]);
+            rowCHG.createCell(i + offset).setCellValue(sumResult.getInfoSet().getInfomation()[i]);
+            rowADD.getCell(i+ offset).setCellStyle(this.cellStyle);
+            rowDEL.getCell(i+ offset).setCellStyle(this.cellStyle);
+            rowCHG.getCell(i+ offset).setCellStyle(this.cellStyle);
+        }
+
+
         try {
             workbook.write(this.outputFile);
         } catch (IOException e) {
