@@ -7,6 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +26,19 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
 
     public static void main(String[] args) {
         getInstance().getAllEntity();
+    }
+
+    @Override
+    public List<IssueInfo> getAllEntity() {
+        List<IssueInfo> result = new ArrayList<IssueInfo>();
+        String basicString =  "https://api.github.com/repos/eclipse/che/issues/";
+        for(int i = 1; i<=9984;i++){
+            if(i==5982){
+                continue;
+            }
+            result.add(getEntityInfo(basicString + i));
+        }
+        return result;
     }
 
     @Override
