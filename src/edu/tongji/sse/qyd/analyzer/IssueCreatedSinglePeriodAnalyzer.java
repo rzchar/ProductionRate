@@ -23,9 +23,9 @@ public class IssueCreatedSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer 
         IssuesSpider issuesSpider = new IssuesSpider();
 
         for(String url :urls){
-            this.effortTypeSet.repairDefectEffort.addAddLine(1);
+            this.effortTypeSet.reportDefectEffort.addAddLine(1);
             this.costTypeSet.analyzeFeedbackAndLog.addAddLine(1);
-
+            this.costTypeSet.getFeedback.addAddLine(1);
             IssueInfo issueInfo = issuesSpider.getEntityInfo(url);
             Set<String> labels = issueInfo.getLabels();
         }

@@ -23,10 +23,10 @@ public class CommitGroupSpider {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setTimeZone(Util.utc0);
         //List<DatePeriod> datePeriodList = DatePeriod.getEclipseCheWholeLifeTime();
-        getOneWeek(DatePeriod.getEclipseCheWholeLifeTime(),"v0");
+        //getOneWeek(DatePeriod.getEclipseCheWholeLifeTime(),"v0");
         //getOneWeek(DatePeriod.getEclipseCheV4LifeTime(),"v4");
         //getOneWeek(DatePeriod.getEclipseCheV5LifeTime(),"v5");
-        //getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"v6");
+        getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"v6");
 //            while (start.before(lilin)) {
 //                String time = "since=" + Util.getISO8601Timestamp(start) + "&until=" + Util.getISO8601Timestamp(end);
 //                start = end;

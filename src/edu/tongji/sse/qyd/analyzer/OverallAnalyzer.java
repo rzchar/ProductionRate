@@ -14,14 +14,14 @@ public class OverallAnalyzer {
     public static void main(String[] args) {
 
 
-        FileNames fileNamesWhole = new FileNames();
-        fileNamesWhole.setOutputExcelName("analyze.xls");
-        fileNamesWhole.setCommitGroupsFolderName("whole");
-        fileNamesWhole.setIssueGroupsByClosedAtFolderName("whole");
-        fileNamesWhole.setIssueGroupsByCreatedAtFolderName("whole");
-        fileNamesWhole.setDatePeriodList(DatePeriod.getEclipseCheWholeLifeTime());
-        OverallAnalyzer wholeAnalyzer = new OverallAnalyzer();
-        wholeAnalyzer.calculateEffortAndCost(fileNamesWhole);
+//        FileNames fileNamesWhole = new FileNames();
+//        fileNamesWhole.setOutputExcelName("analyze.xls");
+//        fileNamesWhole.setCommitGroupsFolderName("whole");
+//        fileNamesWhole.setIssueGroupsByClosedAtFolderName("whole");
+//        fileNamesWhole.setIssueGroupsByCreatedAtFolderName("whole");
+//        fileNamesWhole.setDatePeriodList(DatePeriod.getEclipseCheWholeLifeTime());
+//        OverallAnalyzer wholeAnalyzer = new OverallAnalyzer();
+//        wholeAnalyzer.calculateEffortAndCost(fileNamesWhole);
 
         FileNames fileNamesV4 = new FileNames();
         fileNamesV4.setOutputExcelName("analyzeV4.xls");

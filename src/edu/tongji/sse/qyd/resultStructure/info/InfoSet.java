@@ -18,9 +18,9 @@ public class InfoSet {
         this.committerAmount += committerAmount;
     }
 
-    public String[] getInfomation(){
-        return new String[]{
-                String.valueOf(committerAmount)
+    public double[] getInfomation(){
+        return new double[]{
+                Double.valueOf(committerAmount)
         };
     }
 

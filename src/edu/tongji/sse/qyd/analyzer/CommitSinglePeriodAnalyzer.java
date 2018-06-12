@@ -114,6 +114,20 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                         this.effortTypeSet.autoScriptEffort,
                         "org\\.testng\\.ITestNGListener"
                 ),
+
+                new BasicFilePattern(
+                        this.costTypeSet.autoTest,
+                        this.effortTypeSet.autoScriptEffort,
+                        ".java"
+                ){
+                    @Override
+                    protected boolean isContentPatternMatched(String content) {
+                        if(content.contains("@Test")){
+                            return true;
+                        }
+                        return false;
+                    }
+                },
    /*================================================================================================*/
 
                 new BasicFilePattern(

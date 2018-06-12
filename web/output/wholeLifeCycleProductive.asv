@@ -62,7 +62,7 @@ hold on;
 plot(productivity4,'-o')
 %plot(normalizedPureNumberWholeWeek4(:,13),'-x')
 plot(traditionalProductivity4,'-x')
-plot(productivity4./traditionalProductivity4/100,'-v')
+plot(productivity4./traditionalProductivity4,'-v')
 %plot(pd4,'-s')
 hold off;
 
@@ -73,7 +73,7 @@ plot(productivity5,'-o')
 %plot(normalizedPureNumberWholeWeek5(:,13),'-x')
 plot(traditionalProductivity5,'-x')
 %plot(pd5,'-s')
-plot(productivity5./traditionalProductivity5/20,'-v')
+plot(productivity5./traditionalProductivity5/100,'-v')
 hold off;
 
 figure('name','v6 normal and traditional')
