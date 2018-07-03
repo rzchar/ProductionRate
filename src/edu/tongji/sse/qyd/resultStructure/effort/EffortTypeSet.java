@@ -6,8 +6,6 @@ package edu.tongji.sse.qyd.resultStructure.effort;
 public class EffortTypeSet {
     public EffortType errorTypeEffort = new EffortType(-1, "errorTypeEffort");
 
-    public EffortType traditionalCodeEffort = new EffortType(0, "traditionalCodeEffort");
-
     public EffortType reusableCodeEffort = new EffortType(1, "reusableCodeEffort");
 
     public EffortType autoScriptEffort = new EffortType(2, "autoScriptEffort");
@@ -18,7 +16,6 @@ public class EffortTypeSet {
 
     public EffortType[] effortTypeList = new EffortType[]{
             this.errorTypeEffort,
-            this.traditionalCodeEffort,
             this.reusableCodeEffort,
             this.autoScriptEffort,
             this.reportDefectEffort,

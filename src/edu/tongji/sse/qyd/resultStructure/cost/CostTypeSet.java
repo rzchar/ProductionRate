@@ -6,13 +6,11 @@ package edu.tongji.sse.qyd.resultStructure.cost;
 public class CostTypeSet {
     public CostType errorTypeCost = new CostType(-1, "errorTypeCost");
 
-    public CostType traditionalCodeCost = new CostType(0, "traditionalCodeCost");
-
     public CostType developingEnvironmentEstablish = new CostType(1, "developingEnvironmentEstablish");
 
     public CostType fetchReusableResourceWithCrawler = new CostType(2, "fetchReusableResourceWithCrawler");
 
-    public CostType fetchReusableResourceWithVCS = new CostType(3, "fetchReusableResourceWithVCS");
+    public CostType sourceCodeCost = new CostType(3, "sourceCode");
 
     public CostType autoCompile = new CostType(4, "autoCompile");
 
@@ -28,10 +26,9 @@ public class CostTypeSet {
 
     public CostType[] costTypeList = new CostType[]{
             this.errorTypeCost,
-            this.traditionalCodeCost,
             this.developingEnvironmentEstablish,
             this.fetchReusableResourceWithCrawler,
-            this.fetchReusableResourceWithVCS,
+            this.sourceCodeCost,
             this.autoCompile,
             this.autoTest,
             this.runtimeEnvironmentEstablish,

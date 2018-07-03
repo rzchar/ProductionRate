@@ -26,7 +26,8 @@ public class CommitGroupSpider {
         //getOneWeek(DatePeriod.getEclipseCheWholeLifeTime(),"v0");
         //getOneWeek(DatePeriod.getEclipseCheV4LifeTime(),"v4");
         //getOneWeek(DatePeriod.getEclipseCheV5LifeTime(),"v5");
-        getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"v6");
+        //getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"v6");
+        getOneWeek(DatePeriod.getEclipseCheV5E1LifeTime(),"v5.1");
 //            while (start.before(lilin)) {
 //                String time = "since=" + Util.getISO8601Timestamp(start) + "&until=" + Util.getISO8601Timestamp(end);
 //                start = end;

@@ -22,16 +22,16 @@ public class OverallAnalyzer {
 //        fileNamesWhole.setDatePeriodList(DatePeriod.getEclipseCheWholeLifeTime());
 //        OverallAnalyzer wholeAnalyzer = new OverallAnalyzer();
 //        wholeAnalyzer.calculateEffortAndCost(fileNamesWhole);
-
-        FileNames fileNamesV4 = new FileNames();
-        fileNamesV4.setOutputExcelName("analyzeV4.xls");
-        fileNamesV4.setCommitGroupsFolderName("v4");
-        fileNamesV4.setIssueGroupsByClosedAtFolderName("V4");
-        fileNamesV4.setIssueGroupsByCreatedAtFolderName("V4");
-        fileNamesV4.setDatePeriodList(DatePeriod.getEclipseCheV4LifeTime());
-        OverallAnalyzer v4Analyzer = new OverallAnalyzer();
-        v4Analyzer.calculateEffortAndCost(fileNamesV4);
-
+//
+//        FileNames fileNamesV4 = new FileNames();
+//        fileNamesV4.setOutputExcelName("analyzeV4.xls");
+//        fileNamesV4.setCommitGroupsFolderName("v4");
+//        fileNamesV4.setIssueGroupsByClosedAtFolderName("V4");
+//        fileNamesV4.setIssueGroupsByCreatedAtFolderName("V4");
+//        fileNamesV4.setDatePeriodList(DatePeriod.getEclipseCheV4LifeTime());
+//        OverallAnalyzer v4Analyzer = new OverallAnalyzer();
+//        v4Analyzer.calculateEffortAndCost(fileNamesV4);
+//
         FileNames fileNamesV5 = new FileNames();
         fileNamesV5.setOutputExcelName("analyzeV5.xls");
         fileNamesV5.setCommitGroupsFolderName("v5");
@@ -40,15 +40,23 @@ public class OverallAnalyzer {
         fileNamesV5.setDatePeriodList(DatePeriod.getEclipseCheV5LifeTime());
         OverallAnalyzer v5Analyzer = new OverallAnalyzer();
         v5Analyzer.calculateEffortAndCost(fileNamesV5);
-
-        FileNames fileNamesV6 = new FileNames();
-        fileNamesV6.setOutputExcelName("analyzeV6.xls");
-        fileNamesV6.setCommitGroupsFolderName("v6");
-        fileNamesV6.setIssueGroupsByClosedAtFolderName("V6");
-        fileNamesV6.setIssueGroupsByCreatedAtFolderName("V6");
-        fileNamesV6.setDatePeriodList(DatePeriod.getEclipseCheV6LifeTime());
-        OverallAnalyzer v6Analyzer = new OverallAnalyzer();
-        v6Analyzer.calculateEffortAndCost(fileNamesV6);
+//
+//        FileNames fileNamesV6 = new FileNames();
+//        fileNamesV6.setOutputExcelName("analyzeV6.xls");
+//        fileNamesV6.setCommitGroupsFolderName("v6");
+//        fileNamesV6.setIssueGroupsByClosedAtFolderName("V6");
+//        fileNamesV6.setIssueGroupsByCreatedAtFolderName("V6");
+//        fileNamesV6.setDatePeriodList(DatePeriod.getEclipseCheV6LifeTime());
+//        OverallAnalyzer v6Analyzer = new OverallAnalyzer();
+//        v6Analyzer.calculateEffortAndCost(fileNamesV6);
+        FileNames fileNamesV5E1 = new FileNames();
+        fileNamesV5E1.setOutputExcelName("analyzeV5.1.xls");
+        fileNamesV5E1.setCommitGroupsFolderName("v5.1");
+        fileNamesV5E1.setIssueGroupsByClosedAtFolderName("V5.1");
+        fileNamesV5E1.setIssueGroupsByCreatedAtFolderName("V5.1");
+        fileNamesV5E1.setDatePeriodList(DatePeriod.getEclipseCheV5E1LifeTime());
+        OverallAnalyzer V5E1Analyzer = new OverallAnalyzer();
+        V5E1Analyzer.calculateEffortAndCost(fileNamesV5E1);
     }
     /* Time Point
      *  4.0.0-RC4  2016-02-15T21:12:15Z

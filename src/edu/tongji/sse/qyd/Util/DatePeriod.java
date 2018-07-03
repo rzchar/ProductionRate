@@ -62,30 +62,34 @@ public class DatePeriod {
      */
 
     public static List<DatePeriod> getEclipseCheWholeLifeTime() {
-        return getTimePeriodListByString("2015-03-27 00:00:00", "2018-05-30 00:00:00");
+        return getTimePeriodListByString("2015-03-27 00:00:00", "2018-05-30 00:00:00", 7);
     }
 
     public static List<DatePeriod> getEclipseCheV4LifeTime() {
-        return getTimePeriodListByString("2016-06-15 00:00:00", "2016-09-14 00:00:00");
+        return getTimePeriodListByString("2016-06-15 00:00:00", "2016-09-14 00:00:00", 7);
     }
 
     public static List<DatePeriod> getEclipseCheV5LifeTime() {
-        return getTimePeriodListByString("2016-09-14 00:00:00", "2017-11-02 00:00:00");
+        return getTimePeriodListByString("2016-09-14 00:00:00", "2017-11-02 00:00:00", 7);
+    }
+
+    public static List<DatePeriod> getEclipseCheV5E1LifeTime() {
+        return getTimePeriodListByString("2016-09-14 00:00:00", "2017-11-02 00:00:00", 1);
     }
 
     public static List<DatePeriod> getEclipseCheV6LifeTime() {
-        return getTimePeriodListByString("2017-11-02 00:00:00", "2018-05-30 00:00:00");
+        return getTimePeriodListByString("2017-11-02 00:00:00", "2018-05-30 00:00:00", 7);
     }
 
-    public static List<DatePeriod> getTimePeriodListByString(String startTimeString, String endTimeString){
+    public static List<DatePeriod> getTimePeriodListByString(String startTimeString, String endTimeString, int interval){
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             dateFormat.setTimeZone(Util.utc0);
             Date adam = dateFormat.parse(startTimeString);
             Date start = adam;
-            Date end = Util.getDateAfter(start, 7);
+            Date end = Util.getDateAfter(start, interval);
             Date lilin = dateFormat.parse(endTimeString);
-            return DatePeriod.getPeriodList(adam, lilin, 7);
+            return DatePeriod.getPeriodList(adam, lilin, interval);
         } catch (ParseException e) {
             e.printStackTrace();
         }

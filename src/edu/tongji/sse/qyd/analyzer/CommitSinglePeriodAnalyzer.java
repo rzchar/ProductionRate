@@ -49,6 +49,7 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                         basicFilePattern.getCostType().addCommitData(gitCommitFileInfo);
                         basicFilePattern.getEffortType().addCommitData(gitCommitFileInfo);
                         succeedMatch = true;
+                        break;
                     }
                 }
                 if (!succeedMatch) {
@@ -69,14 +70,29 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
     public void setPatterns() {
         BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
                 new BasicFilePattern(
-                        this.costTypeSet.traditionalCodeCost,
-                        this.effortTypeSet.traditionalCodeEffort,
-                        "\\.(java|js|go|html|ts|sql|css|svg|jsp|styl)$"),
+                        this.costTypeSet.sourceCodeCost,
+                        this.effortTypeSet.reusableCodeEffort,
+                        "\\.(java|js|go|html|ts|sql|css|svg|jsp|styl)$"
+                ){
+                    @Override
+                    protected boolean isContentPatternMatched(String content) {
+                        if(content.contains("@Test")){
+                            //Util.log(this.getClass(),content);
+                            return false;
+                        }
+                        return true;
+                    }
+                },
 
                 new BasicFilePattern(
                         this.costTypeSet.deployMidwareAndApplication,
                         this.effortTypeSet.autoScriptEffort,
                         "^[Dd]ocker(files)?"),
+
+                new BasicFilePattern(
+                        this.costTypeSet.deployMidwareAndApplication,
+                        this.effortTypeSet.autoScriptEffort,
+                        "^deploy"),
 
                 new BasicFilePattern(
                         this.costTypeSet.developingEnvironmentEstablish,
@@ -112,13 +128,13 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                 new BasicFilePattern(
                         this.costTypeSet.autoTest,
                         this.effortTypeSet.autoScriptEffort,
-                        "org\\.testng\\.ITestNGListener"
+                        "org\\.testng\\.ITestNGListener$"
                 ),
 
                 new BasicFilePattern(
                         this.costTypeSet.autoTest,
                         this.effortTypeSet.autoScriptEffort,
-                        ".java"
+                        ".java$"
                 ){
                     @Override
                     protected boolean isContentPatternMatched(String content) {
