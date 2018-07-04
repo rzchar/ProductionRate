@@ -21,13 +21,13 @@ public class CommitGroupSpider {
         //weekCommitListSpider.getListToFile();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        dateFormat.setTimeZone(Util.utc0);
+        dateFormat.setTimeZone(DatePeriod.utc0);
         //List<DatePeriod> datePeriodList = DatePeriod.getEclipseCheWholeLifeTime();
-        //getOneWeek(DatePeriod.getEclipseCheWholeLifeTime(),"v0");
-        //getOneWeek(DatePeriod.getEclipseCheV4LifeTime(),"v4");
-        //getOneWeek(DatePeriod.getEclipseCheV5LifeTime(),"v5");
-        //getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"v6");
-        getOneWeek(DatePeriod.getEclipseCheV5E1LifeTime(),"v5.1");
+        //getOneWeek(DatePeriod.getEclipseCheWholeLifeTime(),"V0");
+        //getOneWeek(DatePeriod.getEclipseCheV4LifeTime(),"V4");
+        //getOneWeek(DatePeriod.getEclipseCheV5LifeTime(),"V5");
+        //getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"V6");
+        getOneWeek(DatePeriod.getEclipseCheV5E1LifeTime(),"V5.1");
 //            while (start.before(lilin)) {
 //                String time = "since=" + Util.getISO8601Timestamp(start) + "&until=" + Util.getISO8601Timestamp(end);
 //                start = end;
@@ -39,8 +39,8 @@ public class CommitGroupSpider {
 
     static public void getOneWeek(List<DatePeriod> datePeriodList, String subFolderName){
         for (DatePeriod dd : datePeriodList) {
-            String time = "since=" + Util.getISO8601Timestamp(dd.getStart())
-                    + "&until=" + Util.getISO8601Timestamp(dd.getEnd());
+            String time = "since=" + DatePeriod.getISO8601Timestamp(dd.getStart())
+                    + "&until=" + DatePeriod.getISO8601Timestamp(dd.getEnd());
             System.out.println(time);
             WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider(time, subFolderName );
             weekCommitListSpider.getListToFile();
@@ -50,13 +50,13 @@ public class CommitGroupSpider {
     static private class WeekCommitListSpider extends CommitListSpider {
         public WeekCommitListSpider(String sinceUntil, String subFolderName) {
             super(sinceUntil, subFolderName);
-            File dir = new File(Path.middleDataPath + File.separator +  "commitGroups"
+            File dir = new File(Path.getMiddleDataPath() + File.separator +  "commitGroups"
                     + File.separator + subFolderName);
             if(!dir.exists()){
                 dir.mkdirs();
             }
             this.startURL = URLOfBasicAPI.commits + "?" + sinceUntil;
-            this.listFileName = Path.middleDataPath + File.separator +  "commitGroups"
+            this.listFileName = Path.getMiddleDataPath() + File.separator +  "commitGroups"
                     + File.separator + subFolderName  + File.separator + "commitList"
                     + sinceUntil.replaceAll("[-=:&]", "") + ".txt";
             makeNewEmptyFile();

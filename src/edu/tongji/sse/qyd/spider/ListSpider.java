@@ -1,6 +1,7 @@
 package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.ConnectionAssistant;
+import edu.tongji.sse.qyd.Util.Path;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -31,7 +32,9 @@ public class ListSpider {
     }
 
     protected void makeNewEmptyFile() {
-        File commitListFile = new File(listFileName);
+        String absuloteFileName =  Path.getMiddleDataPath() + File.separator + "commitGroups"
+                + File.separator + listFileName;
+        File commitListFile = new File(absuloteFileName);
         if (commitListFile.exists()) {
             commitListFile.delete();
         }

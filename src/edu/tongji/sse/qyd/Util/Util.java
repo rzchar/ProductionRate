@@ -1,98 +1,103 @@
 package edu.tongji.sse.qyd.Util;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import edu.tongji.sse.qyd.analyzer.OverallAnalyzer;
+import edu.tongji.sse.qyd.resultStructure.FileNames;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by qyd on 2018/5/7.
  */
 public class Util {
-    public static final TimeZone utc0 = TimeZone.getTimeZone("UTC");
 
-    public static final DateFormat dateFormatISO8601 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private String projectFolderName;
 
-    public static final DateFormat dateFormatFileName = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+    private String projectAPIURL;
 
-    private static final Pattern commitGroupFileNamePattern = Pattern.compile("since([0-9TZ\\-:]*)until([0-9TZ\\-:]*)");
+    private List<FileNames> fileNamesList;
 
-    public static String getISO8601Timestamp(Date date) {
-        dateFormatISO8601.setTimeZone(utc0);
-        String nowAsISO = dateFormatISO8601.format(date);
-        return nowAsISO;
+    public String getProjectFolderName() {
+        return projectFolderName;
     }
 
-    public static Date getDateFromISO8601(String time) {
-        if (time == null) {
-            return null;
-        }
-        //String simpleTime = time.replace("[^0-9TZ]","");
-        try {
-            dateFormatISO8601.setTimeZone(utc0);
-            return dateFormatISO8601.parse(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String getProjectAPIURL() {
+        return projectAPIURL;
     }
 
-    /**
-     * 得到几天前的时间
-     *
-     * @param d
-     * @param day
-     * @return
-     */
-    public static Date getDateBefore(Date d, int day) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(utc0);
-        calendar.setTime(d);
-        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - day);
-        return calendar.getTime();
+    public List<FileNames> getFileNamesList() {
+        return fileNamesList;
     }
 
-    /**
-     * 得到几天后的时间
-     *
-     * @param d
-     * @param day
-     * @return
-     */
-    public static Date getDateAfter(Date d, int day) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(utc0);
-        calendar.setTime(d);
-        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + day);
-        return calendar.getTime();
-    }
-
-    private static Date getDateFromString(String str, int group) {
-        Matcher matcher = commitGroupFileNamePattern.matcher(str);
-        if (matcher.find()) {
-            try {
-                return dateFormatFileName.parse(matcher.group(group));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-    public static Date getSince(String str) {
-        return getDateFromString(str, 1);
-    }
-
-    public static Date getUntil(String str) {
-        return getDateFromString(str, 2);
+    public Util(String projectFolderName, String projectAPIURL, List<FileNames> fileNamesList) {
+        this.projectFolderName = projectFolderName;
+        this.projectAPIURL = projectAPIURL;
+        this.fileNamesList = fileNamesList;
     }
 
     public static void log(Class c, String message) {
         System.out.println("[" + c.getName() + "]" + message);
     }
 
+    public static Util CheInstance() {
+        List<FileNames> fileNamesPrepare = new ArrayList<>();
+
+        FileNames fileNamesWhole = new FileNames();
+        fileNamesWhole.setOutputExcelName("analyze.xls");
+        fileNamesWhole.setCommitGroupsFolderName("whole");
+        fileNamesWhole.setIssueGroupsByClosedAtFolderName("whole");
+        fileNamesWhole.setIssueGroupsByCreatedAtFolderName("whole");
+        fileNamesWhole.setDatePeriodList(DatePeriod.getEclipseCheWholeLifeTime());
+        fileNamesPrepare.add(fileNamesWhole);
+
+        FileNames fileNamesV4 = new FileNames();
+        fileNamesV4.setOutputExcelName("analyzeV4.xls");
+        fileNamesV4.setCommitGroupsFolderName("V4");
+        fileNamesV4.setIssueGroupsByClosedAtFolderName("V4");
+        fileNamesV4.setIssueGroupsByCreatedAtFolderName("V4");
+        fileNamesV4.setDatePeriodList(DatePeriod.getEclipseCheV4LifeTime());
+        fileNamesPrepare.add(fileNamesV4);
+
+        FileNames fileNamesV5 = new FileNames();
+        fileNamesV5.setOutputExcelName("analyzeV5.xls");
+        fileNamesV5.setCommitGroupsFolderName("V5");
+        fileNamesV5.setIssueGroupsByClosedAtFolderName("V5");
+        fileNamesV5.setIssueGroupsByCreatedAtFolderName("V5");
+        fileNamesV5.setDatePeriodList(DatePeriod.getEclipseCheV5LifeTime());
+        fileNamesPrepare.add(fileNamesV5);
+
+        FileNames fileNamesV6 = new FileNames();
+        fileNamesV6.setOutputExcelName("analyzeV6.xls");
+        fileNamesV6.setCommitGroupsFolderName("V6");
+        fileNamesV6.setIssueGroupsByClosedAtFolderName("V6");
+        fileNamesV6.setIssueGroupsByCreatedAtFolderName("V6");
+        fileNamesV6.setDatePeriodList(DatePeriod.getEclipseCheV6LifeTime());
+        fileNamesPrepare.add(fileNamesV6);
+
+        FileNames fileNamesV5E1 = new FileNames();
+        fileNamesV5E1.setOutputExcelName("analyzeV5.1.xls");
+        fileNamesV5E1.setCommitGroupsFolderName("V5.1");
+        fileNamesV5E1.setIssueGroupsByClosedAtFolderName("V5.1");
+        fileNamesV5E1.setIssueGroupsByCreatedAtFolderName("V5.1");
+        fileNamesV5E1.setDatePeriodList(DatePeriod.getEclipseCheV5E1LifeTime());
+        fileNamesPrepare.add(fileNamesV5E1);
+
+        String projectAPIURL = "https://api.github.com/repos/eclipse/che/";
+
+        String folderName = "che";
+
+        return new Util(folderName, projectAPIURL, fileNamesPrepare);
+    }
+
+    private static Util currentInstance;
+
+    public static Util getInstance() {
+        if (currentInstance == null) {
+            currentInstance = CheInstance();
+        }
+        return currentInstance;
+    }
+
+    public static void setInstance(String instanceName) {
+    }
 }

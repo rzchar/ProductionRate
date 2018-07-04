@@ -17,7 +17,7 @@ public class TagListSpider extends ListSpider {
     public TagListSpider() {
         super();
         this.startURL = URLOfBasicAPI.tags;
-        listFileName = Path.middleDataPath + File.separator + "tags"
+        listFileName = Path.getMiddleDataPath() + File.separator + "tags"
                 + File.separator + "#tagList" + ".txt";
         makeNewEmptyFile();
     }

@@ -29,7 +29,7 @@ public class ExcelWriter {
     HSSFCellStyle cellStyle;
 
     public ExcelWriter(String fileName) {
-        this.outputFile = new File(Path.outputPath + File.separator + fileName);
+        this.outputFile = new File(Path.getOutputPath() + File.separator + fileName);
         if (outputFile.exists()) {
             outputFile.delete();
         }

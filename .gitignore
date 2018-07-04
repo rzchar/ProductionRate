@@ -1,5 +1,5 @@
 /.idea/
 /ProductionRate.iml
-/web/middleData/*.json
-/web/middleData/*.txt
+/web/middle/*.json
+/web/middle/*.txt
 /out/

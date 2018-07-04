@@ -26,7 +26,7 @@ public abstract class BasicSinglePeriodAnalyzer {
     }
 
     public void summary() {
-        Util.log(this.getClass(), "summary at " + Util.getISO8601Timestamp(since) + "=>" + Util.getISO8601Timestamp(until));
+        Util.log(this.getClass(), "summary at " + DatePeriod.getISO8601Timestamp(since) + "=>" + DatePeriod.getISO8601Timestamp(until));
         this.costTypeSet.summary();
         this.effortTypeSet.summary();
     }

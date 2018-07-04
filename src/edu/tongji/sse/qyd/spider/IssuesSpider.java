@@ -1,5 +1,6 @@
 package edu.tongji.sse.qyd.spider;
 
+import edu.tongji.sse.qyd.Util.DatePeriod;
 import edu.tongji.sse.qyd.Util.Path;
 import edu.tongji.sse.qyd.Util.Util;
 import edu.tongji.sse.qyd.gitIssue.IssueInfo;
@@ -25,20 +26,7 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
     }
 
     public static void main(String[] args) {
-        getInstance().getAllEntity();
-    }
-
-    @Override
-    public List<IssueInfo> getAllEntity() {
-        List<IssueInfo> result = new ArrayList<IssueInfo>();
-        String basicString =  "https://api.github.com/repos/eclipse/che/issues/";
-        for(int i = 1; i<=9984;i++){
-            if(i==5982){
-                continue;
-            }
-            result.add(getEntityInfo(basicString + i));
-        }
-        return result;
+        getInstance().getAllEntity("#issueListAll.txt");
     }
 
     @Override
@@ -48,10 +36,10 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
             JSONObject issue = new JSONObject(responseContent);
             IssueInfo issueInfo = new IssueInfo(issue.getInt("number"));
             if (issue.has("created_at") && !issue.isNull("created_at")) {
-                issueInfo.setCreatedAt(Util.getDateFromISO8601(issue.getString("created_at")));
+                issueInfo.setCreatedAt(DatePeriod.getDateFromISO8601(issue.getString("created_at")));
             }
             if (issue.has("closed_at") && !issue.isNull("closed_at")) {
-                issueInfo.setClosedAt(Util.getDateFromISO8601(issue.getString("closed_at")));
+                issueInfo.setClosedAt(DatePeriod.getDateFromISO8601(issue.getString("closed_at")));
             }
             return issueInfo;
         } catch (JSONException e) {
@@ -73,12 +61,12 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
 
     @Override
     protected String getFileNameFromHash(String hash) {
-        return Path.middleDataPath + File.separator + "issues"
+        return Path.getMiddleDataPath() + File.separator + "issues"
                 + File.separator + hash + Path.issueFileSuffix;
     }
 
     @Override
-    protected String getEntityListFileName() {
-        return Path.middleDataPath + File.separator + "issueGroupsAll" + File.separator + "#issueListAll.txt";
+    protected String getEntityListAbsoluteFileName(String issueListName) {
+        return Path.getMiddleDataPath() + File.separator + "issueGroupsAll" + File.separator + issueListName;
     }
 }

@@ -18,8 +18,7 @@ public class CommitListSpider extends ListSpider {
 
     protected CommitListSpider() {
         this.startURL = URLOfBasicAPI.commits;
-        listFileName = Path.middleDataPath + File.separator + "commitGroups"
-                + File.separator + "#commitList" + (new Date()).getTime() + ".txt";
+        listFileName = "#commitList" + (new Date()).getTime() + ".txt";
         makeNewEmptyFile();
     }
 

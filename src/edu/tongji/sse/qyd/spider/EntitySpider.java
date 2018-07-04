@@ -95,12 +95,12 @@ abstract public class EntitySpider<T> {
         return makeEntityInfoFromResponseContent(commitContentString);
     }
 
-    protected abstract String getEntityListFileName();
+    protected abstract String getEntityListAbsoluteFileName(String entityListName);
 
-    public List<T> getAllEntity() {
+    public List<T> getAllEntity(String entityListName) {
         List<T> result = new ArrayList<T>();
         try {
-            File entityList = new File(getEntityListFileName());
+            File entityList = new File(getEntityListAbsoluteFileName(entityListName));
             BufferedReader br = new BufferedReader(new FileReader(entityList));
             String line;
             while ((line = br.readLine()) != null) {

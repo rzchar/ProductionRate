@@ -31,7 +31,7 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
         //getGitCommitFileInfoList("https://api.github.com/repos/eclipse/che");
         //getInstance().getEntityInfo("https://api.github.com/repos/eclipse/che/commits/4b39f7f581f7816695629f13a604923a80395b72");
 
-        getInstance().getAllEntity();
+        getInstance().getAllEntity("#commitList.txt");
 //        getInstance().getEntityInfo("https://api.github.com/repos/eclipse/che/commits/0a3ad3d184f9888a610839e838274b43ad9dd7c4");
 //        getInstance().getEntityInfo("https://api.github.com/repos/eclipse/che/commits/6c96974d4640a773d8f37d46b08e93ae5b0f7406");
 //        getInstance().getEntityInfo("https://api.github.com/repos/eclipse/che/commits/3ed366b74f5a4149cc6e516fcad82910e402689c");
@@ -100,12 +100,12 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
     }
 
     protected String getFileNameFromHash(String hash) {
-        return Path.middleDataPath + File.separator + "commits"
+        return Path.getMiddleDataPath() + File.separator + "commits"
                 + File.separator + hash + Path.commitFileSuffix;
     }
 
     @Override
-    protected String getEntityListFileName() {
-        return Path.middleDataPath + File.separator + "commitGroups" + File.separator + "#commitList.txt";
+    protected String getEntityListAbsoluteFileName(String commitListName) {
+        return Path.getMiddleDataPath() + File.separator + "commitGroups" + File.separator + commitListName;
     }
 }

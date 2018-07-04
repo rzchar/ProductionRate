@@ -14,7 +14,7 @@ public class IssueListSpider extends ListSpider {
     protected IssueListSpider() {
         //this.startURL = URLOfBasicAPI.issuesAll;
         this.startURL = "https://api.github.com/repositories/32935745/issues?state=all&page=130";
-        listFileName = Path.middleDataPath + File.separator + "issueGroups"
+        listFileName = Path.getMiddleDataPath() + File.separator + "issueGroups"
                 + File.separator + "#issueListAll" + (new Date()).getTime() + ".txt";
         makeNewEmptyFile();
     }

@@ -3,14 +3,17 @@ package edu.tongji.sse.qyd.Util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by qyd on 2018/5/15.
  */
 public class DatePeriod {
+
+    public static final TimeZone utc0 = TimeZone.getTimeZone("UTC");
+
     public Date getStart() {
         return start;
     }
@@ -36,8 +39,8 @@ public class DatePeriod {
     }
 
     public String getSinceUntilFileName(String prefix, String suffix) {
-        return prefix + "since" + Util.getISO8601Timestamp(this.start).replaceAll("[-=:&]", "")
-                + "until" + Util.getISO8601Timestamp(this.end).replaceAll("[-=:&]", "") + suffix;
+        return prefix + "since" + getISO8601Timestamp(this.start).replaceAll("[-=:&]", "")
+                + "until" + getISO8601Timestamp(this.end).replaceAll("[-=:&]", "") + suffix;
     }
 
     private Date start;
@@ -46,11 +49,11 @@ public class DatePeriod {
 
     public static List<DatePeriod> getPeriodList(Date start, Date end, int days) {
         List<DatePeriod> dd = new ArrayList<>();
-        Date nextStart = Util.getDateAfter(start, days);
+        Date nextStart = getDateAfter(start, days);
         while (start.before(end)) {
             dd.add(new DatePeriod(start, nextStart));
             start = nextStart;
-            nextStart = Util.getDateAfter(start, days);
+            nextStart = getDateAfter(start, days);
         }
         return dd;
     }
@@ -84,10 +87,10 @@ public class DatePeriod {
     public static List<DatePeriod> getTimePeriodListByString(String startTimeString, String endTimeString, int interval){
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            dateFormat.setTimeZone(Util.utc0);
+            dateFormat.setTimeZone(utc0);
             Date adam = dateFormat.parse(startTimeString);
             Date start = adam;
-            Date end = Util.getDateAfter(start, interval);
+            Date end = getDateAfter(start, interval);
             Date lilin = dateFormat.parse(endTimeString);
             return DatePeriod.getPeriodList(adam, lilin, interval);
         } catch (ParseException e) {
@@ -96,4 +99,79 @@ public class DatePeriod {
         return null;
     }
 
+    public static final DateFormat dateFormatISO8601 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+    public static final DateFormat dateFormatFileName = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+
+    private static final Pattern commitGroupFileNamePattern = Pattern.compile("since([0-9TZ\\-:]*)until([0-9TZ\\-:]*)");
+
+    public static String getISO8601Timestamp(Date date) {
+        dateFormatISO8601.setTimeZone(utc0);
+        String nowAsISO = dateFormatISO8601.format(date);
+        return nowAsISO;
+    }
+
+    public static Date getDateFromISO8601(String time) {
+        if (time == null) {
+            return null;
+        }
+        //String simpleTime = time.replace("[^0-9TZ]","");
+        try {
+            dateFormatISO8601.setTimeZone(utc0);
+            return dateFormatISO8601.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 得到几天前的时间
+     *
+     * @param d
+     * @param day
+     * @return
+     */
+    public static Date getDateBefore(Date d, int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(utc0);
+        calendar.setTime(d);
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - day);
+        return calendar.getTime();
+    }
+
+    /**
+     * 得到几天后的时间
+     *
+     * @param d
+     * @param day
+     * @return
+     */
+    public static Date getDateAfter(Date d, int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(utc0);
+        calendar.setTime(d);
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + day);
+        return calendar.getTime();
+    }
+
+    private static Date getDateFromString(String str, int group) {
+        Matcher matcher = commitGroupFileNamePattern.matcher(str);
+        if (matcher.find()) {
+            try {
+                return dateFormatFileName.parse(matcher.group(group));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public static Date getSince(String str) {
+        return getDateFromString(str, 1);
+    }
+
+    public static Date getUntil(String str) {
+        return getDateFromString(str, 2);
+    }
 }
