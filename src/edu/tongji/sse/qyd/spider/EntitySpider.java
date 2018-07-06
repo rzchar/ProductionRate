@@ -30,23 +30,17 @@ abstract public class EntitySpider<T> {
             connection.connect();
             //connection.getInputStream();
 
-            //System.out.println("response code: " + connection.getResponseCode());
-            Util.log(this.getClass(), "x-ratelimit-remaining: " + connection.getHeaderField("x-ratelimit-remaining"));
-
-            Thread.sleep(700L);
-            if (connection.getHeaderFieldInt("x-ratelimit-remaining", 5000) < 100) {
-                Thread.sleep(3700L * 1000L);
-            }
-
             InputStream is = connection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line;
             while ((line = br.readLine()) != null) {
                 responseContent += line + "\n";
             }
-            //System.out.println(responseContent);
 
-        } catch (InterruptedException | IOException e) {
+            //System.out.println(responseContent);
+            ConnectionAssistant.spiderLimitCheck(connection);
+            connection.disconnect();
+        } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             System.out.println("uncaught exception");
@@ -82,6 +76,7 @@ abstract public class EntitySpider<T> {
             commitContentString = getEntityContentFromRequest(urlString);
             if (!commitContentString.equals("")) {
                 try {
+                    entityInfoFile.getParentFile().mkdirs();
                     entityInfoFile.createNewFile();
                     BufferedWriter bw = new BufferedWriter(new FileWriter(entityInfoFile));
                     bw.write(commitContentString);
@@ -91,6 +86,12 @@ abstract public class EntitySpider<T> {
                     e.printStackTrace();
                 }
             }
+        }
+        if (commitContentString == null || commitContentString.equals("")) {
+            if (entityInfoFile.exists()) {
+                entityInfoFile.delete();
+            }
+            return null;
         }
         return makeEntityInfoFromResponseContent(commitContentString);
     }
@@ -104,7 +105,12 @@ abstract public class EntitySpider<T> {
             BufferedReader br = new BufferedReader(new FileReader(entityList));
             String line;
             while ((line = br.readLine()) != null) {
-                result.add(getEntityInfo(line));
+                T te = getEntityInfo(line);
+                if (te == null) {
+                    Util.log(this.getClass(), "ERROR Get empty entity. URL:" + line);
+                    continue;
+                }
+                result.add(te);
             }
             br.close();
             return result;

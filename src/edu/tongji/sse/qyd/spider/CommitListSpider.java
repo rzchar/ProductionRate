@@ -1,7 +1,7 @@
 package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.Util.URLOfBasicAPI;
+import edu.tongji.sse.qyd.Util.Util;
 
 import java.io.File;
 import java.util.Date;
@@ -17,13 +17,19 @@ public class CommitListSpider extends ListSpider {
 
 
     protected CommitListSpider() {
-        this.startURL = URLOfBasicAPI.commits;
-        listFileName = "#commitList" + (new Date()).getTime() + ".txt";
+        this.startURL = Util.getInstance().getProjectAPIURL() + "commits";
+        listFileName = Path.getMiddleDataPath() + File.separator + "commitGroups"
+                + File.separator + "#commitList" + (new Date()).getTime() + ".txt";
         makeNewEmptyFile();
     }
 
     public CommitListSpider(String startURL, String fileName) {
         super(startURL, fileName);
+        if (!fileName.contains(File.separator)) {
+            listFileName = Path.getMiddleDataPath() + File.separator + "commitGroups"
+                    + File.separator + fileName;
+        }
+        makeNewEmptyFile();
     }
 
     //Set<String> urls = new HashSet<>();

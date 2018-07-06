@@ -2,6 +2,7 @@ package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.ConnectionAssistant;
 import edu.tongji.sse.qyd.Util.Path;
+import edu.tongji.sse.qyd.Util.Util;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,7 +16,7 @@ import java.util.regex.Pattern;
 /**
  * Created by qyd on 2018/5/4.
  */
-public class ListSpider {
+public abstract class ListSpider {
     protected BufferedWriter bw = null;
     protected Pattern nextLinkPattern = Pattern.compile("<(.*)>;\\srel=\"next\"");
 
@@ -32,9 +33,7 @@ public class ListSpider {
     }
 
     protected void makeNewEmptyFile() {
-        String absuloteFileName =  Path.getMiddleDataPath() + File.separator + "commitGroups"
-                + File.separator + listFileName;
-        File commitListFile = new File(absuloteFileName);
+        File commitListFile = new File(listFileName);
         if (commitListFile.exists()) {
             commitListFile.delete();
         }
@@ -109,6 +108,8 @@ public class ListSpider {
             }
 
             writeContentToFile(responseContent);
+            ConnectionAssistant.spiderLimitCheck(connection);
+            connection.disconnect();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

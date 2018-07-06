@@ -21,6 +21,7 @@ public class IssueListSpider extends ListSpider {
 
     public IssueListSpider(String startURL, String fileName) {
         super(startURL, fileName);
+        makeNewEmptyFile();
     }
 
     public static void main(String[] args) {

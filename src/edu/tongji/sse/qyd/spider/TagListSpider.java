@@ -1,7 +1,6 @@
 package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.Util.URLOfBasicAPI;
 import edu.tongji.sse.qyd.Util.Util;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,14 +8,12 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Created by qyd on 2018/5/4.
- */
+
 public class TagListSpider extends ListSpider {
 
     public TagListSpider() {
         super();
-        this.startURL = URLOfBasicAPI.tags;
+        this.startURL = Util.getInstance().getProjectAPIURL() + "tags";
         listFileName = Path.getMiddleDataPath() + File.separator + "tags"
                 + File.separator + "#tagList" + ".txt";
         makeNewEmptyFile();

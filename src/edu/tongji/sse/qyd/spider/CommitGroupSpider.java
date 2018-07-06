@@ -2,7 +2,6 @@ package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.DatePeriod;
 import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.Util.URLOfBasicAPI;
 import edu.tongji.sse.qyd.Util.Util;
 
 import java.io.File;
@@ -27,7 +26,7 @@ public class CommitGroupSpider {
         //getOneWeek(DatePeriod.getEclipseCheV4LifeTime(),"V4");
         //getOneWeek(DatePeriod.getEclipseCheV5LifeTime(),"V5");
         //getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"V6");
-        getOneWeek(DatePeriod.getEclipseCheV5E1LifeTime(),"V5.1");
+        getOneWeek(DatePeriod.getEclipseCheV5E1LifeTime(), "V5.1");
 //            while (start.before(lilin)) {
 //                String time = "since=" + Util.getISO8601Timestamp(start) + "&until=" + Util.getISO8601Timestamp(end);
 //                start = end;
@@ -37,12 +36,12 @@ public class CommitGroupSpider {
 
     }
 
-    static public void getOneWeek(List<DatePeriod> datePeriodList, String subFolderName){
+    static public void getOneWeek(List<DatePeriod> datePeriodList, String subFolderName) {
         for (DatePeriod dd : datePeriodList) {
             String time = "since=" + DatePeriod.getISO8601Timestamp(dd.getStart())
                     + "&until=" + DatePeriod.getISO8601Timestamp(dd.getEnd());
             System.out.println(time);
-            WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider(time, subFolderName );
+            WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider(time, subFolderName);
             weekCommitListSpider.getListToFile();
         }
     }
@@ -50,14 +49,14 @@ public class CommitGroupSpider {
     static private class WeekCommitListSpider extends CommitListSpider {
         public WeekCommitListSpider(String sinceUntil, String subFolderName) {
             super(sinceUntil, subFolderName);
-            File dir = new File(Path.getMiddleDataPath() + File.separator +  "commitGroups"
+            File dir = new File(Path.getMiddleDataPath() + File.separator + "commitGroups"
                     + File.separator + subFolderName);
-            if(!dir.exists()){
+            if (!dir.exists()) {
                 dir.mkdirs();
             }
-            this.startURL = URLOfBasicAPI.commits + "?" + sinceUntil;
-            this.listFileName = Path.getMiddleDataPath() + File.separator +  "commitGroups"
-                    + File.separator + subFolderName  + File.separator + "commitList"
+            this.startURL = Util.getInstance().getProjectAPIURL() + "commits?" + sinceUntil;
+            this.listFileName = Path.getMiddleDataPath() + File.separator + "commitGroups"
+                    + File.separator + subFolderName + File.separator + "commitList"
                     + sinceUntil.replaceAll("[-=:&]", "") + ".txt";
             makeNewEmptyFile();
         }

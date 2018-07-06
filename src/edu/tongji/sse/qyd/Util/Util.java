@@ -1,7 +1,8 @@
 package edu.tongji.sse.qyd.Util;
 
-import edu.tongji.sse.qyd.analyzer.OverallAnalyzer;
 import edu.tongji.sse.qyd.resultStructure.FileNames;
+import edu.tongji.sse.qyd.spider.CommitListSpider;
+import edu.tongji.sse.qyd.spider.CommitSpider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +90,38 @@ public class Util {
         return new Util(folderName, projectAPIURL, fileNamesPrepare);
     }
 
+    public static Util Atom() {
+        String projectAPIURL = "https://api.github.com/repos/atom/atom/";
+        String folderName = "atom";
+        return new Util(folderName, projectAPIURL, new ArrayList<>());
+    }
+
+    public static Util IntellijCommunity() {
+        String projectAPIURL = "https://api.github.com/repos/JetBrains/intellij-community/";
+        String folderName = "ic";//introduction chapter
+        return new Util(folderName, projectAPIURL, new ArrayList<>());
+    }
+
+    public static Util Brackets() {
+        String projectAPIURL = "https://api.github.com/repos/adobe/brackets/";
+        String folderName = "brkt";
+        return new Util(folderName, projectAPIURL, new ArrayList<>());
+    }
+
+    @Deprecated
+    public static Util Vscode() {
+        String projectAPIURL = "https://api.github.com/repos/atom/atom/";
+        String folderName = "atom";
+        return new Util(folderName, projectAPIURL, new ArrayList<>());
+    }
+
+    public static Util ThisProject() {
+        String projectAPIURL = "https://api.github.com/repos/rzchar/ProductionRate/";
+        String folderName = "this";
+        return new Util(folderName, projectAPIURL, new ArrayList<>());
+    }
+
+
     private static Util currentInstance;
 
     public static Util getInstance() {
@@ -99,5 +132,36 @@ public class Util {
     }
 
     public static void setInstance(String instanceName) {
+        if (instanceName == "che") {
+            currentInstance = CheInstance();
+        }
+        if (instanceName == "atom") {
+            currentInstance = Atom();
+        }
+        if (instanceName == "ic") {
+            currentInstance = IntellijCommunity();
+        }
+        if (instanceName == "brkt") {
+            currentInstance = Brackets();
+        }
+        if (instanceName == "this") {
+            currentInstance = ThisProject();
+        }
     }
+
+    public static void main(String[] args) {
+
+        String commitListFileName = "#commitList.txt";
+        //String[] projects = new String[]{"atom", "ic", "brkt"};
+        String[] projects = new String[]{"brkt"};
+        for (String pro : projects) {
+            setInstance(pro);
+            //CommitListSpider commitListSpider = new CommitListSpider(getInstance().getProjectAPIURL() + "commits", commitListFileName);
+            //commitListSpider.getListToFile();
+            CommitSpider commitSpider = new CommitSpider();
+            commitSpider.getAllEntity(commitListFileName);
+        }
+    }
+
+
 }
