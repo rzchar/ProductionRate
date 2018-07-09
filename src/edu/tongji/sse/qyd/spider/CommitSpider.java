@@ -7,6 +7,7 @@ import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONString;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
             }
         }
         if (commit.has("author")) {
-            if (commit.isNull("author")) {
+            if (commit.isNull("author") || commit.getJSONObject("author").isNull("id")) {
                 try {
                     authorId = String.valueOf(commit.getJSONObject("commit").getJSONObject("author").getString("name"));
                     //Util.log(this.getClass(), "authorId:" + authorId);

@@ -108,10 +108,9 @@ public class Util {
         return new Util(folderName, projectAPIURL, new ArrayList<>());
     }
 
-    @Deprecated
     public static Util Vscode() {
-        String projectAPIURL = "https://api.github.com/repos/atom/atom/";
-        String folderName = "atom";
+        String projectAPIURL = "https://api.github.com/repos/Microsoft/vscode/";
+        String folderName = "msvs";
         return new Util(folderName, projectAPIURL, new ArrayList<>());
     }
 
@@ -144,6 +143,9 @@ public class Util {
         if (instanceName == "brkt") {
             currentInstance = Brackets();
         }
+        if (instanceName == "msvs") {
+            currentInstance = Vscode();
+        }
         if (instanceName == "this") {
             currentInstance = ThisProject();
         }
@@ -153,7 +155,7 @@ public class Util {
 
         String commitListFileName = "#commitList.txt";
         //String[] projects = new String[]{"atom", "ic", "brkt"};
-        String[] projects = new String[]{"brkt"};
+        String[] projects = new String[]{"msvs"};
         for (String pro : projects) {
             setInstance(pro);
             //CommitListSpider commitListSpider = new CommitListSpider(getInstance().getProjectAPIURL() + "commits", commitListFileName);

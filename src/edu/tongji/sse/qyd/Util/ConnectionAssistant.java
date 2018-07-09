@@ -8,14 +8,15 @@ import java.net.HttpURLConnection;
  */
 public class ConnectionAssistant {
     static public void addAuthority(HttpsURLConnection conn) {
-        conn.setRequestProperty("Authorization", "Basic cnpjaGFyOmNoYXJsZXM4NjIyMzc2NA==");
+        //conn.setRequestProperty("Authorization", "Basic cnpjaGFyOmNoYXJsZXM4NjIyMzc2NA==");//qyd
+        conn.setRequestProperty("Authorization", "Basic QWRhMTI6Y2hlbjExMTAzODQ3");//yangchen
     }
 
     static public void addAuthority(HttpURLConnection conn) {
         conn.setRequestProperty("Authorization", "Basic cnpjaGFyOmNoYXJsZXM4NjIyMzc2NA==");
     }
 
-    public static void spiderLimitCheck(HttpURLConnection conn) {
+    public static void spiderLimitCheck(HttpsURLConnection conn) {
         //System.out.println("response code: " + connection.getResponseCode());
         try {
             int remainEntityNum = conn.getHeaderFieldInt("x-ratelimit-remaining", 5000);
