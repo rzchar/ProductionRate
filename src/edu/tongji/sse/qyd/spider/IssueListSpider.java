@@ -1,6 +1,7 @@
 package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.Util.Path;
+import edu.tongji.sse.qyd.Util.Util;
 
 import java.io.File;
 import java.util.Date;
@@ -11,16 +12,19 @@ import java.util.Date;
 public class IssueListSpider extends ListSpider {
     protected int pagesCount = 0;
 
-    protected IssueListSpider() {
-        //this.startURL = URLOfBasicAPI.issuesAll;
-        this.startURL = "https://api.github.com/repositories/32935745/issues?state=all&page=130";
-        listFileName = Path.getMiddleDataPath() + File.separator + "issueGroups"
-                + File.separator + "#issueListAll" + (new Date()).getTime() + ".txt";
+    public IssueListSpider(String startURL, String fileName) {
+        super(startURL, fileName);
+        if (!fileName.contains(File.separator)) {
+            listFileName = Path.getMiddleDataPath() + File.separator + "issueGroupsAll"
+                    + File.separator + fileName;
+        }
         makeNewEmptyFile();
     }
 
-    public IssueListSpider(String startURL, String fileName) {
-        super(startURL, fileName);
+    public IssueListSpider() {
+        this.startURL = Util.getInstance().getProjectAPIURL() + "issues";
+        listFileName = Path.getMiddleDataPath() + File.separator + "issueGroupsAll"
+                + File.separator + "#issueList" + (new Date()).getTime() + ".txt";
         makeNewEmptyFile();
     }
 

@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.SocketException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -86,35 +87,40 @@ public abstract class ListSpider {
 
         String responseContent = "";
         String nextPage = "";
-        System.out.println("urlList:" + urlString);
+        boolean succeed = false;
+        while(!succeed) {
+            Util.log(this.getClass(),"urlList:" + urlString);
+            try {
+                URL url = new URL(urlString);
+                HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+                ConnectionAssistant.addAuthority(connection);
+                connection.connect();
 
-        try {
-            URL url = new URL(urlString);
-            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-            ConnectionAssistant.addAuthority(connection);
-            connection.connect();
+                //get next page
+                if (connection.getHeaderField("Link") != null) {
+                    String[] links = connection.getHeaderField("Link").split(",");
+                    nextPage = getNextLink(links);
+                }
 
-            //get next page
-            if (connection.getHeaderField("Link") != null) {
-                String[] links = connection.getHeaderField("Link").split(",");
-                nextPage = getNextLink(links);
+                InputStream is = connection.getInputStream();
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    responseContent += line + "\n";
+                }
+
+                writeContentToFile(responseContent);
+                ConnectionAssistant.spiderLimitCheck(connection);
+                connection.disconnect();
+                succeed = true;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (SocketException e) {
+                e.printStackTrace();
+                continue;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            InputStream is = connection.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                responseContent += line + "\n";
-            }
-
-            writeContentToFile(responseContent);
-            ConnectionAssistant.spiderLimitCheck(connection);
-            connection.disconnect();
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return nextPage;
     }
