@@ -1,7 +1,6 @@
 package edu.tongji.sse.qyd.analyzer;
 
-import edu.tongji.sse.qyd.Util.DatePeriod;
-import edu.tongji.sse.qyd.Util.Path;
+import edu.tongji.sse.qyd.util.DatePeriod;
 
 import java.io.File;
 

@@ -13,6 +13,7 @@ public class GitCommitInfo {
     static private Set<String> blockedFileSuffix = new HashSet<>();
     private List<GitCommitFileInfo> files;
     private String authorId;
+    private String url;
 
     {
         blockedFileSuffix.add(".java");
@@ -20,9 +21,10 @@ public class GitCommitInfo {
         blockedFileSuffix.add(".html");
     }
 
-    public GitCommitInfo(String authorId, List<GitCommitFileInfo> files) {
+    public GitCommitInfo(String url, String authorId, List<GitCommitFileInfo> files) {
         this.files = files;
         this.authorId = authorId;
+        this.url = url;
     }
 
     public static void main(String[] a) {
@@ -38,6 +40,10 @@ public class GitCommitInfo {
 
     public void setFiles(List<GitCommitFileInfo> files) {
         this.files = files;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public String getAuthorId() {

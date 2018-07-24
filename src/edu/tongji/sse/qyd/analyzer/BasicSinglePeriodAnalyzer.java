@@ -1,7 +1,7 @@
 package edu.tongji.sse.qyd.analyzer;
 
-import edu.tongji.sse.qyd.Util.DatePeriod;
-import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.util.DatePeriod;
+import edu.tongji.sse.qyd.util.Util;
 import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
 import edu.tongji.sse.qyd.resultStructure.cost.CostTypeSet;
 import edu.tongji.sse.qyd.resultStructure.effort.EffortTypeSet;

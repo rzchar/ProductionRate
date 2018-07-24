@@ -1,13 +1,12 @@
 package edu.tongji.sse.qyd.spider;
 
-import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.util.Path;
+import edu.tongji.sse.qyd.util.Util;
 import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
 import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONString;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -87,7 +86,8 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
                 authorId = String.valueOf(commit.getJSONObject("author").getInt("id"));
             }
         }
-        return new GitCommitInfo(authorId, fileInfoList);
+        String url = commit.getString("url");
+        return new GitCommitInfo(url, authorId, fileInfoList);
     }
 
     @Override

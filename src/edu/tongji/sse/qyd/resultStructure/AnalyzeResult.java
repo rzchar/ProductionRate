@@ -1,6 +1,6 @@
 package edu.tongji.sse.qyd.resultStructure;
 
-import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.util.Util;
 import edu.tongji.sse.qyd.resultStructure.cost.CostTypeSet;
 import edu.tongji.sse.qyd.resultStructure.effort.EffortTypeSet;
 import edu.tongji.sse.qyd.resultStructure.info.InfoSet;

@@ -1,4 +1,4 @@
-package edu.tongji.sse.qyd.Util;
+package edu.tongji.sse.qyd.util;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.net.HttpURLConnection;

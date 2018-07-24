@@ -1,18 +1,20 @@
 package edu.tongji.sse.qyd.spider;
 
-import edu.tongji.sse.qyd.Util.DatePeriod;
-import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.util.DatePeriod;
+import edu.tongji.sse.qyd.util.Path;
+import edu.tongji.sse.qyd.util.Util;
+import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by qyd on 2018/5/6.
  */
-public class CommitGroupSpider {
+public class CommitGrouper implements   EntityGrouper<GitCommitInfo> {
     public static void main(String[] a) {
         //System.out.println("since=2018-01-01T00:00:00Z&until=2018-01-07T23:59:59Z".replaceAll("[-=:&]",""));
 
@@ -44,6 +46,16 @@ public class CommitGroupSpider {
             WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider(time, subFolderName);
             weekCommitListSpider.getListToFile();
         }
+    }
+
+    @Override
+    public Map<DatePeriod, List<GitCommitInfo>> getIssueGroupByTime(List<DatePeriod> datePeriodList) {
+        return null;
+    }
+
+    @Override
+    public void writeListToFile(String folderPath, List<DatePeriod> datePeriodList) {
+
     }
 
     static private class WeekCommitListSpider extends CommitListSpider {

@@ -1,4 +1,4 @@
-package edu.tongji.sse.qyd.Util;
+package edu.tongji.sse.qyd.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;

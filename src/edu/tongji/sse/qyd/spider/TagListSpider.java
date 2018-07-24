@@ -1,7 +1,7 @@
 package edu.tongji.sse.qyd.spider;
 
-import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.util.Path;
+import edu.tongji.sse.qyd.util.Util;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,17 +11,15 @@ import java.io.IOException;
 
 public class TagListSpider extends ListSpider {
 
-    public TagListSpider() {
-        super();
-        this.startURL = Util.getInstance().getProjectAPIURL() + "tags";
-        listFileName = Path.getMiddleDataPath() + File.separator + "tags"
-                + File.separator + "#tagList" + ".txt";
-        makeNewEmptyFile();
-    }
+    static boolean simpleMod = true;
 
-    public static void main(String[] a) {
-        TagListSpider tls = new TagListSpider();
-        tls.getListToFile();
+    public TagListSpider(String startURL, String fileName) {
+        super(startURL, fileName);
+        if (!fileName.contains(File.separator)) {
+            listFileName = Path.getMiddleDataPath() + File.separator + "tags"
+                    + File.separator + fileName;
+        }
+        makeNewEmptyFile();
     }
 
     @Override
@@ -32,6 +30,7 @@ public class TagListSpider extends ListSpider {
         try {
             CommitSpider commitSpider = new CommitSpider();
             JSONArray entityArray = new JSONArray(responseContent);
+
             for (int i = 0; i < entityArray.length(); i++) {
                 JSONObject entityOBJ = entityArray.getJSONObject(i);
                 entityOBJ.remove("zipball_url");
@@ -41,8 +40,11 @@ public class TagListSpider extends ListSpider {
                 String commitTime = commitObj.getJSONObject("commit").getJSONObject("committer").getString("date");
                 String name = entityOBJ.getString("name");
                 Util.log(this.getClass(), name + "  " + commitTime);
-                this.bw.write(entityOBJ.toString() + "\n");
-
+                if(simpleMod){
+                    this.bw.write(name + "  :  " + commitTime);
+                }else {
+                    this.bw.write(entityOBJ.toString() + "\n");
+                }
                 this.bw.flush();
 
             }

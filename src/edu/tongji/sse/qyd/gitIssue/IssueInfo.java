@@ -11,19 +11,22 @@ public class IssueInfo {
     private Date closedAt;
     private Date createdAt;
     private int number;
+    private String url;
 
     public IssueInfo(int number) {
         this.number = number;
         this.closedAt = null;
         this.createdAt = null;
         this.labels = null;
+        this.url = null;
     }
 
-    public IssueInfo(int number, Date createdAt, Date closedAt, Set<String> labels) {
+    public IssueInfo(int number, Date createdAt, Date closedAt, Set<String> labels, String url) {
         this.labels = labels;
         this.closedAt = closedAt;
         this.createdAt = createdAt;
         this.number = number;
+        this.url = url;
     }
 
     public int getNumber() {
@@ -56,5 +59,13 @@ public class IssueInfo {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

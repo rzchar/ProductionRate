@@ -1,9 +1,11 @@
-package edu.tongji.sse.qyd.Util;
+package edu.tongji.sse.qyd.util;
 
 import edu.tongji.sse.qyd.resultStructure.FileNames;
-import edu.tongji.sse.qyd.spider.CommitListSpider;
 import edu.tongji.sse.qyd.spider.CommitSpider;
+import edu.tongji.sse.qyd.spider.IssuesSpider;
+import edu.tongji.sse.qyd.spider.TagListSpider;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -154,14 +156,32 @@ public class Util {
     public static void main(String[] args) {
 
         String commitListFileName = "#commitList.txt";
-        //String[] projects = new String[]{"atom", "ic", "brkt"};
-        String[] projects = new String[]{"msvs"};
+        String issueListFileName = "#issueListAll.txt";
+        String tagListFileName = "#tagList.txt";
+        //String[] projects = new String[]{"che", "atom", "ic", "brkt", "msvs"}; ic unavailable
+        String[] projects = new String[]{"che", "brkt", "msvs", "atom"};
         for (String pro : projects) {
             setInstance(pro);
-            //CommitListSpider commitListSpider = new CommitListSpider(getInstance().getProjectAPIURL() + "commits", commitListFileName);
-            //commitListSpider.getListToFile();
-            CommitSpider commitSpider = new CommitSpider();
-            commitSpider.getAllEntity(commitListFileName);
+//            CommitListSpider commitListSpider = new CommitListSpider(getInstance().getProjectAPIURL() + "commits", commitListFileName);
+//            commitListSpider.getListToFile();
+//            Util.log(Util.class, pro);
+//            Util.log(CommitSpider.class, "start");
+//            CommitSpider commitSpider = new CommitSpider();
+//            commitSpider.getAllEntity(commitListFileName);
+//            Util.log(CommitSpider.class, "end");
+//            Util.log(IssuesSpider.class, "start");
+//            IssuesSpider issuesSpider = new IssuesSpider();
+//            issuesSpider.getAllEntity(issueListFileName);
+//            Util.log(IssuesSpider.class, "end");
+            TagListSpider tgs = new TagListSpider(getInstance().getProjectAPIURL() + "tags", commitListFileName);
+            tgs.getListToFile();
+        }
+    }
+
+    static public void makeParentDir(File f) {
+        File parent = f.getParentFile();
+        if (!(parent.isDirectory() && parent.exists())) {
+            parent.mkdirs();
         }
     }
 

@@ -1,7 +1,7 @@
 package edu.tongji.sse.qyd.spider;
 
-import edu.tongji.sse.qyd.Util.ConnectionAssistant;
-import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.util.ConnectionAssistant;
+import edu.tongji.sse.qyd.util.Util;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;

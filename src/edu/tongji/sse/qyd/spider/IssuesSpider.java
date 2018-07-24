@@ -1,15 +1,13 @@
 package edu.tongji.sse.qyd.spider;
 
-import edu.tongji.sse.qyd.Util.DatePeriod;
-import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.util.DatePeriod;
+import edu.tongji.sse.qyd.util.Path;
+import edu.tongji.sse.qyd.util.Util;
 import edu.tongji.sse.qyd.gitIssue.IssueInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,6 +39,7 @@ public class IssuesSpider extends EntitySpider<IssueInfo> {
             if (issue.has("closed_at") && !issue.isNull("closed_at")) {
                 issueInfo.setClosedAt(DatePeriod.getDateFromISO8601(issue.getString("closed_at")));
             }
+            issueInfo.setUrl(issue.getString("url"));
             return issueInfo;
         } catch (JSONException e) {
             e.printStackTrace();

@@ -1,6 +1,6 @@
 package edu.tongji.sse.qyd.analyzer;
 
-import edu.tongji.sse.qyd.Util.DatePeriod;
+import edu.tongji.sse.qyd.util.DatePeriod;
 
 /**
  * Created by qyd on 2018/6/18.

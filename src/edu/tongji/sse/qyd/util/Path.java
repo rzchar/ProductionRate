@@ -1,4 +1,4 @@
-package edu.tongji.sse.qyd.Util;
+package edu.tongji.sse.qyd.util;
 
 import java.io.File;
 

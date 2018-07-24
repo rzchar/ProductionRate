@@ -1,6 +1,6 @@
 package edu.tongji.sse.qyd.resultStructure;
 
-import edu.tongji.sse.qyd.Util.DatePeriod;
+import edu.tongji.sse.qyd.util.DatePeriod;
 
 import java.util.List;
 

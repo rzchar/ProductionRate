@@ -1,8 +1,8 @@
 package edu.tongji.sse.qyd.analyzer;
 
-import edu.tongji.sse.qyd.Util.DatePeriod;
-import edu.tongji.sse.qyd.Util.Path;
-import edu.tongji.sse.qyd.Util.Util;
+import edu.tongji.sse.qyd.util.DatePeriod;
+import edu.tongji.sse.qyd.util.Path;
+import edu.tongji.sse.qyd.util.Util;
 import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
 import edu.tongji.sse.qyd.resultStructure.FileNames;
 
