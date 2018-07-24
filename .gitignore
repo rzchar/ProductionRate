@@ -2,4 +2,5 @@
 /ProductionRate.iml
 /web/middle/*.json
 /web/middle/*.txt
+!/web/middle/*#*.txt
 /out/*
