@@ -9,11 +9,12 @@ import java.util.regex.Pattern;
 /**
  * Created by qyd on 2018/5/7.
  */
-public class GitCommitInfo {
+public class CommitInfo {
     static private Set<String> blockedFileSuffix = new HashSet<>();
     private List<GitCommitFileInfo> files;
     private String authorId;
     private String url;
+    private String time;
 
     {
         blockedFileSuffix.add(".java");
@@ -21,7 +22,7 @@ public class GitCommitInfo {
         blockedFileSuffix.add(".html");
     }
 
-    public GitCommitInfo(String url, String authorId, List<GitCommitFileInfo> files) {
+    public CommitInfo(String url, String authorId, String time, List<GitCommitFileInfo> files) {
         this.files = files;
         this.authorId = authorId;
         this.url = url;
@@ -52,6 +53,14 @@ public class GitCommitInfo {
 
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int sumChanges() {

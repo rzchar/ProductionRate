@@ -5,7 +5,7 @@ import edu.tongji.sse.qyd.util.Util;
 import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
 import edu.tongji.sse.qyd.resultStructure.BasicFilePattern;
 import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
-import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
+import edu.tongji.sse.qyd.gitCommit.CommitInfo;
 import edu.tongji.sse.qyd.resultStructure.info.Contributor;
 import edu.tongji.sse.qyd.resultStructure.info.InfoSet;
 import edu.tongji.sse.qyd.spider.CommitSpider;
@@ -36,10 +36,10 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
         for (int iurl = 0; iurl < urls.size(); iurl++) {
             Contributor contributor = new Contributor();
             String url = urls.get(iurl);
-            GitCommitInfo gitCommitInfo = CommitSpider.getInstance().getEntityInfo(url);
-            List<GitCommitFileInfo> gitCommitFileInfoList = gitCommitInfo.getFiles();
+            CommitInfo commitInfo = CommitSpider.getInstance().getEntityInfo(url);
+            List<GitCommitFileInfo> gitCommitFileInfoList = commitInfo.getFiles();
 
-            contributor.addAuthor(gitCommitInfo.getAuthorId());
+            contributor.addAuthor(commitInfo.getAuthorId());
             for (GitCommitFileInfo gitCommitFileInfo : gitCommitFileInfoList) {
                 boolean succeedMatch = false;
                 String fileName = gitCommitFileInfo.getFileName();
@@ -57,7 +57,7 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                 }
             }
 
-            authors.add(gitCommitInfo.getAuthorId());
+            authors.add(commitInfo.getAuthorId());
 
         }
         //System.out.println( "authors number:" + authors.size() + ";");

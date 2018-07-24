@@ -36,6 +36,6 @@ public class CommitListSpider extends ListSpider {
 
     public static void main(String[] args) {
         CommitListSpider commitListSpider = new CommitListSpider();
-        commitListSpider.getListToFile();
+        commitListSpider.getListAndWriteToFile();
     }
 }

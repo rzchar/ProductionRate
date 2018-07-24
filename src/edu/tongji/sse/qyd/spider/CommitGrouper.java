@@ -1,76 +1,72 @@
 package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.util.DatePeriod;
-import edu.tongji.sse.qyd.util.Path;
 import edu.tongji.sse.qyd.util.Util;
-import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
+import edu.tongji.sse.qyd.gitCommit.CommitInfo;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by qyd on 2018/5/6.
  */
-public class CommitGrouper implements   EntityGrouper<GitCommitInfo> {
-    public static void main(String[] a) {
-        //System.out.println("since=2018-01-01T00:00:00Z&until=2018-01-07T23:59:59Z".replaceAll("[-=:&]",""));
+public class CommitGrouper implements   EntityGrouper<CommitInfo> {
+    private String commitListFileName;
 
-        //WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider("since=2018-01-01T00:00:00Z&until=2018-01-07T23:59:59Z");
-        //weekCommitListSpider.getListToFile();
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        dateFormat.setTimeZone(DatePeriod.utc0);
-        //List<DatePeriod> datePeriodList = DatePeriod.getEclipseCheWholeLifeTime();
-        //getOneWeek(DatePeriod.getEclipseCheWholeLifeTime(),"V0");
-        //getOneWeek(DatePeriod.getEclipseCheV4LifeTime(),"V4");
-        //getOneWeek(DatePeriod.getEclipseCheV5LifeTime(),"V5");
-        //getOneWeek(DatePeriod.getEclipseCheV6LifeTime(),"V6");
-        getOneWeek(DatePeriod.getEclipseCheV5E1LifeTime(), "V5.1");
-//            while (start.before(lilin)) {
-//                String time = "since=" + Util.getISO8601Timestamp(start) + "&until=" + Util.getISO8601Timestamp(end);
-//                start = end;
-//                end = Util.getDateAfter(end, 7);
-//            }
-        //System.out.println(Util.getISO8601Timestamp(Util.getDateAfter(adam, 7)));
-
-    }
-
-    static public void getOneWeek(List<DatePeriod> datePeriodList, String subFolderName) {
-        for (DatePeriod dd : datePeriodList) {
-            String time = "since=" + DatePeriod.getISO8601Timestamp(dd.getStart())
-                    + "&until=" + DatePeriod.getISO8601Timestamp(dd.getEnd());
-            System.out.println(time);
-            WeekCommitListSpider weekCommitListSpider = new WeekCommitListSpider(time, subFolderName);
-            weekCommitListSpider.getListToFile();
-        }
+    public CommitGrouper(String commitListFileName) {
+        this.commitListFileName = commitListFileName;
     }
 
     @Override
-    public Map<DatePeriod, List<GitCommitInfo>> getIssueGroupByTime(List<DatePeriod> datePeriodList) {
-        return null;
-    }
-
-    @Override
-    public void writeListToFile(String folderPath, List<DatePeriod> datePeriodList) {
-
-    }
-
-    static private class WeekCommitListSpider extends CommitListSpider {
-        public WeekCommitListSpider(String sinceUntil, String subFolderName) {
-            super(sinceUntil, subFolderName);
-            File dir = new File(Path.getMiddleDataPath() + File.separator + "commitGroups"
-                    + File.separator + subFolderName);
-            if (!dir.exists()) {
-                dir.mkdirs();
+    public Map<DatePeriod, List<CommitInfo>> getIssueGroupByTime(List<DatePeriod> datePeriodList) {
+        List<CommitInfo> commitInfoList = CommitSpider.getInstance().getAllEntity(commitListFileName);
+        Map<DatePeriod, List<CommitInfo>> commitsByCreatedTime = new HashMap<>();
+        for (CommitInfo commit : commitInfoList) {
+            Util.log(IssueGrouper.class, commit.getTime());
+            for (DatePeriod datePeriod : datePeriodList) {
+                if (datePeriod.contain(DatePeriod.getDateFromISO8601(commit.getTime()))) {
+                    if (!commitsByCreatedTime.keySet().contains(datePeriod)) {
+                        commitsByCreatedTime.put(datePeriod, new ArrayList<>());
+                    }
+                    commitsByCreatedTime.get(datePeriod).add(commit);
+                }
             }
-            this.startURL = Util.getInstance().getProjectAPIURL() + "commits?" + sinceUntil;
-            this.listFileName = Path.getMiddleDataPath() + File.separator + "commitGroups"
-                    + File.separator + subFolderName + File.separator + "commitList"
-                    + sinceUntil.replaceAll("[-=:&]", "") + ".txt";
-            makeNewEmptyFile();
+        }
+        return commitsByCreatedTime;
+    }
+
+    @Override
+    public void makeListAndWriteToFile(String folderPath, List<DatePeriod> datePeriodList) {
+
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        Map<DatePeriod, List<CommitInfo>> dividedCommitsMap = getIssueGroupByTime(datePeriodList);
+        for (DatePeriod datePeriod : dividedCommitsMap.keySet()) {
+            String fileName = datePeriod.getSinceUntilFileName("issuesList", ".txt");
+            File f = new File(folderPath + File.separator + fileName);
+            if (f.exists()) {
+                f.delete();
+            }
+            List<CommitInfo> issueInfoList = dividedCommitsMap.get(datePeriod);
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+                for (CommitInfo commitInfo : issueInfoList) {
+                    bw.write(commitInfo.getUrl() + "\n");
+                }
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
+
 }

@@ -1,9 +1,9 @@
 package edu.tongji.sse.qyd.spider;
 
+import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
+import edu.tongji.sse.qyd.gitCommit.CommitInfo;
 import edu.tongji.sse.qyd.util.Path;
 import edu.tongji.sse.qyd.util.Util;
-import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
-import edu.tongji.sse.qyd.gitCommit.GitCommitInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  * Get Commit from file or
  * Created by qyd on 2018/4/24.
  */
-public class CommitSpider extends EntitySpider<GitCommitInfo> {
+public class CommitSpider extends EntitySpider<CommitInfo> {
 
     static private final Pattern commitURLEnding = Pattern.compile("^https://api\\.github\\.com/repos/.*/commits/([0-9a-fA-F]{40})$");
     protected static CommitSpider commitSpider = new CommitSpider();
@@ -38,9 +38,8 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
     }
 
     @Override
-    protected GitCommitInfo makeEntityInfoFromResponseContent(String responseContent) {
+    protected CommitInfo makeEntityInfoFromResponseContent(String responseContent) {
         List<GitCommitFileInfo> fileInfoList = new ArrayList<>();
-        String authorId = "";
 
         JSONObject commit = new JSONObject(responseContent);
         if (!commit.has("sha")) {
@@ -74,20 +73,12 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
                 }
             }
         }
-        if (commit.has("author")) {
-            if (commit.isNull("author") || commit.getJSONObject("author").isNull("id")) {
-                try {
-                    authorId = String.valueOf(commit.getJSONObject("commit").getJSONObject("author").getString("name"));
-                    //Util.log(this.getClass(), "authorId:" + authorId);
-                } catch (JSONException e) {
-                    Util.log(this.getClass(), commit.get("sha") + ": this commit has no author");
-                }
-            } else {
-                authorId = String.valueOf(commit.getJSONObject("author").getInt("id"));
-            }
-        }
+
+        String authorId = getAuthorOrCommitterInfo(commit.getJSONObject("commit"), "name");
+        authorId = authorId.equals("") ? getAuthorOrCommitterInfo(commit.getJSONObject("commit"), "email") : authorId;
+        String time = getAuthorOrCommitterInfo(commit.getJSONObject("commit"), "date");
         String url = commit.getString("url");
-        return new GitCommitInfo(url, authorId, fileInfoList);
+        return new CommitInfo(url, authorId, time, fileInfoList);
     }
 
     @Override
@@ -108,5 +99,25 @@ public class CommitSpider extends EntitySpider<GitCommitInfo> {
     @Override
     protected String getEntityListAbsoluteFileName(String commitListName) {
         return Path.getMiddleDataPath() + File.separator + "commitGroups" + File.separator + commitListName;
+    }
+
+    private String getAuthorOrCommitterInfo(JSONObject jo, String key) {
+        String value = "";
+        JSONObject authorOrCommitter = new JSONObject();
+        authorOrCommitter.append(key, "");
+        if (jo.has("author") && !jo.isNull("author")) {
+            authorOrCommitter = jo.getJSONObject("author");
+            if (authorOrCommitter.has(key) && !authorOrCommitter.isNull(key)) {
+                return authorOrCommitter.getString(key);
+            }
+        }
+        if (jo.has("committer") && !jo.isNull("committer")) {
+            authorOrCommitter = jo.getJSONObject("committer");
+            if (authorOrCommitter.has(key) && !authorOrCommitter.isNull(key)) {
+                return authorOrCommitter.getString(key);
+            }
+        }
+        Util.log(this.getClass(), "get nothing for [" + key + "]" + jo.toString());
+        return "";
     }
 }

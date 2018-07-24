@@ -2,7 +2,6 @@ package edu.tongji.sse.qyd.util;
 
 import edu.tongji.sse.qyd.resultStructure.FileNames;
 import edu.tongji.sse.qyd.spider.CommitSpider;
-import edu.tongji.sse.qyd.spider.IssuesSpider;
 import edu.tongji.sse.qyd.spider.TagListSpider;
 
 import java.io.File;
@@ -163,18 +162,18 @@ public class Util {
         for (String pro : projects) {
             setInstance(pro);
 //            CommitListSpider commitListSpider = new CommitListSpider(getInstance().getProjectAPIURL() + "commits", commitListFileName);
-//            commitListSpider.getListToFile();
-//            Util.log(Util.class, pro);
-//            Util.log(CommitSpider.class, "start");
-//            CommitSpider commitSpider = new CommitSpider();
-//            commitSpider.getAllEntity(commitListFileName);
-//            Util.log(CommitSpider.class, "end");
+//            commitListSpider.getListAndWriteToFile();
+            Util.log(Util.class, pro);
+            Util.log(CommitSpider.class, "start");
+            CommitSpider commitSpider = new CommitSpider();
+            commitSpider.getAllEntity(commitListFileName);
+            Util.log(CommitSpider.class, "end");
 //            Util.log(IssuesSpider.class, "start");
 //            IssuesSpider issuesSpider = new IssuesSpider();
 //            issuesSpider.getAllEntity(issueListFileName);
 //            Util.log(IssuesSpider.class, "end");
-            TagListSpider tgs = new TagListSpider(getInstance().getProjectAPIURL() + "tags", commitListFileName);
-            tgs.getListToFile();
+//            TagListSpider tgs = new TagListSpider(getInstance().getProjectAPIURL() + "tags", commitListFileName);
+//            tgs.getListAndWriteToFile();
         }
     }
 

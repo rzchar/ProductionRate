@@ -69,17 +69,11 @@ public abstract class ListSpider {
 
     }
 
-    public void getListToFile() {
+    public void getListAndWriteToFile() {
         String nextPage = this.startURL;
-//        int pageLimit = 3;
         while (!nextPage.equals("")) {
             nextPage = this.getListFromRequest(nextPage);
-//            pageLimit--;
-//            if(pageLimit == 0){
-//                break;
-//            }
         }
-
     }
 
     protected String getListFromRequest(String urlString) {

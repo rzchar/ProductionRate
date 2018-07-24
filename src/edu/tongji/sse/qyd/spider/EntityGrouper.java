@@ -11,5 +11,5 @@ import java.util.Map;
 public interface EntityGrouper <T>{
     Map<DatePeriod, List<T>> getIssueGroupByTime(List<DatePeriod> datePeriodList);
 
-    void writeListToFile(String folderPath, List<DatePeriod> datePeriodList);
+    void makeListAndWriteToFile(String folderPath, List<DatePeriod> datePeriodList);
 }
