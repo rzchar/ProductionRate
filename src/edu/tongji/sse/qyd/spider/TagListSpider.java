@@ -41,7 +41,7 @@ public class TagListSpider extends ListSpider {
                 String name = entityOBJ.getString("name");
                 Util.log(this.getClass(), name + "  " + commitTime);
                 if(simpleMod){
-                    this.bw.write(name + "  :  " + commitTime);
+                    this.bw.write(name + "  :  " + commitTime + "\n");
                 }else {
                     this.bw.write(entityOBJ.toString() + "\n");
                 }
