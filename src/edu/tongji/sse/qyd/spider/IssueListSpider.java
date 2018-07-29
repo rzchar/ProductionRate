@@ -1,5 +1,6 @@
 package edu.tongji.sse.qyd.spider;
 
+import edu.tongji.sse.qyd.model.Project;
 import edu.tongji.sse.qyd.util.Path;
 import edu.tongji.sse.qyd.util.Util;
 
@@ -22,7 +23,7 @@ public class IssueListSpider extends ListSpider {
     }
 
     public IssueListSpider() {
-        this.startURL = Util.getInstance().getProjectAPIURL() + "issues";
+        this.startURL = Project.getInstance().getProjectAPIURL() + "issues";
         listFileName = Path.getMiddleDataPath() + File.separator + "issueGroupsAll"
                 + File.separator + "#issueList" + (new Date()).getTime() + ".txt";
         makeNewEmptyFile();

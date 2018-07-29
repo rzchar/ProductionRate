@@ -1,6 +1,6 @@
 package edu.tongji.sse.qyd.resultStructure;
 
-import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
+import edu.tongji.sse.qyd.model.GitCommitFileInfo;
 
 /**
  * Created by qyd on 2018/5/13.

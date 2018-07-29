@@ -1,9 +1,9 @@
 package edu.tongji.sse.qyd.analyzer;
 
+import edu.tongji.sse.qyd.spider.IssueSpider;
 import edu.tongji.sse.qyd.util.DatePeriod;
-import edu.tongji.sse.qyd.gitIssue.IssueInfo;
+import edu.tongji.sse.qyd.model.IssueInfo;
 import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
-import edu.tongji.sse.qyd.spider.IssuesSpider;
 
 import java.util.List;
 import java.util.Set;
@@ -20,11 +20,11 @@ public class IssueClosedSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer{
     public AnalyzeResult statistic() {
         this.costTypeSet.clear();
         this.effortTypeSet.clear();
-        IssuesSpider issuesSpider = new IssuesSpider();
+        IssueSpider issueSpider = new IssueSpider();
         //List<IssueInfo> issueInfoList = new ArrayList<>();
         for(String url :urls){
             this.effortTypeSet.repairDefectEffort.addAddLine(1);
-            IssueInfo issueInfo = issuesSpider.getEntityInfo(url);
+            IssueInfo issueInfo = issueSpider.getEntityInfo(url);
             Set<String> labels = issueInfo.getLabels();
         }
         return new AnalyzeResult(this.costTypeSet, this.effortTypeSet);

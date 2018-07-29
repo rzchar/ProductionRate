@@ -3,7 +3,7 @@ package edu.tongji.sse.qyd.spider;
 import edu.tongji.sse.qyd.util.DatePeriod;
 import edu.tongji.sse.qyd.util.Path;
 import edu.tongji.sse.qyd.util.Util;
-import edu.tongji.sse.qyd.gitIssue.IssueInfo;
+import edu.tongji.sse.qyd.model.IssueInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,13 +14,13 @@ import java.util.regex.Pattern;
 /**
  * Created by qyd on 2018/5/8.
  */
-public class IssuesSpider extends EntitySpider<IssueInfo> {
+public class IssueSpider extends EntitySpider<IssueInfo> {
     static private final Pattern issueURLEnding = Pattern.compile("^https\\://api\\.github\\.com/repos/.*/issues/([0-9]{1,5})$");
 
-    protected static IssuesSpider issuesSpider = new IssuesSpider();
+    protected static IssueSpider issueSpider = new IssueSpider();
 
     public static EntitySpider getInstance() {
-        return issuesSpider;
+        return issueSpider;
     }
 
     public static void main(String[] args) {

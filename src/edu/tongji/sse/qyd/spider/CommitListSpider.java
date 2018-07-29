@@ -1,5 +1,6 @@
 package edu.tongji.sse.qyd.spider;
 
+import edu.tongji.sse.qyd.model.Project;
 import edu.tongji.sse.qyd.util.Path;
 import edu.tongji.sse.qyd.util.Util;
 
@@ -17,7 +18,7 @@ public class CommitListSpider extends ListSpider {
 
 
     protected CommitListSpider() {
-        this.startURL = Util.getInstance().getProjectAPIURL() + "commits";
+        this.startURL = Project.getInstance().getProjectAPIURL() + "commits";
         listFileName = Path.getMiddleDataPath() + File.separator + "commitGroups"
                 + File.separator + "#commitList" + (new Date()).getTime() + ".txt";
         makeNewEmptyFile();

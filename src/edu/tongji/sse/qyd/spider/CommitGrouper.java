@@ -2,7 +2,7 @@ package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.util.DatePeriod;
 import edu.tongji.sse.qyd.util.Util;
-import edu.tongji.sse.qyd.gitCommit.CommitInfo;
+import edu.tongji.sse.qyd.model.CommitInfo;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,7 +28,7 @@ public class CommitGrouper implements   EntityGrouper<CommitInfo> {
         List<CommitInfo> commitInfoList = CommitSpider.getInstance().getAllEntity(commitListFileName);
         Map<DatePeriod, List<CommitInfo>> commitsByCreatedTime = new HashMap<>();
         for (CommitInfo commit : commitInfoList) {
-            Util.log(IssueGrouper.class, commit.getTime());
+            Util.log(CommitGrouper.class, commit.getTime());
             for (DatePeriod datePeriod : datePeriodList) {
                 if (datePeriod.contain(DatePeriod.getDateFromISO8601(commit.getTime()))) {
                     if (!commitsByCreatedTime.keySet().contains(datePeriod)) {
@@ -51,7 +51,7 @@ public class CommitGrouper implements   EntityGrouper<CommitInfo> {
 
         Map<DatePeriod, List<CommitInfo>> dividedCommitsMap = getIssueGroupByTime(datePeriodList);
         for (DatePeriod datePeriod : dividedCommitsMap.keySet()) {
-            String fileName = datePeriod.getSinceUntilFileName("issuesList", ".txt");
+            String fileName = datePeriod.getSinceUntilFileName("commitList", ".txt");
             File f = new File(folderPath + File.separator + fileName);
             if (f.exists()) {
                 f.delete();

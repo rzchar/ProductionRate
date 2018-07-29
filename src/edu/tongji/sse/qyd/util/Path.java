@@ -1,5 +1,7 @@
 package edu.tongji.sse.qyd.util;
 
+import edu.tongji.sse.qyd.model.Project;
+
 import java.io.File;
 
 /**
@@ -13,16 +15,34 @@ public class Path {
 
     static public final String dataRoot = projectRoot + File.separator + "web" + File.separator + "data";
 
+    static public String commitListFileName = "#commitList.txt";
+
+    static public String issueListFileName = "#issueListAll.txt";
+
+    static public String tagListFileName = "#tagList.txt";
+
     static public String getInputPath() {
-        return dataRoot + File.separator + Util.getInstance().getProjectFolderName() + File.separator + "input";
+        return dataRoot + File.separator + Project.getInstance().getProjectFolderName() + File.separator + "input";
     }
 
     static public String getMiddleDataPath() {
-        return dataRoot + File.separator + Util.getInstance().getProjectFolderName() + File.separator + "middle";
+        return dataRoot + File.separator + Project.getInstance().getProjectFolderName() + File.separator + "middle";
+    }
+
+    static public String getCommitGroupsFolder() {
+        return getMiddleDataPath() + File.separator + "commitGroups";
+    }
+
+    static public String getIssuerGroupsByClosedAtFolder() {
+        return getMiddleDataPath() + File.separator + "issueGroupsByClosedAt";
+    }
+
+    static public String getIssuerGroupsByCreatedAtFolder() {
+        return getMiddleDataPath() + File.separator + "issueGroupsByCreatedAt";
     }
 
     static public String getOutputPath() {
-        return dataRoot + File.separator + Util.getInstance().getProjectFolderName() + File.separator + "output";
+        return dataRoot + File.separator + Project.getInstance().getProjectFolderName() + File.separator + "output";
     }
 
     public static final String commitFileSuffix = ".json";

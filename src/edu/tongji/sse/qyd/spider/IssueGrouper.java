@@ -2,7 +2,7 @@ package edu.tongji.sse.qyd.spider;
 
 import edu.tongji.sse.qyd.util.DatePeriod;
 import edu.tongji.sse.qyd.util.Util;
-import edu.tongji.sse.qyd.gitIssue.IssueInfo;
+import edu.tongji.sse.qyd.model.IssueInfo;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -33,7 +33,7 @@ public class IssueGrouper implements EntityGrouper<IssueInfo> {
     }
 
     public Map<DatePeriod, List<IssueInfo>> getIssueGroupByTime(List<DatePeriod> datePeriodList) {
-        List<IssueInfo> issueInfoList = IssuesSpider.getInstance().getAllEntity(issueListName);
+        List<IssueInfo> issueInfoList = IssueSpider.getInstance().getAllEntity(issueListName);
         Map<DatePeriod, List<IssueInfo>> issuesByCreatedTime = new HashMap<>();
         for (IssueInfo issue : issueInfoList) {
             Util.log(IssueGrouper.class, DatePeriod.getISO8601Timestamp(issue.getCreatedAt()));

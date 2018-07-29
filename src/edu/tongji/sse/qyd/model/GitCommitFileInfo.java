@@ -1,4 +1,4 @@
-package edu.tongji.sse.qyd.gitCommit;
+package edu.tongji.sse.qyd.model;
 
 /**
  * Created by qyd on 2018/4/24.

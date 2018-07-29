@@ -1,4 +1,4 @@
-package edu.tongji.sse.qyd.gitCommit;
+package edu.tongji.sse.qyd.model;
 
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +26,7 @@ public class CommitInfo {
         this.files = files;
         this.authorId = authorId;
         this.url = url;
+        this.time = time;
     }
 
     public static void main(String[] a) {

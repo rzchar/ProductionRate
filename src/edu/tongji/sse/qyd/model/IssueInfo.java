@@ -1,4 +1,4 @@
-package edu.tongji.sse.qyd.gitIssue;
+package edu.tongji.sse.qyd.model;
 
 import java.util.Date;
 import java.util.Set;

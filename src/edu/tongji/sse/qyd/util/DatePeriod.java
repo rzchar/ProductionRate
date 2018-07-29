@@ -68,22 +68,6 @@ public class DatePeriod {
         return getTimePeriodListByString("2015-03-27 00:00:00", "2018-05-30 00:00:00", 7);
     }
 
-    public static List<DatePeriod> getEclipseCheV4LifeTime() {
-        return getTimePeriodListByString("2016-06-15 00:00:00", "2016-09-14 00:00:00", 7);
-    }
-
-    public static List<DatePeriod> getEclipseCheV5LifeTime() {
-        return getTimePeriodListByString("2016-09-14 00:00:00", "2017-11-02 00:00:00", 7);
-    }
-
-    public static List<DatePeriod> getEclipseCheV5E1LifeTime() {
-        return getTimePeriodListByString("2016-09-14 00:00:00", "2017-11-02 00:00:00", 1);
-    }
-
-    public static List<DatePeriod> getEclipseCheV6LifeTime() {
-        return getTimePeriodListByString("2017-11-02 00:00:00", "2018-05-30 00:00:00", 7);
-    }
-
     public static List<DatePeriod> getTimePeriodListByString(String startTimeString, String endTimeString, int interval){
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

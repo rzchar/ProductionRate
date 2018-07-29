@@ -1,7 +1,7 @@
 package edu.tongji.sse.qyd.spider;
 
-import edu.tongji.sse.qyd.gitCommit.GitCommitFileInfo;
-import edu.tongji.sse.qyd.gitCommit.CommitInfo;
+import edu.tongji.sse.qyd.model.GitCommitFileInfo;
+import edu.tongji.sse.qyd.model.CommitInfo;
 import edu.tongji.sse.qyd.util.Path;
 import edu.tongji.sse.qyd.util.Util;
 import org.json.JSONArray;
