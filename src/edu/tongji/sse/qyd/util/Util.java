@@ -1,7 +1,6 @@
 package edu.tongji.sse.qyd.util;
 
 import edu.tongji.sse.qyd.model.Project;
-import edu.tongji.sse.qyd.spider.CommitGrouper;
 
 import java.io.File;
 
@@ -21,28 +20,16 @@ public class Util {
     public static void main(String[] args) {
 
         //String[] projects = new String[]{"che", "atom", "ic", "brkt", "msvs"}; ic unavailable
-        String[] projects = new String[]{"atom"};
+        String[] projects = new String[]{"che", "atom", "brkt", "msvs"};
         for (String pro : projects) {
+            Util.log(Util.class, pro +" start");
             Project.setInstance(pro);
             Project currentProject = Project.getInstance();
-//            CommitListSpider commitListSpider = new CommitListSpider(getInstance().getProjectAPIURL() + "commits", commitListFileName);
-//            commitListSpider.getListAndWriteToFile();
-//            Util.log(Util.class, pro);
-//            Util.log(CommitSpider.class, "start");
-//            CommitSpider commitSpider = new CommitSpider();
-//            commitSpider.getAllEntity(commitListFileName);
-//            Util.log(CommitSpider.class, "end");
-//            Util.log(IssueSpider.class, "start");
-//            IssueSpider issueSpider = new IssueSpider();
-//            issueSpider.getAllEntity(issueListFileName);
-//            Util.log(IssueSpider.class, "end");
-//            TagListSpider tgs = new TagListSpider(Project.getInstance().getProjectAPIURL() + "tags", tagListFileName);
-//            tgs.getListAndWriteToFile();
-            CommitGrouper commitGrouper = new CommitGrouper(commitListFileName);
-            for (String versionName : currentProject.getDevCycle().keySet()) {
-                commitGrouper.makeListAndWriteToFile(Path.getMiddleDataPath() + File.separator +
-                        "commitGroups" + File.separator + versionName, currentProject.getDevCycle(versionName));
-            }
+            //currentProject.fetchListsFromGithub();
+            //currentProject.fetchInfoFromGithub();
+            //currentProject.groupTheInfo();
+            currentProject.analyze();
+            Util.log(Util.class, pro +" end");
         }
     }
 
@@ -52,6 +39,4 @@ public class Util {
             parent.mkdirs();
         }
     }
-
-
 }

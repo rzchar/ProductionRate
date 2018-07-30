@@ -53,7 +53,7 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                     }
                 }
                 if (!succeedMatch) {
-                    Util.log(this.getClass(), "File Not Marked: " + fileName + " in " + gitCommitFileInfo.getGitHash());
+                    //Util.log(this.getClass(), "File Not Marked: " + fileName + " in " + gitCommitFileInfo.getGitHash());
                 }
             }
 

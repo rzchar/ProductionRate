@@ -24,7 +24,7 @@ public class IssueSpider extends EntitySpider<IssueInfo> {
     }
 
     public static void main(String[] args) {
-        getInstance().getAllEntity("#issueListAll.txt");
+        getInstance().getAllEntity(Path.issueListFileName);
     }
 
     @Override

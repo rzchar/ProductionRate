@@ -1,8 +1,12 @@
 package edu.tongji.sse.qyd.model;
 
+import edu.tongji.sse.qyd.analyzer.ProjectAnalyzer;
 import edu.tongji.sse.qyd.resultStructure.FileNames;
+import edu.tongji.sse.qyd.spider.*;
 import edu.tongji.sse.qyd.util.DatePeriod;
+import edu.tongji.sse.qyd.util.Path;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,12 +31,12 @@ public class Project {
         return projectAPIURL;
     }
 
-    public Map<String, List<DatePeriod>> getDevCycle(){
-        return  devCycle;
+    public Map<String, List<DatePeriod>> getDevCycle() {
+        return devCycle;
     }
 
-    public List<DatePeriod> getDevCycle(String devCycleName){
-        return  devCycle.get(devCycleName);
+    public List<DatePeriod> getDevCycle(String devCycleName) {
+        return devCycle.get(devCycleName);
     }
 
     public void addDevCycle(String tag, List<DatePeriod> datePeriodList) {
@@ -44,6 +48,47 @@ public class Project {
         this.projectAPIURL = projectAPIURL;
         this.devCycle = new HashMap<>();
     }
+
+    public void fetchListsFromGithub() {
+        CommitListSpider commitListSpider = new CommitListSpider(getInstance().getProjectAPIURL() + "commits", Path.commitListFileName);
+        commitListSpider.getListAndWriteToFile();
+        IssueListSpider issueListSpider = new IssueListSpider(getInstance().getProjectAPIURL() + "issues", Path.issueListFileName);
+        issueListSpider.getListAndWriteToFile();
+        TagListSpider tgs = new TagListSpider(Project.getInstance().getProjectAPIURL() + "tags", Path.tagListFileName);
+        tgs.getListAndWriteToFile();
+    }
+
+    public void fetchInfoFromGithub() {
+        CommitSpider commitSpider = new CommitSpider();
+        commitSpider.getAllEntity(Path.commitListFileName);
+        IssueSpider issueSpider = new IssueSpider();
+        issueSpider.getAllEntity(Path.issueListFileName);
+    }
+
+    public void groupTheInfo() {
+        CommitGrouper commitGrouper = new CommitGrouper(Path.commitListFileName);
+        IssueGrouper issueCreatedAtGrouper = new IssueGrouper(IssueGrouper.GroupBy.createdTime, Path.issueListFileName);
+        IssueGrouper issueClosedAtGrouper = new IssueGrouper(IssueGrouper.GroupBy.closedTime, Path.issueListFileName);
+        for (String versionName : this.devCycle.keySet()) {
+            List<DatePeriod> dps = this.devCycle.get(versionName);
+            commitGrouper.makeListAndWriteToFile(Path.getCommitGroupsFolder()
+                    + File.separator + versionName, dps);
+            issueCreatedAtGrouper.makeListAndWriteToFile(Path.getIssuerGroupsByCreatedAtFolder()
+                    + File.separator + versionName, dps);
+            issueClosedAtGrouper.makeListAndWriteToFile(Path.getIssuerGroupsByClosedAtFolder()
+                    + File.separator + versionName, dps);
+        }
+
+    }
+
+    public void analyze() {
+        ProjectAnalyzer projectAnalyzer = new ProjectAnalyzer(currentInstance);
+        for (String versionName : this.devCycle.keySet()) {
+            projectAnalyzer.calculateEffortAndCost(versionName);
+        }
+    }
+
+    /*============================================*/
 
     public static Project CheInstance() {
         List<FileNames> fileNamesPrepare = new ArrayList<>();
@@ -70,8 +115,8 @@ public class Project {
         String projectAPIURL = "https://api.github.com/repos/atom/atom/";
         String folderName = "atom";
         Project p = new Project(folderName, projectAPIURL);
-        p.addDevCycle("V1", DatePeriod.getTimePeriodListByString("2015-06-25 00:00:00", "2018-05-30 00:00:00", 7));
         p.addDevCycle("V0", DatePeriod.getTimePeriodListByString("2012-01-20 00:00:00", "2015-06-25 00:00:00", 7));
+        p.addDevCycle("V1", DatePeriod.getTimePeriodListByString("2015-06-25 00:00:00", "2018-05-30 00:00:00", 7));
         return p;
     }
 
@@ -86,6 +131,8 @@ public class Project {
         String projectAPIURL = "https://api.github.com/repos/adobe/brackets/";
         String folderName = "brkt";
         Project p = new Project(folderName, projectAPIURL);
+        p.addDevCycle("V0", DatePeriod.getTimePeriodListByString("2011-12-07 00:00:00", "2014-10-25 00:00:00", 7));
+        p.addDevCycle("V1", DatePeriod.getTimePeriodListByString("2014-10-25 00:00:00", "2018-05-30 00:00:00", 7));
         return p;
     }
 
@@ -93,6 +140,8 @@ public class Project {
         String projectAPIURL = "https://api.github.com/repos/Microsoft/vscode/";
         String folderName = "msvs";
         Project p = new Project(folderName, projectAPIURL);
+        p.addDevCycle("V0", DatePeriod.getTimePeriodListByString("2015-09-03 00:00:00", "2016-04-14 00:00:00", 7));
+        p.addDevCycle("V1", DatePeriod.getTimePeriodListByString("2016-04-14 00:00:00", "2018-05-30 00:00:00", 7));
         return p;
     }
 

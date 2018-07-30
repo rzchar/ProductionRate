@@ -25,10 +25,9 @@ public class ProjectAnalyzer {
     }
 
 
-    public List<CommitSinglePeriodAnalyzer> calculateEffortAndCost(FileNames fileNames,String version) {
+    public List<CommitSinglePeriodAnalyzer> calculateEffortAndCost(String version) {
 
-
-        ExcelWriter excelWriter = new ExcelWriter(fileNames.getOutputExcelName());
+        ExcelWriter excelWriter = new ExcelWriter(version + ".xls");
         List<DatePeriod> lifeTime = project.getDevCycle(version);
 
         CommitTotalPeriodAnalyzer commitTotalPeriodAnalyzer = new CommitTotalPeriodAnalyzer();
@@ -36,17 +35,16 @@ public class ProjectAnalyzer {
         IssuesClosedTotalPeriodAnalyzer issueClosedTotalPeriodAnalyzer = new IssuesClosedTotalPeriodAnalyzer();
 
 
-        String commitGroupFolderPath = Path.getCommitGroupsFolder() + File.separator + fileNames.getCommitGroupsFolderName();
-        String issuesClosedFolderPath = Path.getIssuerGroupsByClosedAtFolder()+ File.separator + fileNames.getIssueGroupsByClosedAtFolderName();
-        String issuesCreatedFolderPath = Path.getIssuerGroupsByCreatedAtFolder()+ File.separator + fileNames.getIssueGroupsByCreatedAtFolderName();
+        String commitGroupFolderPath = Path.getCommitGroupsFolder() + File.separator + version;
+        String issuesClosedFolderPath = Path.getIssuerGroupsByClosedAtFolder()+ File.separator + version;
+        String issuesCreatedFolderPath = Path.getIssuerGroupsByCreatedAtFolder()+ File.separator + version;
         //String commitGroupFolderPath = Path.getMiddleDataPath() + File.separator + "commitGroups" + File.separator + "byWeekExample1";
-
-
 
         List<CommitSinglePeriodAnalyzer> commitSinglePeriodAnalyzers = commitTotalPeriodAnalyzer.getAnalyzerByPeroid(commitGroupFolderPath, lifeTime);
         List<IssueCreatedSinglePeriodAnalyzer> issueCreatedSinglePeriodAnalyzers = issuesCreatedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesCreatedFolderPath, lifeTime);
         List<IssueClosedSinglePeriodAnalyzer> issueClosedSinglePeriodAnalyzers = issueClosedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesClosedFolderPath,lifeTime);
 
+        Util.log(this.getClass(), "project" + " " + this.project.getProjectFolderName());
         Util.log(this.getClass(), "lifeTime" + " size " + lifeTime.size());
         Util.log(this.getClass(), "commitGroupFolderPath" + " size " + commitSinglePeriodAnalyzers.size());
         Util.log(this.getClass(), "issueCreatedSinglePeriodAnalyzers"+ " size " + issueCreatedSinglePeriodAnalyzers.size());

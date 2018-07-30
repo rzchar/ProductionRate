@@ -6,6 +6,7 @@ import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
 import edu.tongji.sse.qyd.resultStructure.cost.CostTypeSet;
 import edu.tongji.sse.qyd.resultStructure.effort.EffortTypeSet;
 import edu.tongji.sse.qyd.resultStructure.info.InfoSet;
+import edu.tongji.sse.qyd.util.Util;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -35,6 +36,7 @@ public class ExcelWriter {
         }
 
         try {
+            Util.makeParentDir(outputFile);
             outputFile.createNewFile();
         } catch (IOException e) {
             workbook = null;
@@ -176,8 +178,10 @@ public class ExcelWriter {
     public boolean close(){
 
         try {
-            workbook.write(this.outputFile);
-            workbook.close();
+            if(workbook != null) {
+                workbook.write(this.outputFile);
+                workbook.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return false;

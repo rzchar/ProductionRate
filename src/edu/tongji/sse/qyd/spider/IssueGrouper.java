@@ -78,19 +78,4 @@ public class IssueGrouper implements EntityGrouper<IssueInfo> {
         }
     }
 
-    static public void main(String[] args) {
-//        String createdFolderPath = Path.getMiddleDataPath() + File.separator + "issueGroupsByCreatedAt";
-//        String closedFolderPath = Path.getMiddleDataPath() + File.separator + "issueGroupsByClosedAt";
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.createdTime, createdFolderPath + File.separator + "whole", DatePeriod.getEclipseCheWholeLifeTime());
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.closedTime, closedFolderPath + File.separator + "whole", DatePeriod.getEclipseCheWholeLifeTime());
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.createdTime, createdFolderPath + File.separator + "V4", DatePeriod.getEclipseCheV4LifeTime());
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.closedTime, closedFolderPath + File.separator + "V4", DatePeriod.getEclipseCheV4LifeTime());
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.createdTime, createdFolderPath + File.separator + "V5", DatePeriod.getEclipseCheV5LifeTime());
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.closedTime, closedFolderPath + File.separator + "V5", DatePeriod.getEclipseCheV5LifeTime());
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.createdTime, createdFolderPath + File.separator + "V6", DatePeriod.getEclipseCheV6LifeTime());
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.closedTime, closedFolderPath + File.separator + "V6", DatePeriod.getEclipseCheV6LifeTime());
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.createdTime, createdFolderPath + File.separator + "V5.1", DatePeriod.getEclipseCheV5E1LifeTime(), "#issueListAll.txt");
-//        IssueGrouper.makeListAndWriteToFile(GroupBy.closedTime, closedFolderPath + File.separator + "V5.1", DatePeriod.getEclipseCheV5E1LifeTime(), "#issueListAll.txt");
-    }
-
 }
