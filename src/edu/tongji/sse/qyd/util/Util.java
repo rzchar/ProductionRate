@@ -3,6 +3,7 @@ package edu.tongji.sse.qyd.util;
 import edu.tongji.sse.qyd.model.Project;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by qyd on 2018/5/7.
@@ -20,6 +21,7 @@ public class Util {
     public static void main(String[] args) {
 
         //String[] projects = new String[]{"che", "atom", "ic", "brkt", "msvs"}; ic unavailable
+        //String[] projects = new String[]{"che"};
         String[] projects = new String[]{"che", "atom", "brkt", "msvs"};
         for (String pro : projects) {
             Util.log(Util.class, pro +" start");
@@ -28,7 +30,8 @@ public class Util {
             //currentProject.fetchListsFromGithub();
             //currentProject.fetchInfoFromGithub();
             //currentProject.groupTheInfo();
-            currentProject.analyze();
+            //currentProject.analyze();
+            currentProject.writeMatlabScript();
             Util.log(Util.class, pro +" end");
         }
     }
@@ -37,6 +40,18 @@ public class Util {
         File parent = f.getParentFile();
         if (!(parent.isDirectory() && parent.exists())) {
             parent.mkdirs();
+        }
+    }
+
+    static public void makeNewEmptyFile(File f){
+        makeParentDir(f);
+        if(f.exists()){
+            f.delete();
+        }
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

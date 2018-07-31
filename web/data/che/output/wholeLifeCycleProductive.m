@@ -1,8 +1,8 @@
 clear;
 close all
 
-costCol = 1:11;
-effortCol = 12:17;
+costCol = 1:10;
+effortCol = 11:15;
 pureNumWholeWeek0 = xlsread('analyze.xls');
 pureNumWholeWeek0(end+1,:) = 0;
 normalizedPureNumberWholeWeek0 = mapminmax(pureNumWholeWeek0',0,1)';

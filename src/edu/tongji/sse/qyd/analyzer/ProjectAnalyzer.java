@@ -6,7 +6,6 @@ import edu.tongji.sse.qyd.util.DatePeriod;
 import edu.tongji.sse.qyd.util.Path;
 import edu.tongji.sse.qyd.util.Util;
 import edu.tongji.sse.qyd.resultStructure.AnalyzeResult;
-import edu.tongji.sse.qyd.resultStructure.FileNames;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class ProjectAnalyzer {
         List<IssueCreatedSinglePeriodAnalyzer> issueCreatedSinglePeriodAnalyzers = issuesCreatedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesCreatedFolderPath, lifeTime);
         List<IssueClosedSinglePeriodAnalyzer> issueClosedSinglePeriodAnalyzers = issueClosedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesClosedFolderPath,lifeTime);
 
-        Util.log(this.getClass(), "project" + " " + this.project.getProjectFolderName());
+        Util.log(this.getClass(), "project" + " " + this.project.getProjectShortName());
         Util.log(this.getClass(), "lifeTime" + " size " + lifeTime.size());
         Util.log(this.getClass(), "commitGroupFolderPath" + " size " + commitSinglePeriodAnalyzers.size());
         Util.log(this.getClass(), "issueCreatedSinglePeriodAnalyzers"+ " size " + issueCreatedSinglePeriodAnalyzers.size());

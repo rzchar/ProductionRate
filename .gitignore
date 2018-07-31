@@ -1,7 +1,7 @@
 /.idea/
-ProductionRate.iml
-web/*/middle/*.json
-web/*/middle/*.txt
-!web/data/*/middle/*#*.txt
-!web/data/*/output/*.xls
+/ProductionRate.iml
+/web/*/middle/*.json
+/web/*/middle/*/.txt
+!/web/data/*/middle/*/*#*.txt
+!/web/data/*/output/*.xls
 /out/*

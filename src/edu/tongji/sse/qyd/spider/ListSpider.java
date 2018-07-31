@@ -33,14 +33,10 @@ public abstract class ListSpider {
     }
 
     protected void makeNewEmptyFile() {
-        File commitListFile = new File(listFileName);
-        if (commitListFile.exists()) {
-            commitListFile.delete();
-        }
+        File listFile = new File(listFileName);
         try {
-            commitListFile.getParentFile().mkdirs();
-            commitListFile.createNewFile();
-            this.bw = new BufferedWriter(new FileWriter(commitListFile));
+            Util.makeNewEmptyFile(listFile);
+            this.bw = new BufferedWriter(new FileWriter(listFile));
         } catch (IOException e) {
             e.printStackTrace();
         }
