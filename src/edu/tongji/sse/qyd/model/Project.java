@@ -111,7 +111,7 @@ public class Project {
             projectCalculation.append("\n");
             projectCalculation.append("figure('name','" + this.projectShortName + "#version-output')\n");
             projectCalculation.append("hold on;\n");
-            projectCalculation.append("plot(rate#version,'-x')\n");
+            projectCalculation.append("plot(rate#version,'-x')\n ");
             projectCalculation.append("xlabel('time(week)')\n");
             projectCalculation.append("ylabel('Non-trad/Trad')\n");
             projectCalculation.append("hold off;\n");
