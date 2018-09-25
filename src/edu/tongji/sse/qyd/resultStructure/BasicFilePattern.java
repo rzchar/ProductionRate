@@ -1,5 +1,7 @@
 package edu.tongji.sse.qyd.resultStructure;
 
+import edu.tongji.sse.qyd.model.CommitInfo;
+import edu.tongji.sse.qyd.model.GitCommitFileInfo;
 import edu.tongji.sse.qyd.resultStructure.cost.CostType;
 import edu.tongji.sse.qyd.resultStructure.effort.EffortType;
 
@@ -45,6 +47,10 @@ public class BasicFilePattern {
 
     public boolean isThisType(String fileName, String content, String commitMessage) {
         return isFileNamePatternMatched(fileName) && isContentPatternMatched(content);
+    }
+
+    public GitCommitFileInfo analyzedFileInfo(GitCommitFileInfo gitCommitFileInfo){
+        return gitCommitFileInfo;
     }
 
     protected boolean isFileNamePatternMatched(String fileName) {

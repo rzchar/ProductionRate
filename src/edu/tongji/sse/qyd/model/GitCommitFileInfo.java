@@ -32,6 +32,16 @@ public class GitCommitFileInfo {
         this.patch = patch;
     }
 
+    public GitCommitFileInfo(GitCommitFileInfo anotherInfo){
+        this.gitHash = anotherInfo.gitHash;
+        this.additionNum = anotherInfo.additionNum;
+        this.deletionNum = anotherInfo.deletionNum;
+        this.changeNum = anotherInfo.changeNum;
+        this.fileName = anotherInfo.fileName;
+        this.status = anotherInfo.status;
+        this.patch = anotherInfo.patch;
+    }
+
     public String getGitHash() {
         return gitHash;
     }

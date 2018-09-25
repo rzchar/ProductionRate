@@ -22,6 +22,8 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
 
     private List<BasicFilePattern> patternList;
 
+    private static String resourceFileSurfix = "\\.(jpg|gif|png|svg)$";
+
     public CommitSinglePeriodAnalyzer(DatePeriod datePeriod, List<String> urls) {
         super(datePeriod, urls);
         //System.out.println(this.since.toString() + " "+ this.until.toString());
@@ -72,15 +74,22 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                 new BasicFilePattern(
                         this.costTypeSet.sourceCodeCost,
                         this.effortTypeSet.reusableCodeEffort,
-                        "\\.(java|js|go|html|ts|sql|css|svg|jsp|styl)$"
+                        "\\.(java|js|go|html|ts|sql|css|less|svg|jsp|styl|ts)$"
+                ),
+
+                new BasicFilePattern(
+                        //for resource files
+                        this.costTypeSet.errorTypeCost,
+                        this.effortTypeSet.errorTypeEffort,
+                        resourceFileSurfix + "|" + resourceFileSurfix.toUpperCase() + "|"
+                        + "/src/(main|test)/resources/"
                 ){
                     @Override
-                    protected boolean isContentPatternMatched(String content) {
-                        if(content.contains("@Test")){
-                            //Util.log(this.getClass(),content);
-                            return false;
-                        }
-                        return true;
+                    public GitCommitFileInfo analyzedFileInfo(GitCommitFileInfo gitCommitFileInfo) {
+                        gitCommitFileInfo.setAdditionNum(0);
+                        gitCommitFileInfo.setChangeNum(0);
+                        gitCommitFileInfo.setDeletionNum(0);
+                        return gitCommitFileInfo;
                     }
                 },
 
@@ -134,16 +143,8 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                 new BasicFilePattern(
                         this.costTypeSet.autoTest,
                         this.effortTypeSet.autoScriptEffort,
-                        ".java$"
-                ){
-                    @Override
-                    protected boolean isContentPatternMatched(String content) {
-                        if(content.contains("@Test")){
-                            return true;
-                        }
-                        return false;
-                    }
-                },
+                        "/src/test/(?!resources)"
+                ),
    /*================================================================================================*/
 
                 new BasicFilePattern(

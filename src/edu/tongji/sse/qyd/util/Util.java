@@ -10,14 +10,12 @@ import java.io.*;
  * Created by qyd on 2018/5/7.
  */
 public class Util {
-
     public static void log(Class c, String message) {
         if(c != CommitSinglePeriodAnalyzer.class && c!= Util.class){
             return;
         }
         System.out.println("[" + c.getName() + "]" + message);
     }
-
     private static String commitListFileName = "#commitList.txt";
 
 
@@ -28,13 +26,14 @@ public class Util {
         File log = new File(Path.dataRoot + File.separator + "log.txt");
         Util.makeNewEmptyFile(log);
         PrintStream ps =null ;
-        try {
-            ps= new PrintStream(log);
-            System.setOut(ps);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            ps= new PrintStream(log);
+//            System.setOut(ps);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
         String[] projects = new String[]{"che", "atom", "brkt", "msvs"};
+        projects = new String[]{"brkt"};
         for (String pro : projects) {
             Util.log(Util.class, pro +" start");
             Project.setInstance(pro);
@@ -46,7 +45,7 @@ public class Util {
             //currentProject.writeMatlabScript();
             Util.log(Util.class, pro +" end");
         }
-        ps.close();
+        if(ps != null){ps.close();}
     }
 
     static public void makeParentDir(File f) {
