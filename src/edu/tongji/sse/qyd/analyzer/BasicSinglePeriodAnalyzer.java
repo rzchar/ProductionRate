@@ -19,6 +19,14 @@ public abstract class BasicSinglePeriodAnalyzer {
     protected CostTypeSet costTypeSet = new CostTypeSet();
     protected EffortTypeSet effortTypeSet = new EffortTypeSet();
 
+    public CostTypeSet getCostTypeSet() {
+        return costTypeSet;
+    }
+
+    public EffortTypeSet getEffortTypeSet() {
+        return effortTypeSet;
+    }
+
     public BasicSinglePeriodAnalyzer(DatePeriod datePeriod, List<String> urls) {
         this.until = datePeriod.getEnd();
         this.since = datePeriod.getStart();

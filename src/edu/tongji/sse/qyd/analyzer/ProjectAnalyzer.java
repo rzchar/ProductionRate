@@ -39,9 +39,9 @@ public class ProjectAnalyzer {
         String issuesCreatedFolderPath = Path.getIssuerGroupsByCreatedAtFolder()+ File.separator + version;
         //String commitGroupFolderPath = Path.getMiddleDataPath() + File.separator + "commitGroups" + File.separator + "byWeekExample1";
 
-        List<CommitSinglePeriodAnalyzer> commitSinglePeriodAnalyzers = commitTotalPeriodAnalyzer.getAnalyzerByPeroid(commitGroupFolderPath, lifeTime);
-        List<IssueCreatedSinglePeriodAnalyzer> issueCreatedSinglePeriodAnalyzers = issuesCreatedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesCreatedFolderPath, lifeTime);
-        List<IssueClosedSinglePeriodAnalyzer> issueClosedSinglePeriodAnalyzers = issueClosedTotalPeriodAnalyzer.getAnalyzerByPeroid(issuesClosedFolderPath,lifeTime);
+        List<CommitSinglePeriodAnalyzer> commitSinglePeriodAnalyzers = commitTotalPeriodAnalyzer.getAnalyzersInEachPeroid(commitGroupFolderPath, lifeTime);
+        List<IssueCreatedSinglePeriodAnalyzer> issueCreatedSinglePeriodAnalyzers = issuesCreatedTotalPeriodAnalyzer.getAnalyzersInEachPeroid(issuesCreatedFolderPath, lifeTime);
+        List<IssueClosedSinglePeriodAnalyzer> issueClosedSinglePeriodAnalyzers = issueClosedTotalPeriodAnalyzer.getAnalyzersInEachPeroid(issuesClosedFolderPath,lifeTime);
 
         Util.log(this.getClass(), "project" + " " + this.project.getProjectShortName());
         Util.log(this.getClass(), "lifeTime" + " size " + lifeTime.size());

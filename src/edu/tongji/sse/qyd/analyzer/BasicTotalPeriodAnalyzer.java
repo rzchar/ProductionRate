@@ -16,7 +16,7 @@ import java.util.List;
  */
 abstract public class BasicTotalPeriodAnalyzer<T extends BasicSinglePeriodAnalyzer> {
 
-    protected List<T> getAnalyzerByPeroid(String groupFolderPath, List<DatePeriod> datePeriodList) {
+    protected List<T> getAnalyzersInEachPeroid(String groupFolderPath, List<DatePeriod> datePeriodList) {
         List<T> basicSinglePeriodAnalyzerArrayList = new ArrayList<T>();
 
         //File[] files = folder.listFiles();
@@ -42,12 +42,7 @@ abstract public class BasicTotalPeriodAnalyzer<T extends BasicSinglePeriodAnalyz
                 }
             }
             //System.out.println(f.getName());
-            T someSinglePeriodAnalyzer = null;
-            try {
-                someSinglePeriodAnalyzer = getSingleEntityType().getConstructor(DatePeriod.class, List.class).newInstance(datePeriodList.get(i), urls);
-            } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
+            T someSinglePeriodAnalyzer = getSinglePeriodAnalyzer(datePeriodList.get(i), urls);
             basicSinglePeriodAnalyzerArrayList.add(someSinglePeriodAnalyzer);
         }
         return basicSinglePeriodAnalyzerArrayList;
@@ -56,4 +51,6 @@ abstract public class BasicTotalPeriodAnalyzer<T extends BasicSinglePeriodAnalyz
     abstract protected String getFileFullName(String groupFolderPath, DatePeriod datePeriod);
 
     abstract protected Class<T> getSingleEntityType();
+
+    abstract protected T getSinglePeriodAnalyzer(DatePeriod datePeriod, List<String> urls);
 }

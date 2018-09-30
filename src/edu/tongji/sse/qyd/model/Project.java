@@ -1,6 +1,10 @@
 package edu.tongji.sse.qyd.model;
 
+import edu.tongji.sse.qyd.analyzer.CommitSinglePeriodAnalyzer;
 import edu.tongji.sse.qyd.analyzer.ProjectAnalyzer;
+import edu.tongji.sse.qyd.resultStructure.BasicFilePattern;
+import edu.tongji.sse.qyd.resultStructure.cost.CostTypeSet;
+import edu.tongji.sse.qyd.resultStructure.effort.EffortTypeSet;
 import edu.tongji.sse.qyd.spider.*;
 import edu.tongji.sse.qyd.util.DatePeriod;
 import edu.tongji.sse.qyd.util.Path;
@@ -17,7 +21,7 @@ import java.util.Map;
 /**
  * Created by qyd on 2018/7/25.
  */
-public class Project {
+public abstract class Project {
 
     private String projectShortName;
 
@@ -44,6 +48,42 @@ public class Project {
     public void addDevCycle(String tag, List<DatePeriod> datePeriodList) {
         this.devCycle.put(tag, datePeriodList);
     }
+
+    public void setFilePatternsTo(CommitSinglePeriodAnalyzer cspa) {
+        this.setDefaultFilePatterns(cspa);
+        this.setAdditionFilePatterns(cspa);
+    }
+
+    public void setDefaultFilePatterns(CommitSinglePeriodAnalyzer cspa) {
+        CostTypeSet costTypeSet = cspa.getCostTypeSet();
+        EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
+        BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+                new BasicFilePattern(
+                        costTypeSet.sourceCodeCost,
+                        effortTypeSet.reusableCodeEffort,
+                        "\\.(java|js|go|html|xhtml|ts|sql|css|less|scss|svg|jsp|styl|ts|rb|php)$"
+                ),
+
+                new BasicFilePattern(
+                        //for resource files
+                        costTypeSet.errorTypeCost,
+                        effortTypeSet.errorTypeEffort,
+                        resourceFileSurfix + "|" + resourceFileSurfix.toUpperCase() + "|"
+                                + "/src/(main|test)/resources/|.*\\.zip$"
+                ) {
+                    @Override
+                    public GitCommitFileInfo analyzedFileInfo(GitCommitFileInfo gitCommitFileInfo) {
+                        gitCommitFileInfo.setAdditionNum(0);
+                        gitCommitFileInfo.setChangeNum(0);
+                        gitCommitFileInfo.setDeletionNum(0);
+                        return gitCommitFileInfo;
+                    }
+                },
+        };
+        cspa.addFilePatterns(basicFilePatterns);
+    }
+
+    protected abstract void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa);
 
     public Project(String projectShortName, String projectAPIURL) {
         this.projectShortName = projectShortName;
@@ -131,10 +171,96 @@ public class Project {
 
     /*============================================*/
 
-    public static Project CheInstance() {;
+    public static Project CheInstance() {
+        ;
         String shorName = "che";
         String projectAPIURL = "https://api.github.com/repos/eclipse/che/";
-        Project p = new Project(shorName, projectAPIURL);
+        Project p = new Project(shorName, projectAPIURL) {
+            @Override
+            protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
+                CostTypeSet costTypeSet = cspa.getCostTypeSet();
+                EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
+                BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+
+                        new BasicFilePattern(
+                                costTypeSet.deployMidwareAndApplication,
+                                effortTypeSet.autoScriptEffort,
+                                "^[Dd]ocker(files)?"),
+
+                        new BasicFilePattern(
+                                costTypeSet.deployMidwareAndApplication,
+                                effortTypeSet.autoScriptEffort,
+                                "^deploy"),
+
+                        new BasicFilePattern(
+                                costTypeSet.developingEnvironmentEstablish,
+                                effortTypeSet.autoScriptEffort,
+                                "(pom\\.xml|\\.helmignore)$"),
+
+                        new BasicFilePattern(
+                                costTypeSet.autoCompile,
+                                effortTypeSet.autoScriptEffort,
+                                "\\.sh|\\.npmignore$"),
+
+                        new BasicFilePattern(
+                                costTypeSet.deployMidwareAndApplication,
+                                effortTypeSet.autoScriptEffort,
+                                "che\\.properties$"),
+
+                        new BasicFilePattern(
+                                costTypeSet.runtimeEnvironmentEstablish,
+                                effortTypeSet.autoScriptEffort,
+                                "\\.md$"),
+
+
+                        new BasicFilePattern(
+                                costTypeSet.deployMidwareAndApplication,
+                                effortTypeSet.autoScriptEffort,
+                                "\\.(yml|yaml)$"),
+
+                        new BasicFilePattern(
+                                costTypeSet.deployMidwareAndApplication,
+                                effortTypeSet.autoScriptEffort,
+                                "(?<!pom)\\.xml$"),
+
+                        new BasicFilePattern(
+                                costTypeSet.autoTest,
+                                effortTypeSet.autoScriptEffort,
+                                "org\\.testng\\.ITestNGListener$"
+                        ),
+
+                        new BasicFilePattern(
+                                costTypeSet.autoTest,
+                                effortTypeSet.autoScriptEffort,
+                                "/src/test/(?!resources)"
+                        ),
+   /*================================================================================================*/
+
+                        new BasicFilePattern(
+                                costTypeSet.errorTypeCost,
+                                effortTypeSet.errorTypeEffort, "\\.gitignore$"),
+
+                        new BasicFilePattern(
+                                costTypeSet.errorTypeCost,
+                                effortTypeSet.errorTypeEffort,
+                                "\\.tpl$"),
+
+                        new BasicFilePattern(
+                                costTypeSet.errorTypeCost,
+                                effortTypeSet.errorTypeEffort,
+                                "(?<!che)\\.properties$"),
+
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "LICENSE$"),
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.TckModule$"),
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.ver$"),
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.env(.erb)?$"),
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort, "\\.json$")
+
+
+                };
+                cspa.addFilePatterns(basicFilePatterns);
+            }
+        };
         p.addDevCycle("V4", DatePeriod.getTimePeriodListByString("2016-06-15 00:00:00", "2016-09-14 00:00:00", 7));
         p.addDevCycle("V5", DatePeriod.getTimePeriodListByString("2016-09-14 00:00:00", "2017-11-02 00:00:00", 7));
         p.addDevCycle("V5_1", DatePeriod.getTimePeriodListByString("2016-09-14 00:00:00", "2017-11-02 00:00:00", 1));
@@ -145,7 +271,17 @@ public class Project {
     public static Project Atom() {
         String projectAPIURL = "https://api.github.com/repos/atom/atom/";
         String shorName = "atom";
-        Project p = new Project(shorName, projectAPIURL);
+        Project p = new Project(shorName, projectAPIURL){
+            @Override
+            protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
+                CostTypeSet costTypeSet = cspa.getCostTypeSet();
+                EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
+                BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+
+                };
+                cspa.addFilePatterns(basicFilePatterns);
+            }
+        };
         p.addDevCycle("V0", DatePeriod.getTimePeriodListByString("2012-01-20 00:00:00", "2015-06-25 00:00:00", 7));
         p.addDevCycle("V1", DatePeriod.getTimePeriodListByString("2015-06-25 00:00:00", "2018-05-30 00:00:00", 7));
         return p;
@@ -154,14 +290,34 @@ public class Project {
     public static Project IntellijCommunity() {
         String projectAPIURL = "https://api.github.com/repos/JetBrains/intellij-community/";
         String shorName = "ic";//introduction chapter
-        Project p = new Project(shorName, projectAPIURL);
+        Project p = new Project(shorName, projectAPIURL){
+            @Override
+            protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
+                CostTypeSet costTypeSet = cspa.getCostTypeSet();
+                EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
+                BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+
+                };
+                cspa.addFilePatterns(basicFilePatterns);
+            }
+        };
         return p;
     }
 
     public static Project Brackets() {
         String projectAPIURL = "https://api.github.com/repos/adobe/brackets/";
         String shorName = "brkt";
-        Project p = new Project(shorName, projectAPIURL);
+        Project p = new Project(shorName, projectAPIURL){
+            @Override
+            protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
+                CostTypeSet costTypeSet = cspa.getCostTypeSet();
+                EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
+                BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+
+                };
+                cspa.addFilePatterns(basicFilePatterns);
+            }
+        };
         p.addDevCycle("V0", DatePeriod.getTimePeriodListByString("2011-12-07 00:00:00", "2014-10-25 00:00:00", 7));
         p.addDevCycle("V1", DatePeriod.getTimePeriodListByString("2014-10-25 00:00:00", "2018-05-30 00:00:00", 7));
         return p;
@@ -170,7 +326,17 @@ public class Project {
     public static Project Vscode() {
         String projectAPIURL = "https://api.github.com/repos/Microsoft/vscode/";
         String shorName = "msvs";
-        Project p = new Project(shorName, projectAPIURL);
+        Project p = new Project(shorName, projectAPIURL){
+            @Override
+            protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
+                CostTypeSet costTypeSet = cspa.getCostTypeSet();
+                EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
+                BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+
+                };
+                cspa.addFilePatterns(basicFilePatterns);
+            }
+        };
         p.addDevCycle("V0", DatePeriod.getTimePeriodListByString("2015-09-03 00:00:00", "2016-04-14 00:00:00", 7));
         p.addDevCycle("V1", DatePeriod.getTimePeriodListByString("2016-04-14 00:00:00", "2018-05-30 00:00:00", 7));
         return p;
@@ -179,7 +345,17 @@ public class Project {
     public static Project ThisProject() {
         String projectAPIURL = "https://api.github.com/repos/rzchar/ProductionRate/";
         String shorName = "this";
-        Project p = new Project(shorName, projectAPIURL);
+        Project p = new Project(shorName, projectAPIURL){
+            @Override
+            protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
+                CostTypeSet costTypeSet = cspa.getCostTypeSet();
+                EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
+                BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+
+                };
+                cspa.addFilePatterns(basicFilePatterns);
+            }
+        };
         return p;
     }
 
@@ -212,5 +388,18 @@ public class Project {
         if (instanceName == "this") {
             currentInstance = ThisProject();
         }
+    }
+
+
+    private static String resourceFileSurfix = "\\.(jpg|gif|png|svg)$";
+
+    public void setPatterns(CommitSinglePeriodAnalyzer cpsa) {
+        CostTypeSet costTypeSet = cpsa.getCostTypeSet();
+        EffortTypeSet effortTypeSet = cpsa.getEffortTypeSet();
+        BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+
+        };
+
+
     }
 }

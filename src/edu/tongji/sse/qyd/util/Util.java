@@ -33,7 +33,7 @@ public class Util {
 //            e.printStackTrace();
 //        }
         String[] projects = new String[]{"che", "atom", "brkt", "msvs"};
-        projects = new String[]{"brkt"};
+        projects = new String[]{"che"};
         for (String pro : projects) {
             Util.log(Util.class, pro +" start");
             Project.setInstance(pro);
