@@ -53,8 +53,9 @@ public class CommitSinglePeriodAnalyzer extends BasicSinglePeriodAnalyzer {
                 String patch = gitCommitFileInfo.getPatch();
                 for (BasicFilePattern basicFilePattern : this.patternList) {
                     if (basicFilePattern.isThisType(fileName, patch, "")) {
-                        basicFilePattern.getCostType().addCommitData(gitCommitFileInfo);
-                        basicFilePattern.getEffortType().addCommitData(gitCommitFileInfo);
+                        GitCommitFileInfo convertedGitCommitFileInfo = basicFilePattern.getConvertedGitCommitFileInfo(gitCommitFileInfo);
+                        basicFilePattern.getCostType().addCommitData(convertedGitCommitFileInfo);
+                        basicFilePattern.getEffortType().addCommitData(convertedGitCommitFileInfo);
                         succeedMatch = true;
                         break;
                     }

@@ -49,7 +49,7 @@ public class BasicFilePattern {
         return isFileNamePatternMatched(fileName) && isContentPatternMatched(content);
     }
 
-    public GitCommitFileInfo analyzedFileInfo(GitCommitFileInfo gitCommitFileInfo){
+    public GitCommitFileInfo getConvertedGitCommitFileInfo(GitCommitFileInfo gitCommitFileInfo){
         return gitCommitFileInfo;
     }
 

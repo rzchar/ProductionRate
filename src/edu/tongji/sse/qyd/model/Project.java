@@ -23,6 +23,19 @@ import java.util.Map;
  */
 public abstract class Project {
 
+    /*  plist : source file for ios
+    *   coffee: can be compiled to js
+    *   mm: objective-c file
+    * */
+    private static String sourceFileSurfix = "(java|js|go|html|xhtml|ts|sql|css|less|scss|svg|jsp|styl|" +
+            "ts|rb|php|coffee|plist|c|cc|h|cpp|mm|xib|py|m|jade|vb)";
+
+    /*
+    * lproj: ios localize file
+    * */
+    private static String resourceFileSurfix = "(jpg|gif|png|svg|ico|icns|tiff|" +
+            "lproj(.*\\.strings)?)";
+
     private String projectShortName;
 
     private String projectAPIURL;
@@ -58,27 +71,46 @@ public abstract class Project {
         CostTypeSet costTypeSet = cspa.getCostTypeSet();
         EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
         BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
-                new BasicFilePattern(
-                        costTypeSet.sourceCodeCost,
-                        effortTypeSet.reusableCodeEffort,
-                        "\\.(java|js|go|html|xhtml|ts|sql|css|less|scss|svg|jsp|styl|ts|rb|php)$"
+                //for source file
+                new BasicFilePattern(costTypeSet.sourceCodeCost, effortTypeSet.reusableCodeEffort,
+                        "src/(?!test)\\." + sourceFileSurfix + "$|(?!^build).*\\." + sourceFileSurfix + "$"
                 ),
 
-                new BasicFilePattern(
-                        //for resource files
-                        costTypeSet.errorTypeCost,
-                        effortTypeSet.errorTypeEffort,
-                        resourceFileSurfix + "|" + resourceFileSurfix.toUpperCase() + "|"
-                                + "/src/(main|test)/resources/|.*\\.zip$"
+                //sublime source config file
+                new BasicFilePattern(costTypeSet.sourceCodeCost, effortTypeSet.reusableCodeEffort,
+                        "\\.tm([A-Z][a-z]*)+$|tmbundle"
+                ),
+
+                //for resource files and font file
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort,
+                        "\\." + resourceFileSurfix + "$|\\." + resourceFileSurfix.toUpperCase() + "$|"
+                                + "src/(main|test)/resources/|.*\\.zip$" + "|"
+                                + "\\.(eot|ttf|woff)$"
                 ) {
                     @Override
-                    public GitCommitFileInfo analyzedFileInfo(GitCommitFileInfo gitCommitFileInfo) {
+                    public GitCommitFileInfo getConvertedGitCommitFileInfo(GitCommitFileInfo gitCommitFileInfo) {
                         gitCommitFileInfo.setAdditionNum(0);
                         gitCommitFileInfo.setChangeNum(0);
                         gitCommitFileInfo.setDeletionNum(0);
                         return gitCommitFileInfo;
                     }
                 },
+
+                new BasicFilePattern(costTypeSet.deployMidwareAndApplication, effortTypeSet.autoScriptEffort,
+                        "^[Dd]ocker(files)?"),
+
+                //npm, pom, yml config file
+                new BasicFilePattern(costTypeSet.developingEnvironmentEstablish, effortTypeSet.autoScriptEffort,
+                        "package\\.json$|\\.npmrc|pom\\.xml$|\\.helmignore$|\\.(yml|yaml)$|.gitignore$|.gitmodules$"),
+
+                new BasicFilePattern(costTypeSet.autoCompile, effortTypeSet.autoScriptEffort,
+                        "Makefile$|Rakefile$"),
+
+                new BasicFilePattern(costTypeSet.autoCompile, effortTypeSet.autoScriptEffort,
+                        "\\.npmignore$"),
+
+                new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort,
+                        "LICENSE$|license.txt$")
         };
         cspa.addFilePatterns(basicFilePatterns);
     }
@@ -94,7 +126,7 @@ public abstract class Project {
     public void fetchListsFromGithub() {
         CommitListSpider commitListSpider = new CommitListSpider(getInstance().getProjectAPIURL() + "commits", Path.commitListFileName);
         commitListSpider.getListAndWriteToFile();
-        IssueListSpider issueListSpider = new IssueListSpider(getInstance().getProjectAPIURL() + "issues", Path.issueListFileName);
+        IssueListSpider issueListSpider = new IssueListSpider(getInstance().getProjectAPIURL() + "issues?state=all", Path.issueListFileName);
         issueListSpider.getListAndWriteToFile();
         TagListSpider tgs = new TagListSpider(Project.getInstance().getProjectAPIURL() + "tags", Path.tagListFileName);
         tgs.getListAndWriteToFile();
@@ -141,12 +173,13 @@ public abstract class Project {
         for (String versionName : this.devCycle.keySet()) {
             StringBuilder projectCalculation = new StringBuilder();
             projectCalculation.append("pureNum#version = xlsread('#version.xls');\n");
+            projectCalculation.append("pureNum#version(pureNum#version(:,4)==0,4) = 1;\n");
             projectCalculation.append("pureNum#version(end+1,:) = 0;\n");
             projectCalculation.append("normalizedNumber#version = mapminmax(pureNum#version',0,1)';\n");
             projectCalculation.append("sumWeeklyEffort#version = sum(normalizedNumber#version(:,effortCol),2);\n");
             projectCalculation.append("sumWeeklyCost#version = sum(normalizedNumber#version(:,costCol),2);\n");
             projectCalculation.append("productivity#version = sumWeeklyCost#version;\n");
-            projectCalculation.append("traditionalProductivity#version = normalizedNumber#version(:,4);");
+            projectCalculation.append("traditionalProductivity#version = normalizedNumber#version(:,4);\n");
             projectCalculation.append("rate#version = productivity#version./traditionalProductivity#version;");
             projectCalculation.append("\n");
             projectCalculation.append("figure('name','" + this.projectShortName + "#version-output')\n");
@@ -155,6 +188,7 @@ public abstract class Project {
             projectCalculation.append("xlabel('time(week)')\n");
             projectCalculation.append("ylabel('Non-trad/Trad')\n");
             projectCalculation.append("hold off;\n");
+            projectCalculation.append("xlswrite('#versionOut.xls',rate#version);\n");
             projectCalculation.append("\n\n");
             sb.append(projectCalculation.toString().replace("#version", versionName));
         }
@@ -181,58 +215,32 @@ public abstract class Project {
                 CostTypeSet costTypeSet = cspa.getCostTypeSet();
                 EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
                 BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+                        //for source file's template
+                        new BasicFilePattern(costTypeSet.sourceCodeCost, effortTypeSet.reusableCodeEffort,
+                                "\\." + sourceFileSurfix + "\\.template$"
+                        ),
 
-                        new BasicFilePattern(
-                                costTypeSet.deployMidwareAndApplication,
-                                effortTypeSet.autoScriptEffort,
-                                "^[Dd]ocker(files)?"),
-
-                        new BasicFilePattern(
-                                costTypeSet.deployMidwareAndApplication,
-                                effortTypeSet.autoScriptEffort,
+                        new BasicFilePattern(costTypeSet.deployMidwareAndApplication, effortTypeSet.autoScriptEffort,
                                 "^deploy"),
 
-                        new BasicFilePattern(
-                                costTypeSet.developingEnvironmentEstablish,
-                                effortTypeSet.autoScriptEffort,
-                                "(pom\\.xml|\\.helmignore)$"),
+                        new BasicFilePattern(costTypeSet.autoCompile, effortTypeSet.autoScriptEffort,
+                                "\\.sh"),
 
-                        new BasicFilePattern(
-                                costTypeSet.autoCompile,
-                                effortTypeSet.autoScriptEffort,
-                                "\\.sh|\\.npmignore$"),
-
-                        new BasicFilePattern(
-                                costTypeSet.deployMidwareAndApplication,
-                                effortTypeSet.autoScriptEffort,
+                        new BasicFilePattern(costTypeSet.deployMidwareAndApplication, effortTypeSet.autoScriptEffort,
                                 "che\\.properties$"),
 
-                        new BasicFilePattern(
-                                costTypeSet.runtimeEnvironmentEstablish,
-                                effortTypeSet.autoScriptEffort,
+                        new BasicFilePattern(costTypeSet.runtimeEnvironmentEstablish, effortTypeSet.autoScriptEffort,
                                 "\\.md$"),
 
-
-                        new BasicFilePattern(
-                                costTypeSet.deployMidwareAndApplication,
-                                effortTypeSet.autoScriptEffort,
-                                "\\.(yml|yaml)$"),
-
-                        new BasicFilePattern(
-                                costTypeSet.deployMidwareAndApplication,
-                                effortTypeSet.autoScriptEffort,
+                        new BasicFilePattern(costTypeSet.deployMidwareAndApplication, effortTypeSet.autoScriptEffort,
                                 "(?<!pom)\\.xml$"),
 
-                        new BasicFilePattern(
-                                costTypeSet.autoTest,
-                                effortTypeSet.autoScriptEffort,
+                        new BasicFilePattern(costTypeSet.autoTest, effortTypeSet.autoScriptEffort,
                                 "org\\.testng\\.ITestNGListener$"
                         ),
 
-                        new BasicFilePattern(
-                                costTypeSet.autoTest,
-                                effortTypeSet.autoScriptEffort,
-                                "/src/test/(?!resources)"
+                        new BasicFilePattern(costTypeSet.autoTest, effortTypeSet.autoScriptEffort,
+                                "src/test/(?!resources)"
                         ),
    /*================================================================================================*/
 
@@ -271,13 +279,53 @@ public abstract class Project {
     public static Project Atom() {
         String projectAPIURL = "https://api.github.com/repos/atom/atom/";
         String shorName = "atom";
-        Project p = new Project(shorName, projectAPIURL){
+        Project p = new Project(shorName, projectAPIURL) {
             @Override
             protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
                 CostTypeSet costTypeSet = cspa.getCostTypeSet();
                 EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
                 BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
 
+                        new BasicFilePattern(costTypeSet.autoTest, effortTypeSet.autoScriptEffort,
+                                "tools/gyp/test/"
+                        ),
+
+                        //language package resource
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort,
+                                "locale.pak$"),
+
+                        new BasicFilePattern(costTypeSet.autoCompile, effortTypeSet.autoScriptEffort,
+                                "\\.(gypi|gyp)$"),
+
+                        new BasicFilePattern(costTypeSet.autoCompile, effortTypeSet.autoScriptEffort,
+                                "\\.pegjs$"),
+
+                        new BasicFilePattern(costTypeSet.developingEnvironmentEstablish, effortTypeSet.autoScriptEffort,
+                                "project\\.pbxproj$"),
+
+                        new BasicFilePattern(costTypeSet.runtimeEnvironmentEstablish, effortTypeSet.autoScriptEffort,
+                                "\\.cson$|(atom|amp).(cmd|sh)$|install-32\\.sh|^script"),
+
+                        new BasicFilePattern(costTypeSet.runtimeEnvironmentEstablish, effortTypeSet.autoScriptEffort,
+                                "\\.md$"),
+
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.autoScriptEffort,
+                                "\\.pak|\\.log|^spec|\\.nib|^vendor|\\.o$"),
+
+                        new BasicFilePattern(costTypeSet.runtimeEnvironmentEstablish, effortTypeSet.autoScriptEffort,
+                                "^resources"),
+
+
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort,
+                                "^build"){
+                            @Override
+                            public GitCommitFileInfo getConvertedGitCommitFileInfo(GitCommitFileInfo gitCommitFileInfo) {
+                                gitCommitFileInfo.setAdditionNum(0);
+                                gitCommitFileInfo.setDeletionNum(0);
+                                gitCommitFileInfo.setChangeNum(0);
+                                return gitCommitFileInfo;
+                            }
+                        }
                 };
                 cspa.addFilePatterns(basicFilePatterns);
             }
@@ -290,7 +338,7 @@ public abstract class Project {
     public static Project IntellijCommunity() {
         String projectAPIURL = "https://api.github.com/repos/JetBrains/intellij-community/";
         String shorName = "ic";//introduction chapter
-        Project p = new Project(shorName, projectAPIURL){
+        Project p = new Project(shorName, projectAPIURL) {
             @Override
             protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
                 CostTypeSet costTypeSet = cspa.getCostTypeSet();
@@ -307,13 +355,28 @@ public abstract class Project {
     public static Project Brackets() {
         String projectAPIURL = "https://api.github.com/repos/adobe/brackets/";
         String shorName = "brkt";
-        Project p = new Project(shorName, projectAPIURL){
+        Project p = new Project(shorName, projectAPIURL) {
             @Override
             protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
                 CostTypeSet costTypeSet = cspa.getCostTypeSet();
                 EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
                 BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
 
+                        new BasicFilePattern(costTypeSet.autoTest, effortTypeSet.autoScriptEffort,
+                                "^test/"
+                        ),
+
+                        new BasicFilePattern(costTypeSet.developingEnvironmentEstablish, effortTypeSet.autoScriptEffort,
+                                "^src.*\\.md$|(README|readme|Readme)(\\.md|\\.markdown|\\.txt)?$"),
+
+                        new BasicFilePattern(costTypeSet.fetchReusableResourceWithCrawler, effortTypeSet.autoScriptEffort,
+                        "^src/thirdparty/"),
+
+                        new BasicFilePattern(costTypeSet.sourceCodeCost,effortTypeSet.reusableCodeEffort,
+                                "^src/.*\\.json$|^src/extensibility"),
+
+                        new BasicFilePattern(costTypeSet.runtimeEnvironmentEstablish,effortTypeSet.autoScriptEffort,
+                                "^tools/.*\\.(sh|bat)$")
                 };
                 cspa.addFilePatterns(basicFilePatterns);
             }
@@ -326,12 +389,44 @@ public abstract class Project {
     public static Project Vscode() {
         String projectAPIURL = "https://api.github.com/repos/Microsoft/vscode/";
         String shorName = "msvs";
-        Project p = new Project(shorName, projectAPIURL){
+        Project p = new Project(shorName, projectAPIURL) {
             @Override
             protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
                 CostTypeSet costTypeSet = cspa.getCostTypeSet();
                 EffortTypeSet effortTypeSet = cspa.getEffortTypeSet();
                 BasicFilePattern[] basicFilePatterns = new BasicFilePattern[]{
+                        new BasicFilePattern(costTypeSet.sourceCodeCost, effortTypeSet.reusableCodeEffort,
+                            "\\.i18n\\.json|^extensions.*\\.json|/i18n/.*isl|^src.*\\.txt"),
+
+                        new BasicFilePattern(costTypeSet.autoCompile, effortTypeSet.autoScriptEffort,
+                                "css-schema\\.xml"),
+
+                        new BasicFilePattern(costTypeSet.autoTest, effortTypeSet.autoScriptEffort,
+                                "^test/run\\.(bat|sh)$|scripts/test\\.(bat|sh)$|^test/"),
+
+                        new BasicFilePattern(costTypeSet.developingEnvironmentEstablish, effortTypeSet.autoScriptEffort,
+                                "(README|Readme|readme)\\.md$|npm-shrinkwrap\\.json|" +
+                                        "^\\.vscode|[Cc]onfig.*\\.json|product.json|script/code\\.(bat|sh)"),
+
+                        new BasicFilePattern(costTypeSet.runtimeEnvironmentEstablish, effortTypeSet.autoScriptEffort,
+                                "^resources|^build.*\\.(sh|cmd|bat)"),
+
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort,
+                                "issue.*.md|OSSREADME.json|yarn\\.lock"),
+
+                        new BasicFilePattern(costTypeSet.fetchReusableResourceWithCrawler, effortTypeSet.autoScriptEffort,
+                                "ThirdPartyNotices\\.txt"),
+
+                        new BasicFilePattern(costTypeSet.errorTypeCost, effortTypeSet.errorTypeEffort,
+                                "^build.*\\.ps1"){
+                            @Override
+                            public GitCommitFileInfo getConvertedGitCommitFileInfo(GitCommitFileInfo gitCommitFileInfo) {
+                                gitCommitFileInfo.setAdditionNum(0);
+                                gitCommitFileInfo.setDeletionNum(0);
+                                gitCommitFileInfo.setChangeNum(0);
+                                return gitCommitFileInfo;
+                            }
+                        }
 
                 };
                 cspa.addFilePatterns(basicFilePatterns);
@@ -345,7 +440,7 @@ public abstract class Project {
     public static Project ThisProject() {
         String projectAPIURL = "https://api.github.com/repos/rzchar/ProductionRate/";
         String shorName = "this";
-        Project p = new Project(shorName, projectAPIURL){
+        Project p = new Project(shorName, projectAPIURL) {
             @Override
             protected void setAdditionFilePatterns(CommitSinglePeriodAnalyzer cspa) {
                 CostTypeSet costTypeSet = cspa.getCostTypeSet();
@@ -358,7 +453,6 @@ public abstract class Project {
         };
         return p;
     }
-
 
     private static Project currentInstance;
 
@@ -389,9 +483,6 @@ public abstract class Project {
             currentInstance = ThisProject();
         }
     }
-
-
-    private static String resourceFileSurfix = "\\.(jpg|gif|png|svg)$";
 
     public void setPatterns(CommitSinglePeriodAnalyzer cpsa) {
         CostTypeSet costTypeSet = cpsa.getCostTypeSet();

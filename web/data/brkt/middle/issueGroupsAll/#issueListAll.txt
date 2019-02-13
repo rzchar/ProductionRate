@@ -10018,7 +10018,6 @@ https://api.github.com/repos/adobe/brackets/issues/4422
 https://api.github.com/repos/adobe/brackets/issues/4421
 https://api.github.com/repos/adobe/brackets/issues/4420
 https://api.github.com/repos/adobe/brackets/issues/4419
-https://api.github.com/repos/adobe/brackets/issues/4419
 https://api.github.com/repos/adobe/brackets/issues/4418
 https://api.github.com/repos/adobe/brackets/issues/4417
 https://api.github.com/repos/adobe/brackets/issues/4416

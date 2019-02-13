@@ -33,16 +33,19 @@ public class Util {
 //            e.printStackTrace();
 //        }
         String[] projects = new String[]{"che", "atom", "brkt", "msvs"};
-        projects = new String[]{"che"};
+        //projects = new String[]{"brkt"};
         for (String pro : projects) {
             Util.log(Util.class, pro +" start");
             Project.setInstance(pro);
             Project currentProject = Project.getInstance();
-            //currentProject.fetchListsFromGithub();
+            //please uncomment the following lines according requirement
+            //projects are configured in model.Project.java
+
             //currentProject.fetchInfoFromGithub();
-            //currentProject.groupTheInfo();
-            currentProject.analyze();
+            //currentProject.fetchListsFromGithub();
             //currentProject.writeMatlabScript();
+            //currentProject.groupTheInfo();
+            //currentProject.analyze();
             Util.log(Util.class, pro +" end");
         }
         if(ps != null){ps.close();}
