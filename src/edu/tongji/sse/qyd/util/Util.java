@@ -41,11 +41,11 @@ public class Util {
             //please uncomment the following lines according requirement
             //projects are configured in model.Project.java
 
-            //currentProject.fetchInfoFromGithub();
-            //currentProject.fetchListsFromGithub();
-            //currentProject.writeMatlabScript();
-            //currentProject.groupTheInfo();
-            //currentProject.analyze();
+            //currentProject.fetchListsFromGithub();//step 1
+            //currentProject.fetchInfoFromGithub();//step 2
+            //currentProject.groupTheInfo();//step 3
+            //currentProject.analyze();//step 4
+            //currentProject.writeMatlabScript();//step 5
             Util.log(Util.class, pro +" end");
         }
         if(ps != null){ps.close();}
