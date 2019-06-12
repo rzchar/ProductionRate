@@ -34,7 +34,6 @@ public class ExcelWriter {
         if (outputFile.exists()) {
             outputFile.delete();
         }
-
         try {
             Util.makeParentDir(outputFile);
             outputFile.createNewFile();
@@ -43,7 +42,6 @@ public class ExcelWriter {
             e.printStackTrace();
             return;
         }
-
         workbook = new HSSFWorkbook();
         this.cellStyle = workbook.createCellStyle();
         this.cellStyle.setFillBackgroundColor(HSSFColor.LIGHT_GREEN.index);
