@@ -20,7 +20,6 @@ abstract public class EntitySpider<T> {
 
     protected String getEntityContentFromRequest(String urlString) {
         String responseContent = "";
-
         try {
             URL url = new URL(urlString);
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
@@ -28,7 +27,6 @@ abstract public class EntitySpider<T> {
             connection.setReadTimeout(10000);
             ConnectionAssistant.addAuthority(connection);
             connection.connect();
-            //connection.getInputStream();
 
             InputStream is = connection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -37,7 +35,6 @@ abstract public class EntitySpider<T> {
                 responseContent += line + "\n";
             }
 
-            //System.out.println(responseContent);
             ConnectionAssistant.spiderLimitCheck(connection);
             connection.disconnect();
         } catch (IOException e) {
